@@ -49,7 +49,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do Typescript.</i>
+          <i>Ele é a base de tudo.</i>
         </details>
       </h6>
     </td>
