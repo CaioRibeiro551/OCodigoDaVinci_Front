@@ -37,7 +37,7 @@
 <table align="center">
   <tr>
      <td align="center">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+      <a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-O-B%C3%A1sico-do-Git">
         <img src="https://skillicons.dev/icons?i=git" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
@@ -54,7 +54,7 @@
       </h6>
     </td>
      <td align="center">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+      <a href="https://mui.com/material-ui/getting-started/">
         <img src="https://skillicons.dev/icons?i=materialui" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
@@ -66,12 +66,12 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do Typescript.</i>
+          <i>Agilidade na construção de designs limpos.</i>
         </details>
       </h6>
     </td>
     <td align="center">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+      <a href="https://www.postgresql.org/docs/">
         <img src="https://skillicons.dev/icons?i=postgres" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
@@ -83,12 +83,12 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do Typescript.</i>
+          <i>Confiabilidade, desempenho e durabilidade.</i>
         </details>
       </h6>
     </td>
      <td align="center">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+      <a href="https://docs.npmjs.com/">
         <img src="https://skillicons.dev/icons?i=nodejs" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
@@ -100,7 +100,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do Typescript.</i>
+          <i>Como ele usamos o javascript no servidor.</i>
         </details>
       </h6>
     </td>
@@ -117,7 +117,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do Typescript.</i>
+          <i>Ele é a base do do React.js.</i>
         </details>
       </h6>
     </td>
@@ -134,7 +134,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Fica implícito no Tailwind.</i>
+          <i>Usado para deixar as páginas bonitas.</i>
         </details>
       </h6>
     </td>
@@ -151,7 +151,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Fica implícito na sintaxe de <code>TSX</code>.</i>
+          <i>Usado para estruturar as páginas.</i>
         </details>
       </h6>
     </td>
@@ -168,7 +168,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é o framework base do projeto, o Next existe a partir dele.</i>
+          <i>Performace e agilidade na contrução das páginas</i>
         </details>
       </h6>
     </td>
