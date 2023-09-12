@@ -36,12 +36,12 @@
 
 <table align="center">
   <tr>
-    <td align="center">
-      <a href="https://nextjs.org/">
-        <img src="https://skillicons.dev/icons?i=nextjs" width="65px" alt="NextJS icon"/><br>
+     <td align="center">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+        <img src="https://skillicons.dev/icons?i=git" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
-            <pre>NextJS</pre>
+            <pre>GIT</pre>
           </b>
         </sub>
       </a>
@@ -49,16 +49,16 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Por conter diversos recursos que auxiliam no desenvolvimento, otimizações de performance e afins, como o SSR usado para buscar os dados na aplicação, assim melhorando também o SEO, além possibilitar facilmente a criação das rotas através do API Routes.</i>
+          <i>Ele é a base do Typescript.</i>
         </details>
       </h6>
     </td>
-    <td align="center">
-      <a href="https://www.typescriptlang.org/">
-        <img src="https://skillicons.dev/icons?i=ts" width="65px" alt="Typescript icon"/><br>
+     <td align="center">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+        <img src="https://skillicons.dev/icons?i=materialui" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
-            <pre>Typescript</pre>
+            <pre>MaterialUI</pre>
           </b>
         </sub>
       </a>
@@ -66,16 +66,16 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Por trabalhar muito bem com o Next e ser um superset do Javascript, trazendo recursos e boas práticas que dão muita segurança durante o desenvolvimento e confiança no resultado, como sua tipagem estática e checagem de erros.</i>
+          <i>Ele é a base do Typescript.</i>
         </details>
       </h6>
     </td>
     <td align="center">
-    <a href="https://redux.js.org/">
-        <img src="https://skillicons.dev/icons?i=redux" width="65px" alt="Redux icon"/><br>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+        <img src="https://skillicons.dev/icons?i=postgres" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
-            <pre>Redux<br/>Toolkit</pre>
+            <pre>postgres</pre>
           </b>
         </sub>
       </a>
@@ -83,16 +83,16 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Para centralizar e padronizar os estados e a lógica de compra da aplicação, além de ser extremamente flexível e depurável.</i>
+          <i>Ele é a base do Typescript.</i>
         </details>
       </h6>
     </td>
-    <td align="center">
-    <a href="https://tailwindcss.com/">
-        <img src="https://skillicons.dev/icons?i=tailwind" width="65px" alt="Tailwind icon"/><br>
+     <td align="center">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+        <img src="https://skillicons.dev/icons?i=nodejs" width="65px" alt="NodeJs icon"/><br>
         <sub>
           <b>
-            <pre>Tailwind</pre>
+            <pre>Node</pre>
           </b>
         </sub>
       </a>
@@ -100,203 +100,10 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Por agilizar e padronizar o desenvolvimento dos estilos da aplicação, trazendo vários recursos para se lidar melhor com o CSS.</i>
+          <i>Ele é a base do Typescript.</i>
         </details>
       </h6>
     </td>
-    <td align="center">
-      <a href="https://pt-br.reactjs.org/">
-        <img src="https://skillicons.dev/icons?i=react" width="65px" alt="React icon"/><br>
-        <sub>
-          <b>
-            <pre>ReactJS</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Ele é o framework base do projeto, o Next existe a partir dele.</i>
-        </details>
-      </h6>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://stripe.com/en-br/">
-        <img src="https://user-images.githubusercontent.com/86276393/212921259-b6b0f80e-d9ed-4b0e-b17a-34733b507cec.png" width="65px" alt="Stripe icon"/><br>
-        <sub>
-          <b>
-            <pre>Stripe</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por ser uma conceituada plataforma de processamento de pagamentos, sendo utilizada para simular o pagamento das compras.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://next-auth.js.org/">
-        <img src="https://user-images.githubusercontent.com/86276393/212922355-e38adb95-9e96-4970-b934-e8ac6c9bd3c9.png" width="60px" alt="NextAuth icon"/><br>
-        <sub>
-          <b>
-            <pre>NextAuth</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Para a autenticação do usuário pela sua conta Google.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://www.sanity.io/">
-        <img src="https://user-images.githubusercontent.com/86276393/212923447-c70352c9-540b-4063-8279-880ad2c164e2.png" height="65px" alt="Sanity icon"/><br>
-        <sub>
-          <b>
-            <pre>Sanity.io</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por ser uma base de dados simples de se lidar e altamente customizável.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://headlessui.com/">
-        <img src="https://user-images.githubusercontent.com/86276393/212924197-eb12c9c9-3803-4470-897a-bdf8f9976f97.png" height="65px" alt="HeadlessUI icon"/><br>
-        <sub>
-          <b>
-            <pre>HeadlessUI</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por dispor de componentes extremamente úteis e bem estruturados, além de se integrar muito bem com Tailwind.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://www.npmjs.com/package/react-responsive/">
-        <img src="https://user-images.githubusercontent.com/86276393/212925340-d173a3be-d947-4620-b6e6-734d1fdf8fd0.png" height="65px" alt="npm icon"/><br>
-        <sub>
-          <b>
-            <pre>React<br/>Responsive</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por auxiliar no tratamento da responsividade da aplicação de uma forma diferente, porém necessária, do Tailwind.</i>
-        </details>
-      </h6>
-    </td>
-  </tr>
-  <tr>
-   <td align="center">
-      <a href="https://react-hot-toast.com/">
-        <img src="https://user-images.githubusercontent.com/86276393/212926924-2b88be96-9c4d-40ed-8459-0485a5e9ecfb.png" height="65px" alt="React Hot Toast icon"/><br>
-        <sub>
-          <b>
-            <pre>React Hot<br/>Toast</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por dispor de notificações altamente customizáveis, bem estruturadas, e simples de se lidar.</i>
-        </details>
-      </h6>
-    </td>
-   <td align="center">
-      <a href="https://kingsora.github.io/OverlayScrollbars/">
-        <img src="https://user-images.githubusercontent.com/86276393/216752819-fcf9f694-9e69-476b-b22a-0930d1b175cd.png" height="65px" alt="overlayscrollbars icon"/><br>
-        <sub>
-          <b>
-            <pre>Overlayscroll<br/>React</pre>
-          </b>
-        </sub>
-      </a>
-     <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Para realizar a estilização do scroll e manipulação da viewport.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://vercel.com/docs/concepts/analytics/audiences/quickstart">
-        <img src="https://user-images.githubusercontent.com/86276393/216752968-b268a1a8-f0ca-463f-812e-a58dad96ee43.png" height="65px" alt="vercel icon"/><br>
-        <sub>
-          <b>
-            <pre>Vercel<br/>Analytics</pre>
-          </b>
-        </sub>
-      </a>
-     <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Para rastrear as visualizações do site.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://react-icons.github.io/react-icons/">
-        <img src="https://user-images.githubusercontent.com/86276393/212928845-43fc02b7-bedb-4fb3-aed4-411a8e892920.png" height="65px" alt="React Icons icon"/><br>
-        <sub>
-          <b>
-            <pre>React Icons</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Por conter uma vasta biblioteca de ícones.</i>
-        </details>
-      </h6>
-    </td>
-    <td align="center">
-      <a href="https://www.npmjs.com/package/random-string/">
-        <img src="https://user-images.githubusercontent.com/86276393/212925340-d173a3be-d947-4620-b6e6-734d1fdf8fd0.png" height="65px" alt="npm icon"/><br>
-        <sub>
-          <b>
-            <pre>Random String</pre>
-          </b>
-        </sub>
-      </a>
-      <h6>
-        <details>
-          <summary>Motivo</summary>
-          <br/>
-          <i>Para gerar o número de rastreamento da <code>pages/success</code>.</i>
-        </details>
-      </h6>
-    </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
         <img src="https://skillicons.dev/icons?i=js" width="65px" alt="Javascript icon"/><br>
@@ -345,6 +152,23 @@
           <summary>Motivo</summary>
           <br/>
           <i>Fica implícito na sintaxe de <code>TSX</code>.</i>
+        </details>
+      </h6>
+    </td>
+     <td align="center">
+      <a href="https://pt-br.reactjs.org/">
+        <img src="https://skillicons.dev/icons?i=react" width="65px" alt="React icon"/><br>
+        <sub>
+          <b>
+            <pre>ReactJS</pre>
+          </b>
+        </sub>
+      </a>
+      <h6>
+        <details>
+          <summary>Motivo</summary>
+          <br/>
+          <i>Ele é o framework base do projeto, o Next existe a partir dele.</i>
         </details>
       </h6>
     </td>
