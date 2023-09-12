@@ -14,7 +14,7 @@
 ![luk4x-repo-status](https://img.shields.io/badge/status-developing-lightgrey?style=for-the-badge&logo=headspace&logoColor=yellow&color=lightgrey)
 ![luk4x-repo-license](https://img.shields.io/github/license/Luk4x/apple-store?style=for-the-badge&logo=unlicense&logoColor=lightgrey)
 ## Plataforma de cobrança 
-
+![Home e Menu](https://github.com/CaioRibeiro551/OCodigoDaVinci_Front/assets/122483460/73d08d42-6800-4802-9fa4-850ed7b498c5)
 <br>
 <p align="center">
   <a href="#-tecnologias-utilizadas">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
