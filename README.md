@@ -14,7 +14,7 @@
 ![luk4x-repo-status](https://img.shields.io/badge/status-developing-lightgrey?style=for-the-badge&logo=headspace&logoColor=yellow&color=lightgrey)
 ![luk4x-repo-license](https://img.shields.io/github/license/Luk4x/apple-store?style=for-the-badge&logo=unlicense&logoColor=lightgrey)
 ## Plataforma de cobrança 
-![Home e Menu](https://github.com/CaioRibeiro551/OCodigoDaVinci_Front/assets/122483460/73d08d42-6800-4802-9fa4-850ed7b498c5)
+
 <br>
 <p align="center">
   <a href="#-tecnologias-utilizadas">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -559,102 +559,14 @@
       Adição das minhas redes sociais
     </td>
   </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Melhoria do tratamento de erros
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Personalização dos Toasts
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Otimização da performance do projeto <!-- https://www.linkedin.com/posts/dev-luiz-carlos_frontend-desenvolvedores-html-activity-7019619056190173185-B56Z?utm_source=share&utm_medium=member_desktop, nextfont --> 
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Desenvolvimento da busca de CEP na <code>pages/checkout</code> <!-- cosume cep api + headlessui combobox --> 
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Armazenamento os produtos do carrinho em <b>Local Storage</b>
-    </td>
-  </tr><tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Desenvolvimento do sistema de busca <!-- header search icon -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Desenvolvimento da página para cada produto
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Adição de novos produtos e categorias <!-- airpods, tv?, acessórios? -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Clonagem de páginas da Apple <!-- explore => loja, suporte, só na apple => só na apple + apple tv 4k + apple tv+ -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      ☐
-    </td>
-    <td>
-      Criação de página de produtos parceiros consumindo uma API
-    </td>
-  </tr>
+
+
   
-  <!-- suggest user account data in payment -->
-  <!-- migrate from tailwind to styled-components if/when necessary -->
-  <!-- integrate with kayke and luiz e-commerce -->
 </table>
 
 ## 📝 Sobre
+##### Este projeto consiste em sistema de gerenciamento de cobranças.
 
-> Assistir o vídeo acima e/ou acessar o projeto online ajudará na compreensão da explicação!
-
-<img align="right" src="https://user-images.githubusercontent.com/86276393/212980660-edc0babb-f014-439f-b823-4a4e9ece7d45.png" alt="notepad icon" />
-Em resumo, a aplicação se consiste num E-Commerce da Apple, simulando um fluxo de compra completo, onde o usuário pode ou não se autenticar pela sua conta Google através do <b>NextAuth</b>, adicionar e remover os produtos do seu carrinho com auxílio do <b>Redux</b>, simular o pagamento desses produtos através do ambiente de testes do <b>Stripe</b>, e ao final será redirecionado para uma página de confirmação e agradecimento da compra.
-Esse fluxo de compra em si envolvendo os produtos buscados da base dados do <b>Sanity</b> é o principal destaque da aplicação, mas existem outros pontos muito importantes que podem ser conferidos nas sessões abaixo.
-<br/><br/>
-Também recomendo conferir especialmente os motivos da utilização de <b>NextJS</b>, <b>Typescript</b>, <b>Redux</b> e <b>Tailwind</b> na sessão de <a href="#-tecnologias-utilizadas">Tecnologias</a>, pois meu principal objetivo com esse projeto foi desenvolver minha autonomia com tais tecnologias, visto que sou um desenvolvedor <b>React</b> e elas são uma parte fundamental de seu ecossistema, sendo elas as principais responsáveis pela agilidade, confiança, performance e profissionalismo de forma geral durante o desenvolvimento da aplicação, devido aos seus excelentes recursos.
-<br/><br/>
-Mas isso claro, sem tirar o mérito das outras tecnologias utilizadas, todas elas desempenham um papel fundamental especificado junto delas, e contribuem para o resultado do projeto como um todo, e irei continuar aprendendo e me aprofundando bastante nessas tecnologias e no que for necessário durante o desenvolvimento dessa aplicação para colocar todas as minhas ideias em prática e cumprir todas as tarefas listadas na sessão de <a href="#%EF%B8%8F-etapas">Etapas</a>, que é uma sessão que também vale a pena conferir para ter uma visão geral sobre a evolução do projeto.
 
 ### 📄 Páginas e Rotas
 
