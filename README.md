@@ -13,7 +13,7 @@
 
 ![luk4x-repo-status](https://img.shields.io/badge/status-developing-lightgrey?style=for-the-badge&logo=headspace&logoColor=yellow&color=lightgrey)
 ![luk4x-repo-license](https://img.shields.io/github/license/Luk4x/apple-store?style=for-the-badge&logo=unlicense&logoColor=lightgrey)
-# 🛍️ Plataforma de cobrança 
+## Plataforma de cobrança 
 
 <br>
 <p align="center">
@@ -32,7 +32,7 @@
 
 ## 🚀 Tecnologias Utilizadas
 
-> Abaixo estão as 8 tecnologias utilizadas no desenvolvimento do projeto, e seus motivos
+> Abaixo estão as 8 tecnologias utilizadas no desenvolvimento do projeto, e o motivo de usá-las.
 
 <table align="center">
   <tr>
