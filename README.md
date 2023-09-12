@@ -32,7 +32,7 @@
 
 ## 🚀 Tecnologias Utilizadas
 
-> Abaixo estão as 7 tecnologias utilizadas no desenvolvimento do projeto, e seus motivos
+> Abaixo estão as 8 tecnologias utilizadas no desenvolvimento do projeto, e seus motivos
 
 <table align="center">
   <tr>
@@ -49,7 +49,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base de tudo.</i>
+          <i>Facilidade no controle de versões e trabalho em equipe.</i>
         </details>
       </h6>
     </td>
