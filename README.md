@@ -22,8 +22,6 @@
   <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-páginas-e-rotas">Páginas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-demais-componentes">Componentes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-clonando-o-projeto">Clone</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-contato-dos-contribuintes">Contato</a>
 </p>
 <br>
 
@@ -176,393 +174,232 @@
 </table>
 
 ## 🗓️ Etapas
+<details open="">
+<summary><h1> 1ª Sprint</h1></summary>
+<br>
 
-> 46 das atuais 54 etapas já foram concluídas, mas novas podem ser adicionadas!
+<details>
+<summary><b>[Usuário] Cadastro do usuário</b></summary>
+<br>
+<h3 >Nessa etapa, o usuário realizará o cadastro para obter acesso ao sistema</h3>
+<hr>
+    <ul>
+        <li>
+            <h4>Campos necessários para o cadastro inicial:</h4>
+            <ul>
+                <li>Nome do usuário (obrigatório)</li>
+                <li>Email (obrigatório)</li>
+                <li>Senha (obrigatório)</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Serão informadas mensagens de erro em casos de:</h4>
+            <ul>
+                <li>Campos obrigatórios em branco</li>
+                <li>E-mail informado já existir cadastrado</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Será informada mensagem de sucesso:</h4>
+            <ul>
+                <li>Após realizado o cadastro com sucesso o usuário receberá uma mensagem de confirmação e um botão para ser redirecionado para a página de Login.</li>
+            </ul>
+        </li>
+    </ul>
+</details>
 
-<table align="center" height="548px">
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Definição da estrutura base e instalação de dependências
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-       Definição de estilos globais
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Busca por boas fotos de mostruário
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da base da <code>pages/index</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Criação e configuração básica da base de dados com o <b>Sanity</b>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/Header</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/Button</code> inspirado no <a href="https://devdojo.com/tailwindcss/buttons">DevDojo</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Finalização da estrutura e estilo da <code>pages/index</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Configuração do painel de administração da base de dados
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Preenchimento da base de dados
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da <code>pages/api/getCategories</code> e <code>pages/api/getProducts</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da <code>utils/fetchCategories</code> e <code>utils/fetchProducts</code> 
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/Product</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Busca dos produtos da base de dados via <b>SSR</b>
-      <img align="right" src="https://user-images.githubusercontent.com/86276393/213449768-416cc5b4-e3a7-4774-85b8-9a58cb1f8ae6.png" alt="arrow icon" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação do <b>Redux</b>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação dos toasts
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/Cart</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da estrutura e estilo da <code>pages/checkout</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/CheckoutProduct</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Agrupamento dos produtos duplicados na <code>pages/checkout</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação do <b>Stripe</b>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>utils/get-stripejs</code> e <code>utils/api-helpers</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da <code>pages/api/checkout_sessions</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da estrutura e estilo da <code>pages/success</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento da <code>pages/api/getSession</code> e <code>utils/fetchLineProducts</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Finalização da <code>pages/success</code> obtendo os dados via <code>SSR</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação do <b>NextAuth</b> e criação do <code>pages/api/auth/[...nextauth]</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Criação do projeto na <b>Google Cloud</b>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação do <b>NextAuth</b> no <b>Sanity</b>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Deploy da base de dados
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Otimização das imagens do projeto
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Mudança do <a href="https://heroicons.com/">Hero Icons</a> para o <a href="https://react-icons.github.io/react-icons/">React Icons</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Melhoria do design e responsividade da <code>pages/index</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Melhoria da responsividade da <code>pages/checkout</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Criação da licença e desenvolvimento do README do projeto <!-- e README-en -->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Melhoria do <b>SEO</b> do projeto
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Remoção do <code>react-currency-formatter</code> (bugging)
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento do <code>components/Currency</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Deploy do projeto na <a href="https://vercel.com">Vercel</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Divisão de branches de Produção e Desenvolvimento
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Desenvolvimento Cross-Browser
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Estilização do Scroll
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Melhoria da responsividade do <code>pages/index</code>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      <details>
-        <summary>Correção geral de Bugs</summary>
-        󠁼󠁼󠁼————————————󠁼<br/>
-        🗹 Correção do menu Mobile do <code>pages/index</code> com o novo scroll<br/>
-        🗹 Correção da posição do <code>components/Cart</code> com o novo scroll<br/>
-        🗹 Correção do botão <b>Comprar</b> do <code>pages/index</code> com o novo scroll<br/>
-        🗹 Correção do título do <code>Head</code><br/>
-        🗹 Correção do scroll do <code>pages/success</code><br/>
-        🗹 Correção do error <b>validateDOMNesting</b> no <code>pages/success</code>
-        🗹 Correção do SEO
-      </details>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Implementação do <a href="https://vercel.com/docs/concepts/analytics/audiences/quickstart">Vercel Analytics</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      🗹
-    </td>
-    <td>
-      Adição das minhas redes sociais
-    </td>
-  </tr>
+<details>
+<summary><b>[Usuário] Login do usuário</b></summary>
+<h3>Nessa etapa, o usuário será capaz de realizar login no Dashboard, afim de acessar o sistema.</h3>
+<hr>
+<ul>
+    <li>
+        <h4>Campos obrigatórios para o login:</h4>
+        <ul dir="auto">
+            <li>E-mail</li>
+            <li>Senha</li>
+        </ul>
+    </li>
+    <li>
+        <h4>Será informadas mensagens de erro em casos de:</h4>
+        <ul>
+            <li>Campos obrigatórios em branco</li>
+            <li>E-mail não existe no cadastro</li>
+            <li>Senha incorreta para o e-mail</li>
+        </ul>
+    </li>
+    <li>
+        <h4>Após realização de login com sucesso:</h4>
+        <ul>
+            <li>Criação de token de autenticação após validação dos dados (credenciais) de acesso (e-mail e senha).</li>
+            <li>
+            Será ser retornado ao navegador o token de autenticação de forma que possa ser utilizado em outras funcionalidades que exigem autenticação. O usuário deverá ser redirecionado para a home do sistema
+            </li>
+        </ul>
+    </li>
+</ul>
+</details>
+
+<details>
+<summary><b>[Dashboard] Home e Menu</b></summary>
+<h3>Nessa seção do sistema, será exibida ao usúario uma tela inicial, afim de poder navegar através do menu.</h3>
+<hr>
+    <ul>
+        <li>
+        <h4 dir="auto">Critérios de aceite</h4>
+            <ul>
+                <li>Apenas usuários autenticados deverão conseguir acessar esta página</li>
+            </ul>
+        </li>
+        <li>
+            <h4 dir="auto">Esta tela tem uma imagem padrão de usuário e o primeiro nome do usuário no canto superior direito, que ao clicar, abrirá um menu com dois botões:</h4>
+            <ul dir="auto">
+                <li>O primeiro é o "Editar", que abre um modal de atualização do cadastro do usuário logado.</li>
+                <li>O segundo é o botão "Sair", que desloga o usuário do sistema</li>
+            </ul>
+            </li>
+        <li>
+            <h4 dir="auto">Do lado esquerdo, há um Menu lateral contendo os links que permitirá o usuário navegar pelos módulos do sistema:</h4>
+            <ul dir="auto">
+                <li>Home</li>
+                <li>Clientes</li>
+                <li>Cobranças</li>
+            </ul>
+        </li>
+        <li>
+            <h4 dir="auto">Esta tela tem 8 cards com as seguintes informações:</h4>
+            <ul dir="auto">
+                <h5 dir="auto">Resumo do Valor Total das Cobranças</h5>
+                <li>
+                    <p dir="auto">Pagas</p>
+                </li>
+                <li>
+                    <p dir="auto">Vencidas</p>
+                </li>
+                <li>
+                    <p dir="auto">Previstas</p>
+                </li>
+                <h5 dir="auto">Prévia de categorioas</h5>
+                <li>
+                    <p dir="auto">Cobranças Vencidas</p>
+                </li>
+                <li>
+                    <p dir="auto">Cobranças Previstas</p>
+                </li>
+                <li>
+                    <p dir="auto">Cobranças Pagas</p>
+                </li>
+                <li>
+                    <p dir="auto">Clientes Inadimplentes</p>
+                </li>
+                <li>
+                    <p dir="auto">Clientes Em dia</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</details>
+
+<details>
+<summary><b>[Usuário] Edição do usuário logado</b></summary>
+<h3 tabindex="-1" dir="auto">Quando logado, o usuário poderá editar seus dados no sistema.</h3>
+<hr/>
+    <ul dir="auto">
+        <li>
+            <h4 dir="auto">Critérios de aceite</h4>
+            <ul dir="auto">
+                <li>Para acessar este formulário de cadastro é exigido autenticação.</li>
+                <li>Através de um clique no perfil da Dashboard serão abertos dois botões:
+                <ul dir="auto">
+                    <li>Editar</li>
+                    <li>Sair</li>
+                </ul>
+                </li>
+                <li>Ao clicar em "Editar" o formulário de edição dos dados do usuário será aberto.</li>
+                <li>Ao abrir o formulário, os dados do usuário logado serão carregados nos respectivos campos</li>
+           </ul>
+        <li>
+            <h4 dir="auto">O usuário poderá atualizar os respectivos dados a seguir:</h4>
+            <ul dir="auto">
+                <li>Nome do usuário (obrigatório)</li>
+                <li>E-mail (obrigatório)</li>
+                <li>Senha (obrigatório - apenas se for alterar a senha)</li>
+                <li>CPF</li>
+                <li>Telefone</li>
+            </ul>
+        <li>
+            <h4 dir="auto">Serão informadas mensagens de erro em casos de:</h4>
+            <ul dir="auto">
+                <li>Campos obrigatórios passados em branco</li>
+                <li>E-mail informado for diferente do usuário logado e já existir cadastrado para outro usuário</li>
+            </ul>
+        </li>
+        <li>
+        <h4 dir="auto">Após realizado a atualização com sucesso o usuário receberá uma mensagem de confirmação</h4>
+        </li>
+    </ul>
+</details>
+
+<details>
+<summary><b>[Cliente] Cadastro do cliente</b></summary>
+<h3 tabindex="-1" dir="auto">Nessa seção o usário poderá cadastrar clientes, afim de acessar suas informações no futuro.</h3>
+<hr />
+<ul dir="auto">
+    <li>
+        <h4 dir="auto">Critérios de aceite</h4>
+        <ul dir="auto">
+            <li>
+            <p dir="auto">Para acessar este formulário de cadastro deverá ser exigida autenticação</p>
+            </li>
+            <li>
+            <p dir="auto">Campos necessários para o cadastro (<b>*</b> obrigatórios):</p>
+                <ul dir="auto">
+                    <li>Nome do usuário (<b>*</b>)</li>
+                    <li>Email (<b>*</b>)</li>
+                    <li>Cpf (<b>*</b>)</li>
+                    <li>Telefone (<b>*</b>)</li>
+                    <li>Cep</li>
+                    <li>Logradouro</li>
+                    <li>Complemento</li>
+                    <li>Bairro</li>
+                    <li>Cidade</li>
+                    <li>Estado</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <h4 dir="auto">Opcionalmente, poderá ter a busca do endereço ao digitar o CEP utilizando a api do ViaCEP</h4>
+    </li>
+    <li>
+        <h4 dir="auto">Será informadas mensagens de erro em casos de:</h4>
+        <ul dir="auto">
+            <li>Campos obrigatórios em branco</li>
+            <li>E-mail informado já existir cadastrado</li>
+        </ul>
+    <li>
+        <h4 dir="auto">Após realizado a atualização com sucesso o usuário receberá uma mensagem de confirmação</h4>
+    </li>
+</ul>
+</details>
+
+<details>
+<summary><b>[Dashboard] Configuração do Deploy</b></summary>
+<h3 tabindex="-1" dir="auto">Na posição de usuário do sistema, devo ser capaz de acessar o sistema através da internet, afim de usar o sistema em qualquer dispositivo com acesso a internet.</h3>
+<hr>
+<ul dir="auto">
+    <li>
+        <p dir="auto"><b>Critérios de aceite</b></p>
+        <ul dir="auto">
+            <li>O frontend poderá ser hospedado na <b>Netlify</b></li>
+            <li>O backend e banco de dados poderá ser hospedado na <b>Cyclic</b></li>
+            <li>O frontend hospedado deverá ser <b>integrado</b> ao backend também hospedado</li>
+        </ul>
+    </li>
+</ul>
+</details>
 
 
-  
-</table>
 
 ## 📝 Sobre
 ##### Este projeto consiste em sistema de gerenciamento de cobranças.
