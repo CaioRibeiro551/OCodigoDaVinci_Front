@@ -404,20 +404,19 @@
 
 #### A aplicação tem um total de 3 componentes de página, sendo eles:
 
-  - `pages/index`: Essa é a Home da aplicação, onde o usuário pode efetuar o LogIn/LogOut, e adicionar produtos ao carrinho. Os produtos são buscados da base de dados utilizando o conceito de **SSR**;
-  - `pages/checkout`: Essa é a página de revisão da compra, onde o usuário pode remover produtos do carrinho e seguir com o pagamento, sendo redirecionado para o ambiente de teste do Stripe - uma página de pagamento;
-  - `pages/success`: Após ter preenchido os dados e efetuado o pagamento na página do Stripe, o usuário será redirecionado para essa página, que é a de confirmação e agradecimento pela compra.
- 
+  - `pages/SingIn`: Essa é a a pagina onde o usuário coloca seu LogIn ja cadasrado na aplicação
+  - `pages/SingUp`: Essa é a página onde o usuário forcene seus dados para se cadastrar na aplicação
+  - `pages/Dashboard`: Após o usuário ter se cadastrado e efetuado do LogIn , tem acesso ao seu Dashboard com todos os dados de clientes
 
 
   <br/>
 
-  - `components/Button`: 
-  - `components/Cart`:
-  - `components/CheckoutProduct`:
-  - `components/Currency`:
+  - `components/`: 
+  - `components/`:
+  - `components/`:
+  - `components/`:
   - `components/Header`: Esse componente é relativo ao cabeçalho da aplicação;
-  - `components/Product`: 
+  - `components/`: 
 
   <br/>
 
