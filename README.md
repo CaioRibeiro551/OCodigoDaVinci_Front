@@ -115,7 +115,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Ele é a base do do React.js.</i>
+          <i>Ele é a base do React.js.</i>
         </details>
       </h6>
     </td>
@@ -166,7 +166,7 @@
         <details>
           <summary>Motivo</summary>
           <br/>
-          <i>Performace e agilidade na contrução das páginas</i>
+          <i>Performace e agilidade na construção das páginas</i>
         </details>
       </h6>
     </td>
@@ -502,49 +502,6 @@ Feito isso:
 
 # Feito isso, você já poderá estar acessando o projeto em: http://localhost:3000
 ```
-
-## 📞 Contato dos Contribuintes
-
-<table border="2">
-  <tr>
-    <td align="center">
-      <details>
-        <summary>
-          <b><a href="https://cursos.alura.com.br/vitrinedev/lucasmacielf">Vitrine.Dev</a> 🪟</b>
-          <table>
-            <tr>
-              <td align="center">
-                <a href="https://github.com/Luk4x">
-                  <img src="https://avatars.githubusercontent.com/Luk4x" width="150px;" alt="Luk4x Github Photo"/>
-                </a>
-                <br>
-                <a href="https://www.linkedin.com/in/lucasmacielf/">
-                  <sub>
-                    <img width="12px" src="https://user-images.githubusercontent.com/86276393/213034697-3d2b2048-7a83-435c-96aa-6e5fad0466eb.png" /> <b>Lucas Maciel</b>
-                  </sub>
-                </a>
-              </td>
-            </tr>
-          </table>
-        </summary>
-
-| :placard: Vitrine.Dev | Lucas Maciel |
-| -------------  | --- |
-| :sparkles: Nome        | **🛍️ Apple Store**
-| :label: Tecnologias | nextjs, typescript, redux, stripe, reactjs, tailwind css, sanity.io, next-auth, headlessui, react hot toast, random string, vercel analytics, react responsive, overlayScrollbars react, react icons, javascript, css, html
-| :camera: Img         | <img src="https://user-images.githubusercontent.com/86276393/212569133-c845f016-df7f-41ee-a3a1-43bbbc2a6669.png#vitrinedev" alt="vitrine.dev thumb" width="100%"/>
-
-</details>
-</td>
-</tr>
-</table>
-
 <p align="right">
   <a href="#%EF%B8%8F-apple-store-project">Voltar ao Topo</a>
 </p>
-
-<!--
-  keep tecnology, phase numbers and vitrinedev techs updated
-  add vitrinedev and portfolio-project tag
-  Change Repo/Settings/Social Preview
--->
