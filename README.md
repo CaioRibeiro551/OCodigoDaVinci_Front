@@ -400,27 +400,36 @@
 ##### Este projeto consiste em sistema de gerenciamento de cobranças.
 
 
-### 📄 Páginas e Rotas
+### 📄 Funcionalidades Implementadas
 
-#### A aplicação tem um total de 3 componentes de página, sendo eles:
+## Sprint 1 - Cadastro de Usuário, Login, Dashboard e Edição de Usuário
+### Funcionalidades Implementadas
 
-  - `pages/SingIn`: Essa é a a pagina onde o usuário coloca seu LogIn ja cadasrado na aplicação
-  - `pages/SingUp`: Essa é a página onde o usuário forcene seus dados para se cadastrar na aplicação
-  - `pages/Dashboard`: Após o usuário ter se cadastrado e efetuado do LogIn , tem acesso ao seu Dashboard com todos os dados de clientes
+1. **Cadastro do Usuário**
+   - Os usuários podem se cadastrar na plataforma fornecendo seu nome, e-mail e senha.
+   - Senhas são criptografadas antes de serem armazenadas.
+   - Validações são realizadas para campos em branco e e-mails duplicados.
+   - Após o cadastro bem-sucedido, os usuários recebem uma mensagem de confirmação e são redirecionados para a página de login.
 
+2. **Login do Usuário**
+   - Os usuários podem realizar login na plataforma fornecendo seu e-mail e senha.
+   - Validações são realizadas para campos em branco, e-mails inexistentes e senhas incorretas.
+   - Após o login bem-sucedido, os usuários recebem um token de autenticação e são redirecionados para a página inicial do Dashboard.
+
+3. **Dashboard - Home e Menu**
+   - Os usuários autenticados têm acesso a uma página inicial do Dashboard.
+   - A página inclui uma imagem do usuário e um menu lateral para navegar pelos módulos do sistema.
+   - A página inicial possui 8 cards informativos com resumo de cobranças e status de clientes.
+   - Os usuários podem acessar a página de edição de perfil e realizar logout.
+
+4. **Edição do Usuário Logado**
+   - Os usuários autenticados podem editar seus dados de usuário.
+   - A edição inclui campos como nome, e-mail, senha (opcional), CPF e telefone.
+   - Validações são realizadas para campos em branco e e-mails duplicados.
+   - As alterações são persistidas no banco de dados e os usuários recebem uma mensagem de confirmação.
 
   <br/>
 
-  - `components/`: 
-  - `components/`:
-  - `components/`:
-  - `components/`:
-  - `components/Header`: Esse componente é relativo ao cabeçalho da aplicação;
-  - `components/`: 
-
-  <br/>
-
- 
 
 ## 📖 Clonando o Projeto
 
