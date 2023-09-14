@@ -65,7 +65,6 @@ export default function SignIn() {
 
                 <div className="container-inputs">
                   <label htmlFor="name">Nome *</label>
-
                   <input
                     type="text"
                     name="name"
