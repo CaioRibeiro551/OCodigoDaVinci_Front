@@ -11,29 +11,29 @@ import {
 } from "@mui/material";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 import Sucess from "../../assets/sucess.svg";
 
-function SignIn() {
+const steps = [
+  {
+    label: "Cadastre-se",
+    description: `Por favor, escreva seu nome e e-mail`,
+  },
+  {
+    label: "Escolha uma senha",
+    description: "Escolha uma senha segura",
+  },
+  {
+    label: "Cadastro realizado com sucesso",
+    description: `E-mail e senha cadastradoscom sucesso`,
+  },
+];
+
+export default function SignIn() {
   const [activeStep, setActiveStep] = useState(0);
   const [eye, setEye] = useState(false);
 
   const navigator = useNavigate();
-  const steps = [
-    {
-      label: "Cadastre-se",
-      description: `Por favor, escreva seu nome e e-mail`,
-    },
-    {
-      label: "Escolha uma senha",
-      description: "Escolha uma senha segura",
-    },
-    {
-      label: "Cadastro realizado com sucesso",
-      description: `E-mail e senha cadastradoscom sucesso`,
-    },
-  ];
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -106,9 +106,10 @@ function SignIn() {
                     name="Senha"
                     placeholder="Digite seu senha"
                   />
-                  <div className="password-toggle" onClick={() => setEye(!eye)}>
-                    {eye ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </div>
+                  <div
+                    className="password-toggle"
+                    onClick={() => setEye(!eye)}
+                  ></div>
                 </div>
 
                 <div className="container-inputs">
@@ -118,9 +119,10 @@ function SignIn() {
                     name="repeteSenha"
                     placeholder="Repita a senha"
                   />
-                  <div className="password-toggle" onClick={() => setEye(!eye)}>
-                    {eye ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </div>
+                  <div
+                    className="password-toggle"
+                    onClick={() => setEye(!eye)}
+                  ></div>
                 </div>
 
                 <Button
@@ -165,5 +167,3 @@ function SignIn() {
     </div>
   );
 }
-
-export default SignIn;

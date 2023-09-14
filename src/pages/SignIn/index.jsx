@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function SignIn() {
   const [eye, setEye] = useState(false);
@@ -27,9 +25,7 @@ export default function SignIn() {
               name="senha"
               placeholder="Digite sua senha"
             />
-            <div className="password-toggle" onClick={() => setEye(!eye)}>
-              {eye ? <VisibilityIcon /> : <VisibilityOffIcon />}
-            </div>
+            <div className="password-toggle" onClick={() => setEye(!eye)}></div>
           </div>
 
           <button onClick={() => navigator("/home")}>Entrar</button>
