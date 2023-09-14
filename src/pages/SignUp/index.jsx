@@ -18,6 +18,7 @@ import Sucess from "../../assets/sucess.svg";
 function SignIn() {
   const [activeStep, setActiveStep] = useState(0);
   const [eye, setEye] = useState(false);
+
   const navigator = useNavigate();
   const steps = [
     {
@@ -88,7 +89,7 @@ function SignIn() {
                 >
                   Próximo
                 </Button>
-                <Link to="signin">Já possui uma conta? Faça seu Login</Link>
+                <Link to="/signin">Já possui uma conta? Faça seu Login</Link>
               </form>
             </div>
           )}
@@ -129,7 +130,7 @@ function SignIn() {
                 >
                   Próximo
                 </Button>
-                <Link to="signin">Já possui uma conta? Faça seu Login</Link>
+                <Link to="/signin">Já possui uma conta? Faça seu Login</Link>
               </form>
             </div>
           )}
@@ -141,7 +142,9 @@ function SignIn() {
                 <h2>Cadastro realizado com sucesso</h2>
               </div>
 
-              <button onClick={() => navigator("/")}> Ir para o login</button>
+              <button onClick={() => navigator("/signin")}>
+                Ir para o login
+              </button>
             </div>
           )}
         </form>
