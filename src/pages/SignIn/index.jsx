@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "../../assets/eye-close.png";
+import VisibilityOffIcon from "../../assets/eye-open.png";
 
 export default function SignIn() {
   const [eye, setEye] = useState(false);
