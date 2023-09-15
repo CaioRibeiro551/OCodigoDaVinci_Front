@@ -15,7 +15,7 @@ export default function Sidebar() {
         <div className="sidebar-content">
           <div className={`sidebar-item ${isHomeRoute ? 'home-route' : ''}`}>
             <img src={Homeicon} alt="" />
-            <p>Home</p>
+            <p id="oi">Home</p>
           </div>
           <div className="sidebar-item">
             <img src={Clientsicon} alt="" />
