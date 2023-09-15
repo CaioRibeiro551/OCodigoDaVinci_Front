@@ -1,3 +1,13 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Stepper, Step, StepLabel, Box, StepContent } from "@mui/material";
+import "./style.css";
+import { useNavigate } from "react-router-dom";
+import eyeOpen from "../../assets/eye-open.png";
+import eyeClose from "../../assets/eye-close.png";
+import Sucess from "../../assets/sucess.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -32,23 +42,72 @@ const steps = [
 export default function SignUp() {
   const [activeStep, setActiveStep] = useState(0);
   const [eye, setEye] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const msgError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   const navigator = useNavigate();
 
   const handleNext = () => {
+    if (activeStep === 0) {
+      if (!user.name.trim() || !user.email.trim()) {
+        msgError("Os campos Nome e Email são obrigatórios!");
+        return;
+      }
+    }
+
+    if (activeStep === 1) {
+      if (!user.password.trim() || !user.confirmPassword.trim()) {
+        msgError("Os campos de Senha e Repertir senha são obrigatórios!");
+        return;
+      }
+
+      if (user.password.trim() !== user.confirmPassword.trim()) {
+        msgError("As senhas precisam ser iguais!");
+        return;
+      }
+    }
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  const handleSetuser = ({ target }) => {
+    const key = target.name;
+    const value = target.value;
+    setUser({ ...user, [key]: value });
+    console.log(user);
+  };
+
   return (
-    <div className="signup-container">
+    <div className="signup-container max-width">
       <div className="signup-container-left">
         <div>
           <Stepper activeStep={activeStep} orientation="vertical">
             {steps.map((label) => (
               <Step key={label.label}>
-                <StepLabel>{label.label} </StepLabel>
-                <StepContent>
-                  <Typography>{label.description}</Typography>
+                <StepLabel>
+                  <span className="titleStepper">{label.label}</span>
+                </StepLabel>
+                <StepContent TransitionProps={{ unmountOnExit: false }}>
+                  <span className="descriptionStepper">
+                    {label.description}
+                  </span>
                 </StepContent>
               </Step>
             ))}
@@ -57,40 +116,41 @@ export default function SignUp() {
       </div>
 
       <div className="signup-container-rigth">
-        <form>
+        <>
           {activeStep === 0 && (
-            <div>
-              <form action="">
-                <h1>Adicione seus dados</h1>
+            <form action="">
+              <h1>Adicione seus dados</h1>
 
-                <div className="container-inputs">
-                  <label htmlFor="name">Nome *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Digite seu nome"
-                  />
-                </div>
+              <div className="container-inputs">
+                <label htmlFor="name">Nome *</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  onChange={handleSetuser}
+                  placeholder="Digite seu nome"
+                />
+              </div>
 
-                <div className="container-inputs">
-                  <label htmlFor="email">Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Digite seu email"
-                  />
-                </div>
+              <div className="container-inputs">
+                <label htmlFor="email">Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  onChange={handleSetuser}
+                  placeholder="Digite seu email"
+                />
+              </div>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                >
-                  Próximo
-                </Button>
-                <Link to="/signin">Já possui uma conta? Faça seu Login</Link>
-              </form>
-            </div>
+              <button type="button" onClick={handleNext}>
+                Continuar
+              </button>
+
+              <p>
+                Já possui uma conta? Faça seu <Link to="/"> Login</Link>
+              </p>
+            </form>
           )}
 
           {activeStep === 1 && (
@@ -99,39 +159,48 @@ export default function SignUp() {
                 <h1>Escolha uma senha</h1>
 
                 <div className="container-inputs">
-                  <label htmlFor="senha">Senha *</label>
+                  <label htmlFor="password">Senha *</label>
                   <input
+
+                    type={eye ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    onChange={handleSetuser}
                     type={eye ? 'text' : 'password'}
                     name="Senha"
+
                     placeholder="Digite seu senha"
                   />
-                  <div
-                    className="password-toggle"
-                    onClick={() => setEye(!eye)}
-                  ></div>
+                  <div className="password-toggle" onClick={() => setEye(!eye)}>
+                    {eye ? <img src={eyeOpen} /> : <img src={eyeClose} />}
+                  </div>
                 </div>
 
                 <div className="container-inputs">
-                  <label htmlFor="repeteSenha">Repita a senha *</label>
+                  <label htmlFor="confirmPassword">Repita a senha *</label>
                   <input
+
+                    type={eye ? "text" : "password"}
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    onChange={handleSetuser}
+
                     type={eye ? 'text' : 'password'}
                     name="repeteSenha"
+
                     placeholder="Repita a senha"
                   />
-                  <div
-                    className="password-toggle"
-                    onClick={() => setEye(!eye)}
-                  ></div>
+                  <div className="password-toggle" onClick={() => setEye(!eye)}>
+                    {eye ? <img src={eyeOpen} /> : <img src={eyeClose} />}
+                  </div>
                 </div>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                >
-                  Próximo
-                </Button>
-                <Link to="/signin">Já possui uma conta? Faça seu Login</Link>
+                <button type="button" onClick={handleNext}>
+                  Finalizar cadastro
+                </button>
+                <p>
+                  Já possui uma conta? Faça seu <Link to="/"> Login</Link>
+                </p>
               </form>
             </div>
           )}
@@ -148,7 +217,21 @@ export default function SignUp() {
               </button>
             </div>
           )}
-        </form>
+        </>
+
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+
         <div>
           <Box display="flex" justifyContent="center" mt={3}>
             {steps.map((_, index) => (
