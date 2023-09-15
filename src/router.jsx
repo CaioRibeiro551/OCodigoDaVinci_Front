@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 export default function MainRouter() {
   return (
     <Routes>
-      <Route path="/signup" element={<SignUp />} />
       <Route path="/" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
     </Routes>
   );

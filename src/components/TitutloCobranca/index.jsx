@@ -1,4 +1,4 @@
-import ".style.css";
+import "./style.css";
 import paidcharge from "../../assets/paid-charges.svg";
 
 export default function TituloCobranca() {
