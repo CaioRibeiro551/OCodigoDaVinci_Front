@@ -4,8 +4,8 @@ import { Stepper, Step, StepLabel, Box, StepContent } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import eyeOpen from "../../assets/eye-open.png";
 import eyeClose from "../../assets/eye-close.png";
-import "./style.css";
 import Sucess from "../../assets/sucess.svg";
+import "./style.css";
 
 const steps = [
   {
