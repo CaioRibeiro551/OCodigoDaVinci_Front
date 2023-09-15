@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Stepper,
@@ -8,28 +8,28 @@ import {
   Box,
   StepContent,
   Typography,
-} from "@mui/material";
-import "./style.css";
-import { useNavigate } from "react-router-dom";
+} from '@mui/material';
+import './style.css';
+import { useNavigate } from 'react-router-dom';
 
-import Sucess from "../../assets/sucess.svg";
+import Sucess from '../../assets/sucess.svg';
 
 const steps = [
   {
-    label: "Cadastre-se",
+    label: 'Cadastre-se',
     description: `Por favor, escreva seu nome e e-mail`,
   },
   {
-    label: "Escolha uma senha",
-    description: "Escolha uma senha segura",
+    label: 'Escolha uma senha',
+    description: 'Escolha uma senha segura',
   },
   {
-    label: "Cadastro realizado com sucesso",
+    label: 'Cadastro realizado com sucesso',
     description: `E-mail e senha cadastradoscom sucesso`,
   },
 ];
 
-export default function SignIn() {
+export default function SignUp() {
   const [activeStep, setActiveStep] = useState(0);
   const [eye, setEye] = useState(false);
 
@@ -101,7 +101,7 @@ export default function SignIn() {
                 <div className="container-inputs">
                   <label htmlFor="senha">Senha *</label>
                   <input
-                    type={eye ? "text" : "password"}
+                    type={eye ? 'text' : 'password'}
                     name="Senha"
                     placeholder="Digite seu senha"
                   />
@@ -114,7 +114,7 @@ export default function SignIn() {
                 <div className="container-inputs">
                   <label htmlFor="repeteSenha">Repita a senha *</label>
                   <input
-                    type={eye ? "text" : "password"}
+                    type={eye ? 'text' : 'password'}
                     name="repeteSenha"
                     placeholder="Repita a senha"
                   />
@@ -143,7 +143,7 @@ export default function SignIn() {
                 <h2>Cadastro realizado com sucesso</h2>
               </div>
 
-              <button onClick={() => navigator("/signin")}>
+              <button onClick={() => navigator('/signin')}>
                 Ir para o login
               </button>
             </div>
@@ -156,7 +156,7 @@ export default function SignIn() {
                 key={index}
                 width={50}
                 height={5}
-                bgcolor={index <= activeStep ? "success.main" : "grey.400"}
+                bgcolor={index <= activeStep ? 'success.main' : 'grey.400'}
                 ml={index > 0 ? 2 : 0}
               />
             ))}
