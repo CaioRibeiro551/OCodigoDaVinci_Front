@@ -50,7 +50,6 @@ export default function SignUp() {
         return;
       }
     }
-
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
