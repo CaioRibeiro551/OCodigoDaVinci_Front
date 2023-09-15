@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn() {
   const [user, setUser] = useState({
@@ -11,19 +9,6 @@ export default function SignIn() {
   });
   const navigator = useNavigate();
 
-  const msgError = (message) => {
-    toast.error(message, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-
   const handleSetuser = ({ target }) => {
     const key = target.name;
     const value = target.value;
@@ -31,16 +16,6 @@ export default function SignIn() {
   };
 
   const handleSubmit = () => {
-    if (!user.email.trim()) {
-      msgError("O campo e-mail é obrigatório!");
-      return;
-    }
-
-    if (!user.password.trim()) {
-      msgError("O campo senha é obrigatório!");
-      return;
-    }
-
     navigator("/home");
     return;
   };
@@ -81,18 +56,6 @@ export default function SignIn() {
             Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
           </p>
         </form>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
       </div>
     </div>
   );

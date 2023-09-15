@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import eyeOpen from "../../assets/eye-open.png";
 import eyeClose from "../../assets/eye-close.png";
 import Sucess from "../../assets/sucess.svg";
-import "react-toastify/dist/ReactToastify.css";
 import Confirm from "../../assets/confirm-step.svg";
 import Active from "../../assets/active-step.svg";
 import StopSet from "../../assets/stop-step.svg";
