@@ -1,9 +1,9 @@
-import Sidebar from '../../components/Sidebar/index';
+import TituloCobranca from '../../components/TitutloCobranca/index';
 
 export default function Home() {
   return (
     <>
-      <Sidebar />
+      <TituloCobranca />
     </>
   );
 }
