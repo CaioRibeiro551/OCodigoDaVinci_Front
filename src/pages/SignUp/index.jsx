@@ -8,23 +8,38 @@ import eyeClose from "../../assets/eye-close.png";
 import Sucess from "../../assets/sucess.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Button,
+  Stepper,
+  Step,
+  StepLabel,
+  Box,
+  StepContent,
+  Typography,
+} from '@mui/material';
+import './style.css';
+import { useNavigate } from 'react-router-dom';
+
+import Sucess from '../../assets/sucess.svg';
 
 const steps = [
   {
-    label: "Cadastre-se",
+    label: 'Cadastre-se',
     description: `Por favor, escreva seu nome e e-mail`,
   },
   {
-    label: "Escolha uma senha",
-    description: "Escolha uma senha segura",
+    label: 'Escolha uma senha',
+    description: 'Escolha uma senha segura',
   },
   {
-    label: "Cadastro realizado com sucesso",
+    label: 'Cadastro realizado com sucesso',
     description: `E-mail e senha cadastradoscom sucesso`,
   },
 ];
 
-export default function SignIn() {
+export default function SignUp() {
   const [activeStep, setActiveStep] = useState(0);
   const [eye, setEye] = useState(false);
   const [user, setUser] = useState({
@@ -146,10 +161,14 @@ export default function SignIn() {
                 <div className="container-inputs">
                   <label htmlFor="password">Senha *</label>
                   <input
+
                     type={eye ? "text" : "password"}
                     name="password"
                     id="password"
                     onChange={handleSetuser}
+                    type={eye ? 'text' : 'password'}
+                    name="Senha"
+
                     placeholder="Digite seu senha"
                   />
                   <div className="password-toggle" onClick={() => setEye(!eye)}>
@@ -160,10 +179,15 @@ export default function SignIn() {
                 <div className="container-inputs">
                   <label htmlFor="confirmPassword">Repita a senha *</label>
                   <input
+
                     type={eye ? "text" : "password"}
                     name="confirmPassword"
                     id="confirmPassword"
                     onChange={handleSetuser}
+
+                    type={eye ? 'text' : 'password'}
+                    name="repeteSenha"
+
                     placeholder="Repita a senha"
                   />
                   <div className="password-toggle" onClick={() => setEye(!eye)}>
@@ -188,7 +212,7 @@ export default function SignIn() {
                 <h2>Cadastro realizado com sucesso</h2>
               </div>
 
-              <button onClick={() => navigator("/signin")}>
+              <button onClick={() => navigator('/signin')}>
                 Ir para o login
               </button>
             </div>
@@ -215,7 +239,7 @@ export default function SignIn() {
                 key={index}
                 width={50}
                 height={5}
-                bgcolor={index <= activeStep ? "success.main" : "grey.400"}
+                bgcolor={index <= activeStep ? 'success.main' : 'grey.400'}
                 ml={index > 0 ? 2 : 0}
               />
             ))}
