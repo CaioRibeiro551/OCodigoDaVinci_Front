@@ -1,18 +1,19 @@
-import { useLocation } from "react-router-dom";
-import Homeicon from "../../assets/home.svg";
-import Clientsicon from "../../assets/clients.svg";
-import Chargeicon from "../../assets/charge.svg";
+import { useLocation } from 'react-router-dom';
+import Homeicon from '../../assets/home.svg';
+import Clientsicon from '../../assets/clients.svg';
+import Chargeicon from '../../assets/charge.svg';
+import './style.css';
 
 export default function Sidebar() {
   const location = useLocation();
 
-  const isHomeRoute = location.pathname === "/home";
+  const isHomeRoute = location.pathname === '/home';
 
   return (
     <>
       <div className="sidebar-container">
         <div className="sidebar-content">
-          <div className={`sidebar-item ${isHomeRoute ? "home-route" : ""}`}>
+          <div className={`sidebar-item ${isHomeRoute ? 'home-route' : ''}`}>
             <img src={Homeicon} alt="" />
             <p id="oi">Home</p>
           </div>
