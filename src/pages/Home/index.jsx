@@ -1,8 +1,11 @@
-import TituloCobranca from '../../components/TitutloCobranca/index';
+import TituloCobranca from "../../components/TitutloCobranca/index";
+
+import Sidebar from "../../components/Sidebar/index";
 
 export default function Home() {
   return (
     <>
+      <Sidebar />
       <TituloCobranca />
     </>
   );

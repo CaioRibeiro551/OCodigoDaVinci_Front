@@ -1,28 +1,26 @@
-// import { useState } from "react";
-// import "./style.css";
-// import { Link, useNavigate } from "react-router-dom";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import "./style.css";
+import { Link, useNavigate } from "react-router-dom";
 
-// export default function SignIn() {
-//   const [user, setUser] = useState({
-//     email: "",
-//     password: "",
-//   });
-//   const navigator = useNavigate();
+export default function SignIn() {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const navigator = useNavigate();
 
-//   const msgError = (message) => {
-//     toast.error(message, {
-//       position: "top-center",
-//       autoClose: 5000,
-//       hideProgressBar: false,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       progress: undefined,
-//       theme: "colored",
-//     });
-//   };
+  const msgError = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
 //   const handleSetuser = ({ target }) => {
 //     const key = target.name;
@@ -30,16 +28,16 @@
 //     setUser({ ...user, [key]: value });
 //   };
 
-//   const handleSubmit = () => {
-//     if (!user.email.trim()) {
-//       msgError("O campo e-mail é obrigatório!");
-//       return;
-//     }
+  const handleSubmit = () => {
+    if (!user.email.trim()) {
+      msgError("O campo e-mail é obrigatório!");
+      return;
+    }
 
-//     if (!user.password.trim()) {
-//       msgError("O campo senha é obrigatório!");
-//       return;
-//     }
+    if (!user.password.trim()) {
+      msgError("O campo senha é obrigatório!");
+      return;
+    }
 
 //     navigator("/home");
 //     return;
@@ -74,26 +72,26 @@
 //             />
 //           </div>
 
-//           <button type="button" onClick={handleSubmit}>
-//             Entrar
-//           </button>
-//           <p>
-//             Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
-//           </p>
-//         </form>
-//         <ToastContainer
-//           position="top-center"
-//           autoClose={5000}
-//           hideProgressBar={false}
-//           newestOnTop={false}
-//           closeOnClick
-//           rtl={false}
-//           pauseOnFocusLoss
-//           draggable
-//           pauseOnHover
-//           theme="colored"
-//         />
-//       </div>
-//     </div>
-//   );
-// }
+          <button type="button" onClick={handleSubmit}>
+            Entrar
+          </button>
+          <p>
+            Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
+          </p>
+        </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </div>
+    </div>
+  );
+}
