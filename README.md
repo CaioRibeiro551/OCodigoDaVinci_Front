@@ -459,4 +459,3 @@ Feito isso, no terminal:
 <p align="right">
   <a href="#%EF%B8%8F-apple-store-project">Voltar ao Topo</a>
 </p>
-
