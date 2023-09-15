@@ -1,5 +1,5 @@
-import '../TitutloCobranca/style.css';
-import paidcharge from '../../assets/paid-charges.svg';
+import ".style.css";
+import paidcharge from "../../assets/paid-charges.svg";
 
 export default function TituloCobranca() {
   return (
