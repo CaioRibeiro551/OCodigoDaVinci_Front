@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Nunito:wght@400;600;700&family=Open+Sans:ital,wght@0,400;1,300&family=Public+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Nunito:wght@400;600;700&family=Open+Sans:ital,wght@0,400;1,300&family=Public+Sans&display=swap');
 
 * {
   padding: 0;
@@ -24,7 +24,7 @@ body {
 }
 
 .small-text {
-  font-family: Nunito;
+  font-family: 'Nunito';
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 600;
@@ -32,7 +32,7 @@ body {
 }
 
 .medium-text {
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 700;
@@ -40,7 +40,7 @@ body {
 }
 
 .large-text {
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 2.4rem;
   font-style: normal;
   font-weight: 700;
@@ -48,7 +48,7 @@ body {
 }
 
 .big-text {
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 2.6rem;
   font-style: normal;
   font-weight: 600;
@@ -56,7 +56,7 @@ body {
 }
 
 .button-text {
-  font-family: Nunito;
+  font-family: 'Nunito';
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
@@ -65,7 +65,7 @@ body {
 
 .error {
   color: #e70000;
-  font-family: Inter;
+  font-family: 'Inter';
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
