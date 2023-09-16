@@ -67,7 +67,6 @@ export default function SignUp() {
     const key = target.name;
     const value = target.value;
     setUser({ ...user, [key]: value });
-    console.log(user);
   };
 
   const handleSubmit = async () => {
@@ -78,10 +77,8 @@ export default function SignUp() {
         senha: user.password,
       };
       const { data } = await Axios.post("/usuarios", newUser);
-      console.log(data);
       navigator("/");
     } catch (error) {
-      console.log(error.response.data);
       alert(error.response.data);
     }
   };
