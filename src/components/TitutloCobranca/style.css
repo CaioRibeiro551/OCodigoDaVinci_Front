@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-information {
+  width: 360px;
+  height: 111px;
+  text-align: center;
+  font-family: 'Montserrat';
+  color: #3f3f55;
+}
+
+.container-information-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.container-inforation-content img {
+  margin-right: 5px;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-content p {
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 10px;
+}
+.image-information {
+  padding-right: 40px;
+}
