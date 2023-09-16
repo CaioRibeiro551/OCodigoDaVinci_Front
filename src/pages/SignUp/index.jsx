@@ -1,29 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Stepper, Step, StepLabel, Box, StepContent } from "@mui/material";
+import "./style.css";
 import { useNavigate } from "react-router-dom";
 import eyeOpen from "../../assets/eye-open.png";
 import eyeClose from "../../assets/eye-close.png";
 import Sucess from "../../assets/sucess.svg";
-import "./style.css";
-
-const steps = [
-  {
-    label: "Cadastre-se",
-    description: `Por favor, escreva seu nome e e-mail`,
-  },
-  {
-    label: "Escolha uma senha",
-    description: "Escolha uma senha segura",
-  },
-  {
-    label: "Cadastro realizado com sucesso",
-    description: `E-mail e senha cadastradoscom sucesso`,
-  },
-];
+import Confirm from "../../assets/confirm-step.svg";
+import Active from "../../assets/active-step.svg";
+import StopSet from "../../assets/stop-step.svg";
 
 export default function SignUp() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [imgStep2, setImgStep2] = useState(StopSet);
+  const [imgStep3, setImgStep3] = useState(StopSet);
   const [eye, setEye] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -37,19 +26,23 @@ export default function SignUp() {
   const handleNext = () => {
     if (activeStep === 0) {
       if (!user.name.trim() || !user.email.trim()) {
+        msgError("Os campos Nome e Email são obrigatórios!");
         return;
       }
     }
 
     if (activeStep === 1) {
       if (!user.password.trim() || !user.confirmPassword.trim()) {
+        msgError("Os campos de Senha e Repertir senha são obrigatórios!");
         return;
       }
 
       if (user.password.trim() !== user.confirmPassword.trim()) {
+        msgError("As senhas precisam ser iguais!");
         return;
       }
     }
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -60,30 +53,50 @@ export default function SignUp() {
     console.log(user);
   };
 
+  useEffect(() => {
+    stepImg();
+  }, [stepIndex]);
+
   return (
     <div className="signup-container max-width">
       <div className="signup-container-left">
-        <div>
-          <Stepper activeStep={activeStep} orientation="vertical">
-            {steps.map((label) => (
-              <Step key={label.label}>
-                <StepLabel>
-                  <span className="titleStepper">{label.label}</span>
-                </StepLabel>
-                <StepContent TransitionProps={{ unmountOnExit: false }}>
-                  <span className="descriptionStepper">
-                    {label.description}
-                  </span>
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
+        <div className="container-stepper">
+          <div className="container-step">
+            <div className="container-step-title">
+              <img src={stepIndex === 0 ? Active : Confirm} />
+              <span className="title-stepl">Cadastre-se</span>
+            </div>
+
+            <span className="description">
+              Por favor, escreva seu nome e e-mail
+            </span>
+          </div>
+
+          <div className="container-step">
+            <div className="container-step-title">
+              <img src={imgStep2} />
+              <span className="title-stepl">Escolha uma senha</span>
+            </div>
+            <span className="description">Escolha uma senha segura</span>
+          </div>
+
+          <div className="container-step">
+            <div className="container-step-title">
+              <img src={imgStep3} />
+              <span className="title-stepl">
+                Cadastro realizado com sucesso
+              </span>
+            </div>
+            <span className="description">
+              E-mail e senha cadastrados com sucesso
+            </span>
+          </div>
         </div>
       </div>
 
       <div className="signup-container-rigth">
         <>
-          {activeStep === 0 && (
+          {stepIndex === 0 && (
             <form action="">
               <h1>Adicione seus dados</h1>
 
@@ -119,7 +132,7 @@ export default function SignUp() {
             </form>
           )}
 
-          {activeStep === 1 && (
+          {stepIndex === 1 && (
             <div>
               <form action="">
                 <h1>Escolha uma senha</h1>
@@ -162,7 +175,7 @@ export default function SignUp() {
             </div>
           )}
 
-          {activeStep === 2 && (
+          {stepIndex === 2 && (
             <div className="container-finish">
               <div className="finish">
                 <img src={Sucess} alt="finish" />
@@ -175,6 +188,19 @@ export default function SignUp() {
             </div>
           )}
         </>
+
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
 
         <div>
           <Box display="flex" justifyContent="center" mt={3}>
