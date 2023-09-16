@@ -1,5 +1,5 @@
-import './style.css';
-import '../../styles/index.css';
+import "./style.css";
+import "../../styles/index.css";
 
 export default function Table() {
   return (
@@ -43,9 +43,9 @@ export default function Table() {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className="bottom-table">
-          <a href="">Ver todos</a>
+          <div className="bottom-table">
+            <a href="">Ver todos</a>
+          </div>
         </div>
       </div>
     </>

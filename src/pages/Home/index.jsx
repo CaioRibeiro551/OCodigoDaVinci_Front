@@ -1,10 +1,10 @@
-import React from 'react';
-import Sidebar from '../../components/Sidebar/index';
-import Table from '../../components/Table/index';
-import TituloCobranca from '../../components/TituloCobranca/index';
-import './style.css';
-import seta from '../../assets/seta.svg';
-import cicleInfo from '../../assets/circle-info.svg';
+import React from "react";
+import Sidebar from "../../components/Sidebar/index";
+import Table from "../../components/Table/index";
+import TituloCobranca from "../../components/TituloCobranca/index";
+import "./style.css";
+import seta from "../../assets/seta.svg";
+import cicleInfo from "../../assets/circle-info.svg";
 
 export default function Home() {
   return (
@@ -23,17 +23,17 @@ export default function Home() {
         <Sidebar />
         <div className="card-container">
           <div className="card">
-            <TituloCobranca tipo="pagas" valor={'R$30.000'} />
+            <TituloCobranca tipo="pagas" valor="R$ 30.000" />
             <Table />
           </div>
 
           <div className="card">
-            <TituloCobranca tipo="vencidas" valor={'R$30.000'} />
+            <TituloCobranca tipo="vencidas" valor="R$ 30.000" />
             <Table />
           </div>
 
           <div className="card">
-            <TituloCobranca tipo="previstas" valor={'R$30.000'} />
+            <TituloCobranca tipo="previstas" valor="R$ 30.000" />
             <Table />
           </div>
         </div>

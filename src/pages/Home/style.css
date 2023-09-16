@@ -17,7 +17,7 @@
 }
 
 .header-info h1 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 26px;
   margin: 0;
   color: #343447;
@@ -38,7 +38,7 @@
   height: auto;
 }
 .user-info p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-size: 18px;
 }
 .circle-info {
@@ -48,10 +48,13 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .card {
-  flex: 0 1 calc(33.33% - 10px);
+  width: 30%;
+  /* flex: 0 1 calc(33.33% - 30px); */
   margin-bottom: 20px;
 }
