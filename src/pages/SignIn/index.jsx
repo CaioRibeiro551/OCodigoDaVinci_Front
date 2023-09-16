@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
+import Axios from "../../services/Api";
 
 export default function SignIn() {
   const [user, setUser] = useState({
@@ -15,8 +16,24 @@ export default function SignIn() {
     setUser({ ...user, [key]: value });
   };
 
-  const handleSubmit = () => {
-    navigator("/home");
+  const handleSubmit = async () => {
+    const loginUser = {
+      email: user.email,
+      senha: user.password,
+    };
+
+    try {
+      if (!loginUser.email || !loginUser.senha) {
+        alert("campos email e senha são obrigatórios!");
+        return;
+      }
+
+      await Axios.post("/login", loginUser);
+      navigator("/home");
+    } catch (error) {
+      return alert(error.response.data);
+    }
+
     return;
   };
 
