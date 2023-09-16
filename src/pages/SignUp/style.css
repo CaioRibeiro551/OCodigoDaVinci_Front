@@ -1,10 +1,7 @@
 .signup-container {
-  height: 100vh;
   min-height: 100vh;
-  min-width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: stretch;
 }
 
 .signup-container-left {
@@ -15,6 +12,73 @@
   padding: 100px 60px;
 }
 
+.container-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.container-step {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.container-step-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.container-step-title span {
+  color: #0e8750;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 23.4px */
+}
+
+.container-stepper svg {
+  width: 32px;
+  height: 32px;
+}
+
+.description {
+  border-left: 4px solid #0e8750;
+  height: 48px;
+  padding-left: 21px;
+  margin-left: 13px;
+  color: #3f3f55;
+  font-family: Nunito;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 23.4px */
+}
+
+.container-stepper .container-step:last-child .description {
+  border-left: 4px solid transparent;
+}
+
+.container-highlighter {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.highlighter {
+  width: 82px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background-color: #dedee9;
+}
+
+.highlighter-active {
+  background-color: #0e8750;
+}
+
 .signup-container-rigth {
   width: 64%;
   min-height: 100vh;
@@ -23,6 +87,25 @@
   align-items: center;
   justify-content: space-between;
   padding: 100px 0 60px 0;
+}
+
+.signup-container-rigth p {
+  color: #3f3f55;
+  font-family: Nunito;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.34rem;
+}
+
+.signup-container-rigth a {
+  color: #da0175;
+  font-family: Nunito;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.34rem;
+  text-decoration-line: underline;
 }
 
 .container-finish {
@@ -53,7 +136,7 @@ form h1 {
   color: var(--cinzas-cinza-1, #343447);
   text-align: center;
   font-family: Montserrat;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
@@ -61,18 +144,7 @@ form h1 {
 }
 
 .signup-container form button {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 34px;
-  width: 160px;
   margin: 40px 0 8px 0;
-  border-radius: 10px;
-  background: #da0175;
-  color: #fff;
 }
 
 .container-inputs {
@@ -86,21 +158,21 @@ form h1 {
 .container-inputs label {
   color: #344054;
   font-family: Nunito;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 2rem;
 }
 
 .container-inputs input {
   color: #667085;
   font-family: Inter;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 2.4rem;
   padding-left: 14px;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   border: 1px solid #d0d5dd;
   background: #fff;
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
@@ -113,12 +185,15 @@ form h1 {
   top: 35px;
   right: 14px;
 }
+.password-toggle img {
+  width: 22px;
+}
 
 form h1 {
   color: #343447;
   text-align: center;
   font-family: Montserrat;
-  font-size: 24px;
+  font-size: 2.4rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
@@ -135,21 +210,21 @@ form h1 {
 .container-inputs label {
   color: #344054;
   font-family: Nunito;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 2rem;
 }
 
 .container-inputs input {
   color: #667085;
   font-family: Inter;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 2.4rem;
   padding-left: 14px;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   border: 1px solid #d0d5dd;
   background: #fff;
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
