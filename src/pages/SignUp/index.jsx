@@ -42,14 +42,14 @@ export default function SignUp() {
 
     if (stepIndex === 0) {
       if (!user.name || !user.email) {
-        alert("Prencha todos os campos!");
+        alert("Preencha todos os campos!");
         return;
       }
     }
 
     if (stepIndex === 1) {
       if (!user.password || !user.confirmPassword) {
-        alert("Prencha todos os campos!");
+        alert("Preencha todos os campos!");
         return;
       }
       if (user.password !== user.confirmPassword) {
