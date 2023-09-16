@@ -1,0 +1,23 @@
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: lightcoral;
+}
+
+.modal-overlay form {
+  position: absolute;
+  background-color: #ffff;
+  padding: 30px;
+}
+.container-cpf-tel {
+  display: flex;
+}
+.container-cpf-tel .container-inputs inputs {
+  width: 150px;
+}
