@@ -10,6 +10,7 @@
   text-align: center;
   font-family: 'Montserrat';
   color: #3f3f55;
+  margin-top: 20px;
 }
 
 .container-information-content {
@@ -35,4 +36,13 @@
 }
 .image-information {
   padding-right: 40px;
+}
+.card-pagas {
+  background-color: #eef6f6;
+}
+.card-vencidas {
+  background-color: #ffefef;
+}
+.card-previstas {
+  background-color: #3f3f55;
 }

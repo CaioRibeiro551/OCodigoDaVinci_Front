@@ -1,8 +1,7 @@
 import React from 'react';
 import Sidebar from '../../components/Sidebar/index';
-// import Table from '../../components/Table/index';
-// import TituloCobranca from '../../components/TituloCobranca/index';
-// import '../../styles/index.css';
+import Table from '../../components/Table/index';
+import TituloCobranca from '../../components/TituloCobranca/index';
 import './style.css';
 import seta from '../../assets/seta.svg';
 import cicleInfo from '../../assets/circle-info.svg';
@@ -20,9 +19,25 @@ export default function Home() {
           <img src={seta} alt="Seta" />
         </div>
       </header>
-      <Sidebar />
-      {/* <Table />
-      <TituloCobranca /> */}
+      <main className="main-container">
+        <Sidebar />
+        <div className="card-container">
+          <div className="card">
+            <TituloCobranca tipo="pagas" valor={'R$30.000'} />
+            <Table />
+          </div>
+
+          <div className="card">
+            <TituloCobranca tipo="vencidas" valor={'R$30.000'} />
+            <Table />
+          </div>
+
+          <div className="card">
+            <TituloCobranca tipo="previstas" valor={'R$30.000'} />
+            <Table />
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
