@@ -8,6 +8,7 @@ import Sucess from "../../assets/sucess.svg";
 import Confirm from "../../assets/confirm-step.svg";
 import Active from "../../assets/active-step.svg";
 import StopSet from "../../assets/stop-step.svg";
+import Axios from "../../services/Api";
 
 export default function SignUp() {
   const [stepIndex, setStepIndex] = useState(0);
@@ -23,7 +24,7 @@ export default function SignUp() {
 
   const navigator = useNavigate();
 
-  function stepImg() {
+  const stepImg = () => {
     if (stepIndex === 1) {
       setImgStep2(Active);
     }
@@ -34,20 +35,55 @@ export default function SignUp() {
     if (stepIndex === 3) {
       setImgStep3(Confirm);
     }
-  }
+  };
 
   const handleNext = (e) => {
     e.preventDefault();
+
+    if (stepIndex === 0) {
+      if (!user.name || !user.email) {
+        alert("Prencha todos os campos!");
+        return;
+      }
+    }
+
+    if (stepIndex === 1) {
+      if (!user.password || !user.confirmPassword) {
+        alert("Prencha todos os campos!");
+        return;
+      }
+      if (user.password !== user.confirmPassword) {
+        alert("As senhas precisam ser iguais!");
+        return;
+      }
+    }
+
     setStepIndex(stepIndex + 1);
     stepImg();
     return;
   };
 
-  const handleSetuser = ({ target }) => {
+  const handleSetUser = ({ target }) => {
     const key = target.name;
     const value = target.value;
     setUser({ ...user, [key]: value });
     console.log(user);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const newUser = {
+        nome: user.name,
+        email: user.email,
+        senha: user.password,
+      };
+      const { data } = await Axios.post("/usuarios", newUser);
+      console.log(data);
+      navigator("/");
+    } catch (error) {
+      console.log(error.response.data);
+      alert(error.response.data);
+    }
   };
 
   useEffect(() => {
@@ -103,7 +139,7 @@ export default function SignUp() {
                   type="text"
                   name="name"
                   id="name"
-                  onChange={handleSetuser}
+                  onChange={handleSetUser}
                   placeholder="Digite seu nome"
                 />
               </div>
@@ -114,7 +150,7 @@ export default function SignUp() {
                   type="email"
                   name="email"
                   id="email"
-                  onChange={handleSetuser}
+                  onChange={handleSetUser}
                   placeholder="Digite seu email"
                 />
               </div>
@@ -140,7 +176,7 @@ export default function SignUp() {
                     type={eye ? "text" : "password"}
                     name="password"
                     id="password"
-                    onChange={handleSetuser}
+                    onChange={handleSetUser}
                     placeholder="Digite seu senha"
                   />
                   <div className="password-toggle" onClick={() => setEye(!eye)}>
@@ -154,7 +190,7 @@ export default function SignUp() {
                     type={eye ? "text" : "password"}
                     name="confirmPassword"
                     id="confirmPassword"
-                    onChange={handleSetuser}
+                    onChange={handleSetUser}
                     placeholder="Repita a senha"
                   />
                   <div className="password-toggle" onClick={() => setEye(!eye)}>
@@ -179,7 +215,7 @@ export default function SignUp() {
                 <h2>Cadastro realizado com sucesso</h2>
               </div>
 
-              <button onClick={() => navigator("/")}>Ir para o login</button>
+              <button onClick={handleSubmit}>Ir para o login</button>
             </div>
           )}
         </>
