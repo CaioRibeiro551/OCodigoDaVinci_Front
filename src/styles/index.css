@@ -11,6 +11,18 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.max-width {
+  width: 100vw;
+  max-width: 1440px;
+}
+
 .small-text {
   font-family: Nunito;
   font-size: 1.4rem;

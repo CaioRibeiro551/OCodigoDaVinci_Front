@@ -1,0 +1,19 @@
+button {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  width: 160px;
+  border-radius: 1rem;
+  background: #da0175;
+  color: #f8f8f9;
+  font-family: Nunito;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: all ease 0.6s;
+}
