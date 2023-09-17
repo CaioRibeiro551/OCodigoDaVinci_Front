@@ -7,15 +7,18 @@ import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
 import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { setModalTeste, removeUserLog } = useMainContext();
+  const navigator = useNavigate();
 
   const handleModal = () => {
     setModalTeste(true);
   };
 
   const handleLogout = () => {
+    navigator("/");
     removeUserLog();
   };
   return (

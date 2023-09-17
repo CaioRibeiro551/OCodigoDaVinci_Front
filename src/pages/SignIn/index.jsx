@@ -43,6 +43,12 @@ export default function SignIn() {
     return;
   };
 
+  // useEffect(() => {
+  //   if (userLog && userLog.token) {
+  //     navigator("/");
+  //   }
+  // }, []);
+
   return (
     <div className="signin-container max-width">
       <div className="signin-container-left"></div>

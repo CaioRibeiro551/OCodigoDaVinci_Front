@@ -16,7 +16,7 @@ export default function MainRouter() {
       <Route path="/" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
 
-      <Route element={<ProtectRoutes redirectTo={"/"} />}>
+      <Route element={<ProtectRoutes redirectTo="/" />}>
         <Route path="/home" element={<Home />} />
       </Route>
     </Routes>
