@@ -23,18 +23,7 @@
 }
 
 .signin-container-rigth form button {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 34px;
-  width: 160px;
   margin: 40px 0 15px 0;
-  border-radius: 10px;
-  background: #da0175;
-  color: #fff;
 }
 
 .signin-container-rigth p {
