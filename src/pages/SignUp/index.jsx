@@ -37,15 +37,14 @@ export default function SignUp() {
     }
   };
 
+  const handleSetUser = ({ target }) => {
+    const key = target.name;
+    const value = target.value;
+    setUser({ ...user, [key]: value });
+  };
+
   const handleNext = (e) => {
     e.preventDefault();
-
-    if (stepIndex === 0) {
-      if (!user.name || !user.email) {
-        alert("Preencha todos os campos!");
-        return;
-      }
-    }
 
     if (stepIndex === 1) {
       if (!user.password || !user.confirmPassword) {
@@ -63,23 +62,32 @@ export default function SignUp() {
     return;
   };
 
-  const handleSetUser = ({ target }) => {
-    const key = target.name;
-    const value = target.value;
-    setUser({ ...user, [key]: value });
+  const handleValidEmail = async () => {
+    try {
+      if (!user.name || !user.email) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+      const response = await Axios.post("/validate-email", user.email);
+
+      handleNext();
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const handleSubmit = async () => {
     try {
       const newUser = {
-        nome: user.name,
+        name: user.name,
         email: user.email,
-        senha: user.password,
+        password: user.password,
       };
-      const { data } = await Axios.post("/usuarios", newUser);
+      const response = await Axios.post("/signup", newUser);
+
       navigator("/");
     } catch (error) {
-      alert(error.response.data);
+      alert(error);
     }
   };
 
@@ -152,7 +160,7 @@ export default function SignUp() {
                 />
               </div>
 
-              <button type="button" onClick={handleNext}>
+              <button type="button" onClick={handleValidEmail}>
                 Continuar
               </button>
 

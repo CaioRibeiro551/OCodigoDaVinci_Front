@@ -19,7 +19,7 @@ export default function SignIn() {
   const handleSubmit = async () => {
     const loginUser = {
       email: user.email,
-      senha: user.password,
+      password: user.password,
     };
 
     try {
@@ -31,7 +31,7 @@ export default function SignIn() {
       await Axios.post("/login", loginUser);
       navigator("/home");
     } catch (error) {
-      return alert(error.response.data);
+      return alert(error);
     }
 
     return;
