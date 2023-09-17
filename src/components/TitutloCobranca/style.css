@@ -1,26 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .container-information {
-  width: 360px;
-  height: 111px;
+  width: 36rem;
+  height: 11.1rem;
   text-align: center;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: #3f3f55;
 }
 
 .container-information-content {
+  width: 36rem;
+  height: 11.1rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
 }
 
 .container-inforation-content img {
-  margin-right: 5px;
+  margin-right: 0.5rem;
 }
 
 .text-content {
@@ -29,10 +25,10 @@
 }
 
 .text-content p {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 700;
   padding-top: 10px;
 }
 .image-information {
-  padding-right: 40px;
+  padding-right: 4rem;
 }

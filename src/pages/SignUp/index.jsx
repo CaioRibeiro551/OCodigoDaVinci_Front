@@ -8,7 +8,7 @@ import Sucess from "../../assets/sucess.svg";
 import Confirm from "../../assets/confirm-step.svg";
 import Active from "../../assets/active-step.svg";
 import StopSet from "../../assets/stop-step.svg";
-import Axios from "../../services/Api";
+import Axios from "../../services/api";
 
 export default function SignUp() {
   const [stepIndex, setStepIndex] = useState(0);

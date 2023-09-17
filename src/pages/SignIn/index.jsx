@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
-import Axios from "../../services/Api";
+import Axios from "../../services/api";
 
 export default function SignIn() {
   const [user, setUser] = useState({

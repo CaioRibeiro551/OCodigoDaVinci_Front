@@ -1,0 +1,29 @@
+.container-home {
+  display: flex;
+  max-height: 100vh;
+}
+
+header {
+  display: flex;
+  width: calc(100vw - 10.8rem);
+  height: 11rem;
+}
+
+.contents-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contents-title {
+  display: flex;
+  gap: 4rem;
+}
+.contents-small-table {
+  max-width: calc(100vw - 11rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+}

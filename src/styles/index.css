@@ -9,6 +9,7 @@
 
 html {
   font-size: 62.5%;
+  background-color: #f8f8f9;
 }
 
 body {
@@ -20,7 +21,8 @@ body {
 
 .max-width {
   width: 100vw;
-  max-width: 1440px;
+  max-width: 144rem;
+  height: 100vh;
 }
 
 .small-text {
@@ -29,6 +31,14 @@ body {
   font-style: normal;
   font-weight: 600;
   line-height: 2rem;
+}
+
+.relative-text {
+  font-family: Nunito;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .medium-text {
