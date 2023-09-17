@@ -1,9 +1,13 @@
-import ClientsTable from "../../components/ClientsTable";
+import FullTable from "../../components/FullTable";
+import { FullTableHeader } from "../../utils/data";
+import "./style.css";
 
-export default function Client() {
+export default function ClientsPage() {
   return (
-    <>
-      <ClientsTable />
-    </>
+    <div className="main-page-client">
+      {FullTableHeader.map((item, index) => (
+        <FullTable item={item} key={index} />
+      ))}
+    </div>
   );
 }

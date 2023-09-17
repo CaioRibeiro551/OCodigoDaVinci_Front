@@ -7,8 +7,8 @@ export default function TituloCobranca({ item }) {
         className="container-information"
         style={{
           backgroundColor: item.color,
-          borderRadius: "30px",
-          marginBottom: "24px",
+          borderRadius: "3.0rem",
+          marginBottom: "2.4rem",
         }}
       >
         <div className="container-information-content">

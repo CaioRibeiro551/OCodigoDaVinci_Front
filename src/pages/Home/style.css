@@ -1,39 +1,29 @@
 .container-home {
-  width: 100vw;
-  height: 100vh;
-}
-
-.teste {
-  width: 100vw;
-  height: 10vh;
-
   display: flex;
+  max-height: 100vh;
 }
 
-.teste2 {
-  width: 90vw;
-  height: 90vh;
-
+header {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
+  width: calc(100vw - 10.8rem);
+  height: 11rem;
 }
 
-.contents-nav {
-  width: 20%;
-}
 .contents-home {
-  width: 80%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .contents-title {
   display: flex;
   gap: 4rem;
 }
 .contents-small-table {
+  max-width: calc(100vw - 11rem);
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 4rem;
 }

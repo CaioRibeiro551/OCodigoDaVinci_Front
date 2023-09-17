@@ -1,7 +1,7 @@
 import inadimplentesIMG from "./../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "./../assets/clientes-em-dia.svg";
 
-export const TableHeader = [
+export const ResumeTableHeader = [
   {
     Clients: "Clientes",
     ID: "ID da Cob.",
@@ -10,7 +10,6 @@ export const TableHeader = [
     Imagem: "",
     NumColor: "#971D1D",
     BkColor: "#FFEFEF",
-    Width: "small",
     Width: "small",
   },
   {
@@ -52,5 +51,41 @@ export const TableHeader = [
     NumColor: "#1FA7AF",
     BkColor: "#EEF6F6",
     Width: "large",
+  },
+];
+
+import pagasImg from "./../assets/pagas.svg";
+import vencidasImg from "./../assets/vencidas.svg";
+import previstasIMG from "./../assets/previstas.png";
+
+export const cards = [
+  {
+    text: "Cobranças Pagas",
+    valor: `R$ 30.000`,
+    img: pagasImg,
+    color: "#EEF6F6",
+  },
+  {
+    text: "Cobranças Vencidas",
+    valor: `R$ 7.000`,
+    img: vencidasImg,
+    color: "#FFEFEF",
+  },
+  {
+    text: "Cobranças Previstas",
+    valor: `R$ 10.000`,
+    img: previstasIMG,
+    color: "#FCF6DC",
+  },
+];
+
+export const FullTableHeader = [
+  {
+    Clients: "Cliente",
+    CPF: "CPF",
+    Email: "E-mail",
+    Phone: "Telefone",
+    Status: "Status",
+    CreateCharges: "Criar Cobranças",
   },
 ];

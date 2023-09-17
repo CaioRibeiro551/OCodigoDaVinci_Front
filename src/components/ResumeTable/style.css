@@ -1,13 +1,12 @@
-thead {
+.resume-table thead {
   width: 100%;
-  border-collapse: collapse;
   display: flex;
   flex-direction: column;
 }
 
 .table-small {
   width: 36rem;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 
   display: flex;
 
@@ -17,7 +16,7 @@ thead {
 
 .table-large {
   width: 55.6rem;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 
   display: flex;
 
@@ -25,12 +24,12 @@ thead {
   background-color: rgba(255, 255, 255, 1);
 }
 
-th {
+.resume-table th {
   color: #3f3f55;
   font-size: 16px;
 }
 
-caption {
+.resume-table caption {
   height: 51px;
 
   display: flex;
@@ -44,7 +43,7 @@ caption {
   line-height: 130%;
 }
 
-caption span {
+.resume-table caption span {
   border-radius: 0.8rem;
   padding: 4px 8px;
   margin-left: 60px;
@@ -58,25 +57,25 @@ caption span {
   color: rgba(151, 29, 29, 1);
 }
 
-tr {
+.resume-table tr {
   width: 100%;
   height: 51px;
 
   display: flex;
   flex-direction: row;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   align-items: center;
   align-content: center;
 
   background-color: rgba(255, 255, 255, 1);
 }
 
-tbody td {
+.resume-table tbody td {
   font-size: 14px;
   color: #6e6e85;
 }
 
-th,
+.resume-table th,
 td {
   width: 100%;
   height: 100%;
@@ -91,7 +90,7 @@ td {
   text-align: center;
 }
 
-tfoot tr {
+.resume-table tfoot tr {
   border-radius: 0 0 50px 50px;
 }
 
