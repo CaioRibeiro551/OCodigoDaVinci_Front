@@ -24,9 +24,11 @@ export default function Home() {
             </div>
             {modalTeste ? <Modal /> : ""}
             <div className="contents-small-table">
-              {ResumeTableHeader.map((item, index) => (
-                <ResumeTable item={item} key={index} />
-              ))}
+              <div>
+                {ResumeTableHeader.map((item, index) => (
+                  <ResumeTable item={item} key={index} />
+                ))}
+              </div>
             </div>
           </div>
         </main>

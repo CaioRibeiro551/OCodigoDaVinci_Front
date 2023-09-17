@@ -4,7 +4,7 @@ import "./style.css";
 export default function ResumeTable({ item }) {
   return (
     <>
-      <table className="resume-table">
+      <table className="resume-table ">
         <caption
           className={`${
             item.Width === "small" ? "table-small" : "table-large"

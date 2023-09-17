@@ -10,13 +10,13 @@ import { useMainContext } from "../../hooks/useMainContext";
 
 export default function Header() {
   const { modalTeste, setModalTeste } = useMainContext();
-  const { openMineModal, setOpenMiniModal } = useState(true);
+  const [openMineModal, setOpenMiniModal] = useState(false);
   const handleModal = () => {
     setModalTeste(true);
   };
 
   const handleOpenMiniModal = () => {
-    setOpenMiniModal(true);
+    setOpenMiniModal(!openMineModal);
   };
   return (
     <>
@@ -28,8 +28,8 @@ export default function Header() {
           <img className="circle-info" src={cicleInfo} alt="" />
           <p>Lorena</p>
           <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
-          <div>
-            {openMineModal && (
+          {openMineModal && (
+            <div>
               <div>
                 <img className="polygon-item" src={iconePolygon} alt="" />
                 <div className="button-edit">
@@ -43,8 +43,8 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </header>
     </>
