@@ -12,12 +12,27 @@
 
 .modal-overlay form {
   position: absolute;
-  background-color: #ffff;
+  background-color: #fff;
   padding: 30px;
+  border-radius: 30px;
+  width: 500px;
+  height: 650px;
+}
+
+.container-inputs {
+  margin-bottom: 20px;
+  margin-right: 15px;
 }
 .container-cpf-tel {
   display: flex;
+  justify-content: space-between;
 }
-.container-cpf-tel .container-inputs inputs {
+
+.container-cpf-tel .container-inputs input {
   width: 150px;
+}
+.icon-close {
+  position: relative;
+  top: -50px;
+  right: -215px;
 }
