@@ -5,6 +5,7 @@ import MainRouter from "./router";
 import "./styles/index.css";
 import "./styles/form.css";
 import "./styles/button.css";
+import "./styles/@midia.css";
 import "./styles/input.css";
 import { MainContextProvider } from "./context/MainContext";
 

@@ -1,35 +1,36 @@
 import Modal from "../../components/ModalTeste";
 import Sidebar from "../../components/Sidebar/index";
-import Table from "../../components/Table/index";
-import TituloCobranca from "../../components/TituloCobranca/index";
+import TituloCobranca from "../../components/TituloCobranca";
 import Header from "../../components/Header/index";
 import { useMainContext } from "../../hooks/useMainContext";
+import "./style.css";
+import ResumeTable from "../../components/ResumeTable";
+import { ResumeTableHeader, cards } from "../../utils/data";
 
 export default function Home() {
   const { modalTeste } = useMainContext();
+
   return (
-    <div className="page-container">
-      <Header />
-      <main className="main-container">
-        <Sidebar />
-        <div className="card-container">
-          <div className="card">
-            <TituloCobranca tipo="pagas" valor="R$ 30.000" />
-            <Table />
+    <div className="container-home ">
+      <Sidebar />
+      <div>
+        <Header />
+        <main>
+          <div className="contents-home">
+            <div className="contents-title">
+              {cards.map((item, index) => (
+                <TituloCobranca item={item} key={index} />
+              ))}
+            </div>
+            {modalTeste ? <Modal /> : ""}
+            <div className="contents-small-table">
+              {ResumeTableHeader.map((item, index) => (
+                <ResumeTable item={item} key={index} />
+              ))}
+            </div>
           </div>
-
-          <div className="card">
-            <TituloCobranca tipo="vencidas" valor="R$ 30.000" />
-            <Table />
-          </div>
-
-          <div className="card">
-            <TituloCobranca tipo="previstas" valor="R$ 30.000" />
-            <Table />
-          </div>
-        </div>
-      </main>
-      {<>{modalTeste && <Modal />}</>}
+        </main>
+      </div>
     </div>
   );
 }

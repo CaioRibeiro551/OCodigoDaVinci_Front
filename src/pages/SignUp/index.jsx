@@ -8,7 +8,7 @@ import Sucess from "../../assets/sucess.svg";
 import Confirm from "../../assets/confirm-step.svg";
 import Active from "../../assets/active-step.svg";
 import StopSet from "../../assets/stop-step.svg";
-import Axios from "../../services/Api";
+import Axios from "../../services/api";
 
 export default function SignUp() {
   const [stepIndex, setStepIndex] = useState(0);
@@ -51,6 +51,12 @@ export default function SignUp() {
         alert("Preencha todos os campos!");
         return;
       }
+
+      if (user.password.length < 6) {
+        alert("A senha precisa ter no mínimo 6 caractes!");
+        return;
+      }
+
       if (user.password !== user.confirmPassword) {
         alert("As senhas precisam ser iguais!");
         return;
@@ -62,17 +68,22 @@ export default function SignUp() {
     return;
   };
 
-  const handleValidEmail = async () => {
+  const handleValidEmail = async (e) => {
     try {
       if (!user.name || !user.email) {
         alert("Preencha todos os campos!");
         return;
       }
-      const response = await Axios.post("/validate-email", user.email);
 
-      handleNext();
+      await Axios.post("/validate-email", {
+        email: user.email,
+      });
+
+      handleNext(e);
     } catch (error) {
-      alert(error);
+      // alert(error.response.data.message);
+      console.log(error);
+      return;
     }
   };
 
@@ -83,11 +94,12 @@ export default function SignUp() {
         email: user.email,
         password: user.password,
       };
-      const response = await Axios.post("/signup", newUser);
 
+      await Axios.post("/signup", newUser);
       navigator("/");
     } catch (error) {
-      alert(error);
+      console.log(error);
+      return;
     }
   };
 

@@ -12,7 +12,7 @@ export default function Modal() {
   return (
     <>
       <div className="backdrop">
-        <form action="">
+        <form>
           <img src={CloseModal} alt="Close" onClick={handleCloseModal} />
           <h1>Adicione seus dados</h1>
 

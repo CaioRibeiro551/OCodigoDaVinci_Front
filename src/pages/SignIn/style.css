@@ -20,10 +20,18 @@
 
 .signin-container-rigth {
   width: 74%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signin-container-rigth form button {
   margin: 40px 0 15px 0;
+}
+
+.signin-container-rigth form {
+  width: 350px;
+  background-color: #f8f8f9;
 }
 
 .signin-container-rigth p {
