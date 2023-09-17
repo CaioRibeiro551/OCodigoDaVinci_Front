@@ -1,15 +1,21 @@
 import "./style.css";
-import paidcharge from "../../assets/paid-charges.svg";
 
-export default function TituloCobranca() {
+export default function TituloCobranca({ item }) {
   return (
     <>
-      <div className="container-information">
+      <div
+        className="container-information"
+        style={{
+          backgroundColor: item.color,
+          borderRadius: "30px",
+          marginBottom: "24px",
+        }}
+      >
         <div className="container-information-content">
-          <img className="image-information" src={paidcharge} alt="" />
+          <img className="image-information" src={item.img} alt="" />
           <div className="text-content">
-            <h1>Cobranças pagas</h1>
-            <p>R$30.000</p>
+            <h1>{item.text}</h1>
+            <p>{item.valor}</p>
           </div>
         </div>
       </div>

@@ -1,22 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .container-information {
   width: 360px;
   height: 111px;
   text-align: center;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   color: #3f3f55;
 }
 
 .container-information-content {
+  width: 36rem;
+  height: 11.1rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
 }
 
 .container-inforation-content img {

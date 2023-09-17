@@ -1,0 +1,56 @@
+import inadimplentesIMG from "./../assets/clientes-inadimplentes.svg";
+import clientesEmDiaIMG from "./../assets/clientes-em-dia.svg";
+
+export const TableHeader = [
+  {
+    Clients: "Clientes",
+    ID: "ID da Cob.",
+    Valor: "Valor",
+    Title: "Cobranças Vencidas",
+    Imagem: "",
+    NumColor: "#971D1D",
+    BkColor: "#FFEFEF",
+    Width: "small",
+    Width: "small",
+  },
+  {
+    Clients: "Clientes",
+    ID: "ID da Cob.",
+    Valor: "Valor",
+    Title: "Cobranças Previstas",
+    Imagem: "",
+    NumColor: "#C5A605",
+    BkColor: "#FCF6DC",
+    Width: "small",
+  },
+  {
+    Clients: "Clientes",
+    ID: "ID da Cob.",
+    Valor: "Valor",
+    Title: "Cobranças Pagas",
+    Imagem: "",
+    NumColor: "#1FA7AF",
+    BkColor: "#EEF6F6",
+    Width: "small",
+  },
+  {
+    Clients: "Clientes",
+    ID: "ID da Cob.",
+    Valor: "CPF",
+    Title: "Clientes Inadimplentes",
+    Imagem: inadimplentesIMG,
+    NumColor: "#971D1D",
+    BkColor: "#FFEFEF",
+    Width: "large",
+  },
+  {
+    Clients: "Clientes",
+    ID: "ID da Cob.",
+    Valor: "CPF",
+    Title: "Cobranças em dia",
+    Imagem: clientesEmDiaIMG,
+    NumColor: "#1FA7AF",
+    BkColor: "#EEF6F6",
+    Width: "large",
+  },
+];
