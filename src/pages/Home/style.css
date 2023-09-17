@@ -7,7 +7,8 @@
 }
 
 .full-header {
-  width: 100%;
+  position: relative;
+  width: 110%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +18,7 @@
 }
 
 .header-info h1 {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-size: 26px;
   margin: 0;
   color: #343447;
@@ -27,6 +28,8 @@
   display: flex;
   align-items: center;
   color: #0e8750;
+  padding-left: 590px;
+  padding-bottom: 10px;
 }
 
 .user-info p {
@@ -38,7 +41,7 @@
   height: auto;
 }
 .user-info p {
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-size: 18px;
 }
 .circle-info {
@@ -55,6 +58,41 @@
 
 .card {
   width: 30%;
-  /* flex: 0 1 calc(33.33% - 30px); */
   margin-bottom: 20px;
+}
+.button-edit {
+  position: absolute;
+  right: 40px;
+  bottom: -37px;
+  display: flex;
+  align-items: center;
+  width: 80px;
+  height: 50px;
+  padding: 8px 15px;
+  color: black;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.button-item img {
+  width: 20px;
+  height: 20px;
+}
+
+.button-item p {
+  font-family: 'Nunito';
+  font-size: 8px;
+  margin: 0;
+}
+.polygon-item {
+  position: relative;
+  right: 80px;
+  bottom: -12px;
 }
