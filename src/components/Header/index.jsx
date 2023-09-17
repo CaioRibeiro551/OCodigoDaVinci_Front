@@ -9,10 +9,14 @@ import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
 
 export default function Header() {
-  const { modalTeste, setModalTeste } = useMainContext();
+  const { setModalTeste, removeUserLog } = useMainContext();
 
   const handleModal = () => {
     setModalTeste(true);
+  };
+
+  const handleLogout = () => {
+    removeUserLog();
   };
   return (
     <>
@@ -32,7 +36,7 @@ export default function Header() {
             <p>Editar</p>
           </div>
           <div className="button-item">
-            <img src={iconeQuit} alt="" />
+            <img src={iconeQuit} alt="" onClick={handleLogout} />
             <p>Sair</p>
           </div>
         </div>
