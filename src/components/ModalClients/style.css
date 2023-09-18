@@ -1,0 +1,74 @@
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(145, 154, 150, 0.3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.backdrop form {
+  width: 600px;
+  padding: 30px;
+  position: relative;
+}
+
+.backdrop form img {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.backdrop form h1 {
+  font-size: 1.9rem;
+  margin: -5px;
+  padding-right: 260px;
+}
+.backdrop form img:nth-child(2) {
+  position: relative;
+  left: -250px;
+}
+
+.backdrop form .container-inputs {
+  margin-top: 10px;
+  gap: 5px;
+  font-size: 1.6rem;
+}
+
+.container-cpf-telefone,
+.container-cep-bairro,
+.container-cidade-uf {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.container-cpf-telefone form .container-inputs {
+  width: 50%;
+}
+
+.container-cpf-telefone .container-inputs input {
+  width: 100%;
+}
+
+.buttons-submit {
+  display: flex;
+  align-items: center;
+}
+.buttons-submit :nth-child(1) {
+  margin-right: 30px;
+}
+.buttons-submit span button {
+  border: 3px solid #dedee9;
+  background: #f8f8f9;
+  color: #0e8750;
+}
