@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import "./style.css";
-import seta from "../../assets/seta.svg";
-import cicleInfo from "../../assets/circle-info.svg";
-import iconeEdit from "../../assets/icone-edit.svg";
-import iconeQuit from "../../assets/icone-quit.svg";
-import iconePolygon from "../../assets/icone-polygon.svg";
-import "./style.css";
-import { useMainContext } from "../../hooks/useMainContext";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './style.css';
+import seta from '../../assets/seta.svg';
+import cicleInfo from '../../assets/circle-info.svg';
+import iconeEdit from '../../assets/icone-edit.svg';
+import iconeQuit from '../../assets/icone-quit.svg';
+import iconePolygon from '../../assets/icone-polygon.svg';
+import './style.css';
+import { useMainContext } from '../../hooks/useMainContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const { modalTeste, setModalTeste } = useMainContext();
@@ -33,7 +33,7 @@ export default function Header() {
             <div>
               <div>
                 <img className="polygon-item" src={iconePolygon} alt="" />
-                <div className="button-edit">
+                <div className="buttons-profile">
                   <div className="button-item">
                     <img src={iconeEdit} alt="" />
                     <p>Editar</p>

@@ -7,7 +7,7 @@
   width: 10.8rem;
   height: 112rem;
   background-color: white;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-size: 16px;
   font-weight: 600;
   background-color: #f0f0f5;
@@ -32,6 +32,9 @@
   align-items: center;
   justify-content: center;
   color: #da0175;
+}
+.sidebar-item p {
+  color: #343447;
 }
 .sidebar-content > .sidebar-item:nth-child(2) {
   margin-top: 75px;
