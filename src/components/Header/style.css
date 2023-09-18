@@ -22,6 +22,7 @@
 }
 
 .user-info {
+  position: relative;
   display: flex;
   align-items: center;
   color: #0e8750;
@@ -36,6 +37,7 @@
 .user-info img {
   width: 20px;
   height: auto;
+  cursor: pointer;
 }
 .user-info p {
   font-family: "Nunito";
@@ -70,13 +72,13 @@
   margin-bottom: 20px;
 }
 .button-edit {
-  position: relative;
-  right: 20px;
+  position: absolute;
+  right: -25px;
   top: 35px;
   display: flex;
   align-items: center;
-  width: 80px;
-  height: 50px;
+  justify-content: space-between;
+  gap: 15px;
   padding: 8px 15px;
   color: black;
   border-radius: 8px;
@@ -87,12 +89,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 10px;
+  justify-content: space-between;
 }
 
 .button-item img {
   width: 20px;
   height: 20px;
+  cursor: pointer;
+  transition: all ease 0.7s;
+}
+
+.button-item img:hover {
+  transform: scale(1.2);
 }
 
 .button-item p {
@@ -101,8 +109,7 @@
   margin: 0;
 }
 .polygon-item {
-  position: relative;
-
-  right: 20px;
-  top: 35px;
+  position: absolute;
+  right: 25px;
+  top: -9px;
 }
