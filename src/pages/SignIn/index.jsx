@@ -37,8 +37,8 @@ export default function SignIn() {
 
       navigator("/home");
     } catch (error) {
-      console.log(error.response.data);
-      alert(error.response.data.message);
+      alert(error);
+      console.log(error);
       return;
     }
 
