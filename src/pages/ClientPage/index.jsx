@@ -4,8 +4,12 @@ import MenuTableClients from "../../components/MenuTableClients";
 import Sidebar from "../../components/Sidebar";
 import { FullTableHeader } from "../../utils/data";
 import "./style.css";
+import ModalClients from "../../components/ModalClients";
+import { useMainContext } from "../../hooks/useMainContext";
 
 export default function ClientsPage() {
+  const { modalClients } = useMainContext();
+
   return (
     <div className="container-clients">
       <Sidebar />
@@ -16,6 +20,7 @@ export default function ClientsPage() {
           <FullTable item={item} key={index} />
         ))}
       </div>
+      {modalClients && <ModalClients />}
     </div>
   );
 }
