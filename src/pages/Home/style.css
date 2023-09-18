@@ -5,8 +5,9 @@
 
 header {
   display: flex;
-  width: calc(100vw - 10.8rem);
+  width: calc(100vw - 11rem);
   height: 11rem;
+  margin-bottom: 20px;
 }
 
 .contents-home {
@@ -21,9 +22,19 @@ header {
 }
 .contents-small-table {
   max-width: calc(100vw - 11rem);
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contents-small-table div {
+  width: 1200px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 4rem;
+  grid-gap: 4rem;
 }

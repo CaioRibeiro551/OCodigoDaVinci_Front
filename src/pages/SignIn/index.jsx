@@ -3,11 +3,14 @@ import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../services/api";
 
+import { useMainContext } from "../../hooks/useMainContext";
+
 export default function SignIn() {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const { userLog, setUserLog } = useMainContext();
   const navigator = useNavigate();
 
   const handleSetuser = ({ target }) => {
@@ -19,23 +22,34 @@ export default function SignIn() {
   const handleSubmit = async () => {
     const loginUser = {
       email: user.email,
-      senha: user.password,
+      password: user.password,
     };
 
     try {
-      if (!loginUser.email || !loginUser.senha) {
+      if (!loginUser.email || !loginUser.password) {
         alert("campos email e senha são obrigatórios!");
         return;
       }
 
-      await Axios.post("/login", loginUser);
+      const response = await Axios.post("/login", loginUser);
+
+      setUserLog(response.data);
+
       navigator("/home");
     } catch (error) {
-      return alert(error.response.data);
+      console.log(error.response.data);
+      alert(error.response.data.message);
+      return;
     }
 
     return;
   };
+
+  // useEffect(() => {
+  //   if (userLog && userLog.token) {
+  //     navigator("/");
+  //   }
+  // }, []);
 
   return (
     <div className="signin-container max-width">

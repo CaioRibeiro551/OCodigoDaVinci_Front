@@ -1,0 +1,108 @@
+/* .page-container {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 32px auto 140px;
+} */
+
+.full-header {
+  position: relative;
+  width: calc(100% - 11rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  border-bottom: 2px solid #acd9c5;
+}
+
+.header-info h1 {
+  color: #343447;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: #0e8750;
+  padding-left: 590px;
+  padding-bottom: 10px;
+}
+
+.user-info p {
+  margin-right: 10px;
+}
+
+.user-info img {
+  width: 20px;
+  height: auto;
+}
+.user-info p {
+  font-family: "Nunito";
+  font-size: 18px;
+}
+.circle-info {
+  margin-right: 10px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card {
+  width: 30%;
+  margin-bottom: 20px;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card {
+  width: 30%;
+  margin-bottom: 20px;
+}
+.button-edit {
+  position: relative;
+  right: 20px;
+  top: 35px;
+  display: flex;
+  align-items: center;
+  width: 80px;
+  height: 50px;
+  padding: 8px 15px;
+  color: black;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.button-item img {
+  width: 20px;
+  height: 20px;
+}
+
+.button-item p {
+  font-family: "Nunito";
+  font-size: 8px;
+  margin: 0;
+}
+.polygon-item {
+  position: relative;
+
+  right: 20px;
+  top: 35px;
+}

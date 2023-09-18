@@ -1,18 +1,20 @@
+import Modal from "../../components/ModalTeste";
 import Sidebar from "../../components/Sidebar/index";
-import TituloCobranca from "../../components/TitutloCobranca/index";
+import TituloCobranca from "../../components/TituloCobranca";
+import Header from "../../components/Header/index";
+import { useMainContext } from "../../hooks/useMainContext";
 import "./style.css";
 import ResumeTable from "../../components/ResumeTable";
 import { ResumeTableHeader, cards } from "../../utils/data";
+
 export default function Home() {
+  const { modalTeste } = useMainContext();
+
   return (
-    <div className="container-home">
+    <div className="container-home ">
       <Sidebar />
-
       <div>
-        <header>
-          <h1>HEADER</h1>
-        </header>
-
+        <Header />
         <main>
           <div className="contents-home">
             <div className="contents-title">
@@ -20,10 +22,13 @@ export default function Home() {
                 <TituloCobranca item={item} key={index} />
               ))}
             </div>
+            {modalTeste ? <Modal /> : ""}
             <div className="contents-small-table">
-              {ResumeTableHeader.map((item, index) => (
-                <ResumeTable item={item} key={index} />
-              ))}
+              <div>
+                {ResumeTableHeader.map((item, index) => (
+                  <ResumeTable item={item} key={index} />
+                ))}
+              </div>
             </div>
           </div>
         </main>

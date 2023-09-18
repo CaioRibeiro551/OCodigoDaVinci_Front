@@ -42,7 +42,7 @@ form h1 {
 }
 
 form h1 {
-  color: var(--cinzas-cinza-1, #343447);
+  color: #343447;
   text-align: center;
   font-family: Montserrat;
   font-size: 24px;

@@ -37,21 +37,26 @@ export default function SignUp() {
     }
   };
 
+  const handleSetUser = ({ target }) => {
+    const key = target.name;
+    const value = target.value;
+    setUser({ ...user, [key]: value });
+  };
+
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (stepIndex === 0) {
-      if (!user.name || !user.email) {
-        alert("Prencha todos os campos!");
-        return;
-      }
-    }
-
     if (stepIndex === 1) {
       if (!user.password || !user.confirmPassword) {
-        alert("Prencha todos os campos!");
+        alert("Preencha todos os campos!");
         return;
       }
+
+      if (user.password.length < 6) {
+        alert("A senha precisa ter no mínimo 6 caractes!");
+        return;
+      }
+
       if (user.password !== user.confirmPassword) {
         alert("As senhas precisam ser iguais!");
         return;
@@ -63,23 +68,38 @@ export default function SignUp() {
     return;
   };
 
-  const handleSetUser = ({ target }) => {
-    const key = target.name;
-    const value = target.value;
-    setUser({ ...user, [key]: value });
+  const handleValidEmail = async (e) => {
+    try {
+      if (!user.name || !user.email) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      await Axios.post("/validate-email", {
+        email: user.email,
+      });
+
+      handleNext(e);
+    } catch (error) {
+      // alert(error.response.data.message);
+      console.log(error);
+      return;
+    }
   };
 
   const handleSubmit = async () => {
     try {
       const newUser = {
-        nome: user.name,
+        name: user.name,
         email: user.email,
-        senha: user.password,
+        password: user.password,
       };
-      const { data } = await Axios.post("/usuarios", newUser);
+
+      await Axios.post("/signup", newUser);
       navigator("/");
     } catch (error) {
-      alert(error.response.data);
+      console.log(error);
+      return;
     }
   };
 
@@ -152,7 +172,7 @@ export default function SignUp() {
                 />
               </div>
 
-              <button type="button" onClick={handleNext}>
+              <button type="button" onClick={handleValidEmail}>
                 Continuar
               </button>
 
