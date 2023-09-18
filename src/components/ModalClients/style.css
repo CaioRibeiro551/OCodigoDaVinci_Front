@@ -13,7 +13,7 @@
 }
 
 .backdrop form {
-  width: 380px;
+  width: 600px;
   padding: 30px;
   position: relative;
 }
@@ -28,7 +28,12 @@
 
 .backdrop form h1 {
   font-size: 1.9rem;
-  margin: 10px;
+  margin: -5px;
+  padding-right: 260px;
+}
+.backdrop form img:nth-child(2) {
+  position: relative;
+  left: -250px;
 }
 
 .backdrop form .container-inputs {
@@ -37,7 +42,9 @@
   font-size: 1.6rem;
 }
 
-.container-cpf-telefone {
+.container-cpf-telefone,
+.container-cep-bairro,
+.container-cidade-uf {
   width: 100%;
   display: flex;
   align-items: center;
@@ -51,4 +58,17 @@
 
 .container-cpf-telefone .container-inputs input {
   width: 100%;
+}
+
+.buttons-submit {
+  display: flex;
+  align-items: center;
+}
+.buttons-submit :nth-child(1) {
+  margin-right: 30px;
+}
+.buttons-submit span button {
+  border: 3px solid #dedee9;
+  background: #f8f8f9;
+  color: #0e8750;
 }

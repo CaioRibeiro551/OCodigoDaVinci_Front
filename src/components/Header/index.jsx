@@ -8,9 +8,11 @@ import iconePolygon from "../../assets/icone-polygon.svg";
 import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate } from "react-router-dom";
+import Modal from "../ModalTeste/index";
 
 export default function Header() {
-  const { setModalTeste, removeUserLog, userLog } = useMainContext();
+  const { setModalTeste, removeUserLog, userLog, modalTeste } =
+    useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
 
   const navigator = useNavigate();
@@ -47,7 +49,7 @@ export default function Header() {
                   <p>Editar</p>
                 </div>
                 <div className="button-item">
-                  <img src={iconeQuit} alt="" onAuxClick={handleLogout} />
+                  <img src={iconeQuit} alt="" onClick={handleLogout} />
                   <p>Sair</p>
                 </div>
               </div>
@@ -55,6 +57,7 @@ export default function Header() {
           )}
         </div>
       </header>
+      {modalTeste ? <Modal /> : ""}
     </>
   );
 }

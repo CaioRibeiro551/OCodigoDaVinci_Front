@@ -54,6 +54,19 @@
   overflow: hidden;
 }
 
+.full-table td a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #da0175;
+  font-family: Nunito;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 /* .link-table {
   display: flex;
   justify-content: end;
