@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../services/api";
+
 import { useMainContext } from "../../hooks/useMainContext";
 
 export default function SignIn() {
@@ -31,7 +32,7 @@ export default function SignIn() {
       }
 
       const response = await Axios.post("/login", loginUser);
-      console.log(loginUser);
+
       setUserLog(response.data);
 
       navigator("/home");

@@ -3,6 +3,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import { useMainContext } from "./hooks/useMainContext";
+
 import ClientsPage from "./pages/ClientPage";
 
 function ProtectRoutes({ redirectTo }) {
