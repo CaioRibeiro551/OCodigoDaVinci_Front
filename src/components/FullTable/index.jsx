@@ -1,4 +1,5 @@
 import "./style.css";
+import Charge from "../../assets/cobranca.svg";
 
 export default function FullTable({ item }) {
   return (
@@ -24,7 +25,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -37,7 +39,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -50,7 +53,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -63,7 +67,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -76,7 +81,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -89,7 +95,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -102,7 +109,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -115,7 +123,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -128,7 +137,8 @@ export default function FullTable({ item }) {
 
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -140,7 +150,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -152,7 +163,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -164,7 +176,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table " href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -177,7 +190,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -189,7 +203,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>
@@ -201,7 +216,8 @@ export default function FullTable({ item }) {
             <td>Inadimplente</td>
             <td>
               <a className="link-table" href="">
-                <img src="" alt="excluir" />
+                <img src={Charge} alt="" />
+                <span>Criar cobrança</span>
               </a>
             </td>
           </tr>

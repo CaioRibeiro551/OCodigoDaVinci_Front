@@ -8,10 +8,15 @@ import iconePolygon from "../../assets/icone-polygon.svg";
 import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate } from "react-router-dom";
+import Modal from "../ModalTeste/index";
 
 export default function Header() {
-  const { modalTeste, setModalTeste } = useMainContext();
+  const { setModalTeste, removeUserLog, userLog, modalTeste } =
+    useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
+
+  const navigator = useNavigate();
+
   const handleModal = () => {
     setModalTeste(true);
   };
@@ -19,6 +24,12 @@ export default function Header() {
   const handleOpenMiniModal = () => {
     setOpenMiniModal(!openMineModal);
   };
+
+  const handleLogout = () => {
+    navigator("/");
+    removeUserLog();
+  };
+
   return (
     <>
       <header className="full-header">
@@ -27,27 +38,26 @@ export default function Header() {
         </div>
         <div className="user-info">
           <img className="circle-info" src={cicleInfo} alt="" />
-          <p>Lorena</p>
+          <p>{userLog.name}</p>
           <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
           {openMineModal && (
             <div>
-              <div>
+              <div className="button-edit">
                 <img className="polygon-item" src={iconePolygon} alt="" />
-                <div className="button-edit">
-                  <div className="button-item">
-                    <img src={iconeEdit} alt="" />
-                    <p>Editar</p>
-                  </div>
-                  <div className="button-item">
-                    <img src={iconeQuit} alt="" />
-                    <p>Sair</p>
-                  </div>
+                <div className="button-item">
+                  <img src={iconeEdit} alt="" onClick={handleModal} />
+                  <p>Editar</p>
+                </div>
+                <div className="button-item">
+                  <img src={iconeQuit} alt="" onClick={handleLogout} />
+                  <p>Sair</p>
                 </div>
               </div>
             </div>
           )}
         </div>
       </header>
+      {modalTeste ? <Modal /> : ""}
     </>
   );
 }

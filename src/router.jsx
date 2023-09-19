@@ -20,7 +20,7 @@ export default function MainRouter() {
 
       <Route element={<ProtectRoutes redirectTo="/" />}>
         <Route path="/home" element={<Home />} />
-        <Route path="clients" element={<ClientsPage />} />
+        <Route path="/clients" element={<ClientsPage />} />
       </Route>
     </Routes>
   );
