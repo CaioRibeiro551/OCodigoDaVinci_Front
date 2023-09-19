@@ -50,3 +50,13 @@
 .sidebar-item.active p {
   color: #da0175;
 }
+
+.text-client {
+  color: #0e8750;
+
+  font-family: Inter;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
