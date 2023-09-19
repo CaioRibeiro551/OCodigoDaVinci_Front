@@ -57,7 +57,7 @@ export default function SignIn() {
   return (
     <div className="signin-container">
       <div className="signin-container-left"></div>
-      <div className="container-inputs">
+      <div className="box-sing-in">
         <div className="signin-container-rigth">
           <form>
             <h1>Faça seu login!</h1>
