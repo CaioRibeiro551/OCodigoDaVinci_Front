@@ -10,7 +10,10 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+
+  const [error, setError] = useState("");
   const { userLog, setUserLog } = useMainContext();
+
   const navigator = useNavigate();
 
   const handleSetuser = ({ target }) => {
@@ -37,8 +40,8 @@ export default function SignIn() {
 
       navigator("/home");
     } catch (error) {
-      alert(error);
-      console.log(error);
+      setError(error.response.data.message);
+
       return;
     }
 
@@ -52,41 +55,44 @@ export default function SignIn() {
   // }, []);
 
   return (
-    <div className="signin-container max-width">
+    <div className="signin-container">
       <div className="signin-container-left"></div>
-      <div className="signin-container-rigth">
-        <form>
-          <h1>Faça seu login!</h1>
+      <div className="container-inputs">
+        <div className="signin-container-rigth">
+          <form>
+            <h1>Faça seu login!</h1>
 
-          <div className="container-inputs">
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Digite seu email"
-              onChange={handleSetuser}
-            />
-          </div>
+            <div className="container-inputs">
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Digite seu email"
+                onChange={handleSetuser}
+              />
+            </div>
 
-          <div className="container-inputs">
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={handleSetuser}
-              placeholder="Digite sua senha"
-            />
-          </div>
+            <div className="container-inputs">
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={handleSetuser}
+                placeholder="Digite sua senha"
+              />
+              {error && <span className="error">{error}</span>}
+            </div>
 
-          <button type="button" onClick={handleSubmit}>
-            Entrar
-          </button>
-          <p>
-            Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
-          </p>
-        </form>
+            <button type="button" onClick={handleSubmit}>
+              Entrar
+            </button>
+            <p>
+              Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

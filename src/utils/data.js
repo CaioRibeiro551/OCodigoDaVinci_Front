@@ -89,3 +89,76 @@ export const FullTableHeader = [
     CreateCharges: "Criar Cobranças",
   },
 ];
+
+export const clients = [
+  {
+    nome: "Sara da Silva",
+    cpf: "054 365 255 87",
+    email: "searasilva@cubos.io",
+    telefone: "71 9 9462 8654",
+    status: "Em dia",
+  },
+  {
+    nome: "Carlos Santos",
+    cpf: "123 456 789 00",
+    email: "carlossantos@cubos.io",
+    telefone: "71 9 8765 4321",
+    status: "Inadimplente",
+  },
+  {
+    nome: "Ana Maria",
+    cpf: "987 654 321 00",
+    email: "anamaria@cubos.io",
+    telefone: "71 9 1234 5678",
+    status: "Em dia",
+  },
+  {
+    nome: "José Oliveira",
+    cpf: "456 789 123 00",
+    email: "joseoliveira@cubos.io",
+    telefone: "71 9 5678 1234",
+    status: "Inadimplente",
+  },
+  {
+    nome: "Mariana Ferreira",
+    cpf: "789 123 456 00",
+    email: "marianaferreira@cubos.io",
+    telefone: "71 9 2345 6789",
+    status: "Em dia",
+  },
+  {
+    nome: "Ricardo Pereira",
+    cpf: "321 654 987 00",
+    email: "ricardopereira@cubos.io",
+    telefone: "71 9 3456 7890",
+    status: "Inadimplente",
+  },
+  {
+    nome: "Julia Santos",
+    cpf: "654 987 321 00",
+    email: "juliasantos@cubos.io",
+    telefone: "71 9 4567 8901",
+    status: "Em dia",
+  },
+  {
+    nome: "Paulo Lima",
+    cpf: "987 321 654 00",
+    email: "paulolima@cubos.io",
+    telefone: "71 9 5678 9012",
+    status: "Inadimplente",
+  },
+  {
+    nome: "Luana Silva",
+    cpf: "789 654 321 00",
+    email: "luanasilva@cubos.io",
+    telefone: "71 9 6789 0123",
+    status: "Em dia",
+  },
+  {
+    nome: "Felipe Almeida",
+    cpf: "456 321 654 00",
+    email: "felipealmeida@cubos.io",
+    telefone: "71 9 7890 1234",
+    status: "Inadimplente",
+  },
+];

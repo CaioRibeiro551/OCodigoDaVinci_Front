@@ -7,7 +7,7 @@ import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
 import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../ModalTeste/index";
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
     useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
 
-  const navigator = useNavigate();
+  let { pathname } = useLocation();
 
   const handleModal = () => {
     setModalTeste(true);
@@ -34,8 +34,13 @@ export default function Header() {
     <>
       <header className="full-header">
         <div className="header-info">
-          <h1 className="big-text">Resumo das cobranças</h1>
+          {pathname === "/home" ? (
+            <h1 className="big-text">Resumo das cobranças</h1>
+          ) : (
+            <p className="text-client">Clientes</p>
+          )}
         </div>
+
         <div className="user-info">
           <img className="circle-info" src={cicleInfo} alt="" />
           <p>{userLog.name}</p>

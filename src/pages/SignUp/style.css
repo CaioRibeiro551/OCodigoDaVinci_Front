@@ -1,15 +1,6 @@
-.container-main {
-  width: 63%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .signup-container {
-  min-height: 100vh;
   width: 100vw;
+  min-height: 100vh;
   display: flex;
   justify-content: stretch;
 }
@@ -30,6 +21,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 100px 0 60px 0;
+}
+
+.container-main {
+  width: 63%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .signup-container-rigth form {
   width: 350px;
