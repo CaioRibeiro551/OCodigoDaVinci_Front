@@ -2,11 +2,7 @@ import React, { useState } from "react";
 
 import "./style.css";
 
-export default function SteperAside({
-  stepIndex,
-  setStepIndex,
-  handleReturnStep,
-}) {
+export default function SteperAside({ stepIndex, handleReturnStep }) {
   return (
     <>
       <div className="container-stepper">

@@ -6,6 +6,7 @@ export function useMainContextProvider() {
   const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
   const [stepIndex, setStepIndex] = useState();
+
   return {
     userLog,
     setUserLog,

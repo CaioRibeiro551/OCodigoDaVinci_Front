@@ -11,7 +11,7 @@ import Axios from "../../services/api";
 
 export default function FormSignUp({ stepIndex, setStepIndex }) {
   const [eye, setEye] = useState(false);
-  const [validationError, setValidationError] = useState(""); // Estado para armazenar mensagens de erro
+  const [validationError, setValidationError] = useState("");
 
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
 
   const validateFormData = async () => {
     try {
-      const response = await Axios.post("/validate-email", {
+      await Axios.post("/validate-email", {
         email: formData.email,
       });
 
@@ -54,8 +54,7 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
         await Axios.post("/signup", formData);
         navigate("/");
       } catch (error) {
-        console.error(error);
-        // Trate erros de envio de dados para o servidor aqui, se necessário
+        console.error();
       }
     }
   };
