@@ -23,16 +23,10 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
     resolver: yupResolver(validationPost),
   });
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const validateFormData = async () => {
+  const validateFormData = async (data) => {
     try {
       await Axios.post("/validate-email", {
-        email: formData.email,
+        email: data.email,
       });
 
       setValidationError("");
@@ -46,20 +40,16 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
 
   const onSubmit = async (data) => {
     if (stepIndex < 2) {
-      const updatedFormData = { ...formData, ...data };
-      setFormData(updatedFormData);
-      await validateFormData();
+      await validateFormData(data);
     } else {
       try {
-        await Axios.post("/signup", formData);
+        await Axios.post("/signup", data);
         navigate("/");
       } catch (error) {
         console.error();
       }
     }
   };
-
-  useEffect(() => {}, [formData]);
 
   return (
     <>
@@ -75,8 +65,9 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
                 placeholder="Digite seu nome"
                 {...register("name")}
               />
-              <span className="error">{errors.name?.message}</span>
-
+            </div>
+            <span className="error">{errors.name?.message}</span>
+            <div className="container-inputs">
               <label htmlFor="email">Email *</label>
               <input
                 type="email"
@@ -84,9 +75,7 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
                 placeholder="Digite seu email"
                 {...register("email")}
               />
-              <span className="error">
-                {validationError ? validationError : errors.email?.message}
-              </span>
+              <span className="error">{errors.email?.message}</span>
             </div>
           </>
         )}
@@ -94,7 +83,6 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
         {stepIndex === 1 && (
           <>
             <h1>Escolha uma senha</h1>
-
             <div className="container-inputs">
               <label htmlFor="password">Senha *</label>
               <input

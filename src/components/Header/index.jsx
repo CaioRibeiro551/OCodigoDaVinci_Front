@@ -17,6 +17,8 @@ export default function Header() {
 
   let { pathname } = useLocation();
 
+  const navigator = useNavigate();
+
   const handleModal = () => {
     setModalTeste(true);
   };
@@ -26,8 +28,8 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    navigator("/");
     removeUserLog();
+    navigator("/");
   };
 
   return (
