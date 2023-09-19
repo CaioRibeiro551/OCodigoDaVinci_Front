@@ -5,7 +5,10 @@ import { MainContext } from "../context/MainContext";
 export function useMainContextProvider() {
   const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
+
+
   const [modalClients, setModalClients] = useState(false);
+
 
   return {
     userLog,
@@ -15,6 +18,7 @@ export function useMainContextProvider() {
     setModalTeste,
     modalClients,
     setModalClients,
+
   };
 }
 
