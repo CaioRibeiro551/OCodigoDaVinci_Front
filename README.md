@@ -17,6 +17,7 @@
   <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-páginas-e-rotas">Páginas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-demais-componentes">Componentes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  
 </p>
 <br>
 
@@ -394,7 +395,9 @@
 </ul>
 </details>
 
+##DEPLOY 
 
+https://luminous-empanada-e44d0f.netlify.app/
 
 ## 📝 Sobre
 ##### Este projeto consiste em sistema de gerenciamento de cobranças.
