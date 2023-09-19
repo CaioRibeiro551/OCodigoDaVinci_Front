@@ -25,7 +25,7 @@ export default function FullTable({ lista }) {
               <td>{item.telefone}</td>
               <td>{item.status}</td>
               <td>
-                <a className="link-table" href="">
+                <a className="link-table" href="#">
                   <img src={Charge} alt="" />
                   <span>Criar cobrança</span>
                 </a>
