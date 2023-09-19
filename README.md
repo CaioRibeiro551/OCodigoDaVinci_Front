@@ -397,7 +397,7 @@
 
 ## 📝 DEPLOY 
 
-https://luminous-empanada-e44d0f.netlify.app/
+https://6509b2e2e9ea7b00085f1d3a--luminous-empanada-e44d0f.netlify.app/
 
 ## 📝 Sobre
 ##### Este projeto consiste em sistema de gerenciamento de cobranças.
