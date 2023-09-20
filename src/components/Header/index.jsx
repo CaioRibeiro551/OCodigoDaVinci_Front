@@ -17,7 +17,6 @@ export default function Header() {
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
   let { pathname } = useLocation();
-
   const navigator = useNavigate();
 
   const handleModal = () => {
@@ -43,6 +42,13 @@ export default function Header() {
     setIsConfirmationModalOpen(false);
   };
 
+  let textClient;
+  if (pathname === '/clients') {
+    textClient = 'Clientes';
+  } else if (pathname === '/cobrancas') {
+    textClient = 'Cobranças';
+  }
+
   return (
     <>
       <header className="full-header">
@@ -50,7 +56,7 @@ export default function Header() {
           {pathname === '/home' ? (
             <h1 className="big-text">Resumo das cobranças</h1>
           ) : (
-            <p className="text-client">Clientes</p>
+            <p className="text-client">{textClient}</p>
           )}
         </div>
 

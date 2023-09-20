@@ -1,0 +1,13 @@
+.container-clients {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.main-page-client {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+}
