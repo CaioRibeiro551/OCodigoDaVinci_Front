@@ -7,10 +7,14 @@
   width: 10.8rem;
   height: 112rem;
   background-color: white;
-  font-family: "Nunito";
+  font-family: 'Nunito';
   font-size: 16px;
   font-weight: 600;
   background-color: #f0f0f5;
+
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .sidebar-content {
