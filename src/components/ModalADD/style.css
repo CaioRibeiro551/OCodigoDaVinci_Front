@@ -1,6 +1,6 @@
 .backdrop {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(145, 154, 150, 0.3);
   position: fixed;
   top: 0;
@@ -13,50 +13,24 @@
 }
 
 .backdrop form {
-  width: 50%;
-  height: 100%;
-  padding: 40px 60px 40px 60px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 0px;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: showModal 1s;
-  justify-content: space-between;
+  width: 600px;
+  padding: 30px;
+  position: relative;
 }
 
-.backdrop form img .closer {
+.backdrop form img {
   width: 28px;
-  height: 40px;
+  height: 28px;
   position: absolute;
   top: 20px;
   right: 20px;
 }
 
-.backdrop form .container-title {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.backdrop form h1 {
+  font-size: 1.9rem;
+  margin: -5px;
+  padding-right: 260px;
 }
-
-.backdrop form .container-title img {
-  width: 32px;
-  height: 32px;
-  position: static;
-}
-
-.backdrop form .container-title h1 {
-  color: #3f3f55;
-  font-family: Montserrat;
-  font-size: 2.6rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 130%; /* 33.8px */
-}
-
 .backdrop form img:nth-child(2) {
   position: relative;
   left: -250px;
@@ -71,13 +45,6 @@
 
 .backdrop form .container-inputs label {
   text-align: left;
-  color: #fff;
-}
-
-.backdrop form .container-inputs input,
-.container-cpf-telefone .container-inputs input {
-  width: 100%;
-  height: 50px;
 }
 
 .container-cpf-telefone,
@@ -94,19 +61,18 @@
   width: 50%;
 }
 
-.buttons-submit {
+.container-cpf-telefone .container-inputs input {
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
 }
 
-.buttons-submit button {
-  width: 50%;
-  height: 50px;
+.buttons-submit {
+  display: flex;
+  align-items: center;
 }
-.buttons-submit .btn-cancel {
+.buttons-submit :nth-child(1) {
+  margin-right: 30px;
+}
+.buttons-submit span button {
   border: 3px solid #dedee9;
   background: #f8f8f9;
   color: #0e8750;
@@ -125,13 +91,23 @@
   text-align: left;
 }
 
-@keyframes showModal {
-  from {
+/*
+.container-modal{
+  heigth: 100%;
+  position: absolute;
+  top: 0;
+  rigth: 0;
+  animation: showModal 1.4s;
+}
+
+@keyframe showModal{
+  from{
     opacity: 0;
     width: 0;
   }
-  to {
+  to{
     opacity: 1;
-    width: 50vw;
+    width: 50%;
   }
-}
+
+*/

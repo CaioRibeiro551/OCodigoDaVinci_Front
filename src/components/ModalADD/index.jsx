@@ -20,6 +20,8 @@ export default function ModalClients() {
     resolver: yupResolver(validationAddClient),
   });
 
+  console.log(errors);
+
   const createrUser = (data) => {
     setForm({ ...data });
     console.log({
@@ -53,16 +55,9 @@ export default function ModalClients() {
   return (
     <div className="backdrop">
       <form onSubmit={handleSubmit(createrUser)}>
-        <img
-          className="closer"
-          src={CloseModal}
-          alt="Close"
-          onClick={handleCloseModal}
-        />
-        <div className="container-title">
-          <img src={clients} alt="icon client" />
-          <h1>Cadastro do cliente</h1>
-        </div>
+        <img src={CloseModal} alt="Close" onClick={handleCloseModal} />
+        <img src={clients} alt="" />
+        <h1>Cadastro do cliente</h1>
 
         <div
           className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
@@ -181,14 +176,11 @@ export default function ModalClients() {
           </div>
         </div>
         <div className="buttons-submit">
-          <button
-            className="btn-cancel"
-            type="button"
-            onClick={handleCloseModal}
-          >
-            Cancelar
-          </button>
-
+          <span>
+            <button type="button" onClick={handleCloseModal}>
+              Cancelar
+            </button>
+          </span>
           <button>
             {/* type="button" onClick={hadleOnSubmit} */}
             Atualizar

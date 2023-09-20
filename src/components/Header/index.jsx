@@ -17,6 +17,8 @@ export default function Header() {
 
   let { pathname } = useLocation();
 
+  const navigator = useNavigate();
+
   const handleModal = () => {
     setModalTeste(true);
   };

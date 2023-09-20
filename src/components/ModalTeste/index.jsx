@@ -33,7 +33,13 @@ export default function Modal() {
         },
       });
       alert("Usuário atualizado com sucesso!");
-      setUserLog({ ...userLog, ...form });
+      const userUpdat = {
+        name: userLog.name || form.name,
+        email: userLog.email || form.email,
+        cpf: userLog.cpf.trim() || form.cpf.trim(),
+        phone: userLog.phone || form.phone,
+      };
+      setUserLog({ ...userLog, ...userUpdat });
       handleCloseModal();
       return;
     } catch (error) {
