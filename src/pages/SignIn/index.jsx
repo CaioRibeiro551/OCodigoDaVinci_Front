@@ -1,17 +1,20 @@
-import { useState } from "react";
-import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
-import Axios from "../../services/api";
+import { useState } from 'react';
+import './style.css';
+import { Link, useNavigate } from 'react-router-dom';
+import Axios from '../../services/api';
+import '../../components/LoadButton';
 
-import { useMainContext } from "../../hooks/useMainContext";
+import { useMainContext } from '../../hooks/useMainContext';
+import LoadButton from '../../components/LoadButton';
 
 export default function SignIn() {
+  const [removeLoad, setremoveLoad] = useState(true);
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { userLog, setUserLog } = useMainContext();
 
   const navigator = useNavigate();
@@ -30,16 +33,18 @@ export default function SignIn() {
 
     try {
       if (!loginUser.email || !loginUser.password) {
-        alert("campos email e senha são obrigatórios!");
+        alert('campos email e senha são obrigatórios!');
         return;
       }
-
-      const response = await Axios.post("/login", loginUser);
+      setremoveLoad(false);
+      const response = await Axios.post('/login', loginUser);
+      setremoveLoad(true);
 
       setUserLog(response.data);
 
-      navigator("/home");
+      navigator('/home');
     } catch (error) {
+      setremoveLoad(true);
       setError(error.response.data.message);
 
       return;
@@ -86,7 +91,7 @@ export default function SignIn() {
             </div>
 
             <button type="button" onClick={handleSubmit}>
-              Entrar
+              {!removeLoad ? <LoadButton /> : 'Entrar'}
             </button>
             <p>
               Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
