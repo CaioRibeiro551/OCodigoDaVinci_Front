@@ -3,13 +3,6 @@
   max-height: 100vh;
 }
 
-header {
-  display: flex;
-  width: calc(100vw - 11rem);
-  height: 11rem;
-  margin-bottom: 20px;
-}
-
 .contents-home {
   display: flex;
   flex-direction: column;

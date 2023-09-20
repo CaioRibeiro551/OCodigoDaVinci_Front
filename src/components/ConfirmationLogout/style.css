@@ -1,0 +1,33 @@
+.confirmation-modal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  justify-content: center;
+  top: 15%;
+  right: 0;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+.buttons-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.buttons-logout button {
+  width: 50%;
+  font-size: 1.4rem;
+}
+.confirmation-modal p {
+  font-family: 'Nunito';
+  font-size: 16px;
+  text-align: center;
+}
+.confirmation-modal button {
+  margin-top: 50px;
+  margin-top: 15px;
+}
