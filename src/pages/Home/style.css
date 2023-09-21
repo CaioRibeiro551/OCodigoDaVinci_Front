@@ -1,6 +1,6 @@
 .container-home {
-  display: flex;
-  max-height: 100vh;
+  margin-left: 90px;
+  width: calc(100% - 90px);
 }
 
 .contents-home {

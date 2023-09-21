@@ -5,10 +5,12 @@ import Sidebar from '../../components/Sidebar';
 import { clients } from '../../utils/data';
 import './style.css';
 import ModalClients from '../../components/ModalClients';
+import MenuTableCobranca from '../../components/MenuTableCobranca';
+import FullTableCobranca from '../../components/FullTableCobranca';
 import { useMainContext } from '../../hooks/useMainContext';
 import { useState } from 'react';
 
-export default function ClientsPage() {
+export default function CobrancaPage() {
   const { modalClients } = useMainContext();
 
   const [lista, setLista] = useState(clients);
@@ -22,12 +24,12 @@ export default function ClientsPage() {
     }
   };
   return (
-    <div className="container-clients">
+    <div className="container-cobrancas">
       <Sidebar />
       <Header />
-      <div className="main-page-client ">
-        <MenuTableClients />
-        <FullTable lista={lista} />
+      <div className="main-page-cobrancas">
+        <MenuTableCobranca />
+        <FullTableCobranca lista={lista} />
       </div>
       {modalClients && <ModalClients />}
     </div>
