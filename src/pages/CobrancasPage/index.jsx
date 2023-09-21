@@ -24,10 +24,10 @@ export default function CobrancaPage() {
     }
   };
   return (
-    <div className="container-clients">
+    <div className="container-cobrancas">
       <Sidebar />
       <Header />
-      <div className="main-page-client id">
+      <div className="main-page-cobrancas">
         <MenuTableCobranca />
         <FullTableCobranca lista={lista} />
       </div>

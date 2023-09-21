@@ -10,7 +10,7 @@ export default function FullTable({ lista }) {
     <div className="container-full-table">
       <table className="full-table table ">
         <thead className="relative-text">
-          <tr className="font-roboto-bold font-tr">
+          <tr className="font-roboto-bold-font-tr">
             <img src={iconeCobranca} alt="" />
             <th>Cliente</th>
             <img src={iconeCobranca} alt="" />
@@ -24,11 +24,11 @@ export default function FullTable({ lista }) {
         <tbody className="small-text">
           {lista.map((item, index) => (
             <tr className="font-roboto font-tr line">
-              <td>{item.cliente}</td>
-              <td>{item.cpf}</td>
-              <td>{item.valor}</td>
-              <td>{item.data}</td>
-              <td>{item.status}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td>
                 <div className="icon-group">

@@ -25,7 +25,7 @@ export default function ClientsPage() {
     <div className="container-clients">
       <Sidebar />
       <Header />
-      <div className="main-page-client id">
+      <div className="main-page-client ">
         <MenuTableClients />
         <FullTable lista={lista} />
       </div>
