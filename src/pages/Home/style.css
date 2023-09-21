@@ -1,0 +1,33 @@
+.container-home {
+  display: flex;
+  max-height: 100vh;
+}
+
+.contents-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contents-title {
+  display: flex;
+  gap: 4rem;
+}
+.contents-small-table {
+  max-width: calc(100vw - 11rem);
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contents-small-table div {
+  width: 1200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-gap: 4rem;
+}

@@ -17,6 +17,7 @@
   <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-páginas-e-rotas">Páginas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-demais-componentes">Componentes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  
 </p>
 <br>
 
@@ -394,7 +395,13 @@
 </ul>
 </details>
 
+<<<<<<< HEAD
 
+=======
+## 📝 DEPLOY 
+
+https://6509b2e2e9ea7b00085f1d3a--luminous-empanada-e44d0f.netlify.app/
+>>>>>>> develop
 
 ## 📝 Sobre
 ##### Este projeto consiste em sistema de gerenciamento de cobranças.
