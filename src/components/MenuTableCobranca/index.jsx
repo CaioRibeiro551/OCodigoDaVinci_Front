@@ -4,8 +4,7 @@ import IconSheach from '../../assets/sheach.svg';
 import IconClients from '../../assets/clients.svg';
 import { useMainContext } from '../../hooks/useMainContext';
 
-export default function MenuTableClients() {
-  const { setModalClients } = useMainContext();
+export default function MenuTableCobrancas() {
   return (
     <div className="container-menu-table-clients">
       <div>
