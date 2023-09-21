@@ -7,13 +7,14 @@ import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useState } from "react";
+import MensagemSucesso from "../../components/MensagemSucesso";
 
 export default function ClientsPage() {
-  const { modalClients } = useMainContext();
+  const { modalClients, messageSucessAddClient } = useMainContext();
 
   const [lista, setLista] = useState(clients);
   const [novoItem, setNovoItem] = useState("");
-
+  console.log(messageSucessAddClient);
   const adicionarItem = () => {
     if (novoItem.trim() !== "") {
       const novaLista = [...lista, novoItem];
@@ -30,6 +31,7 @@ export default function ClientsPage() {
         <FullTable lista={lista} />
       </div>
       {modalClients && <ModalClients />}
+      {messageSucessAddClient && <MensagemSucesso />}
     </div>
   );
 }

@@ -12,7 +12,8 @@ import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 
 export default function ModalClients() {
-  const { setModalClients, userLog } = useMainContext();
+  const { setModalClients, userLog, setMessageSucessAddClient } =
+    useMainContext();
   const [form, setForm] = useState({
     neighborhood: "",
     city: "",
@@ -30,24 +31,21 @@ export default function ModalClients() {
   });
 
   const createrUser = async (data) => {
-    console.log({
-      ...data,
-    });
-
     try {
       setRemovedLoadBtn(false);
-      const response = await Api.post("/clients", data, {
+      await Api.post("/clients", data, {
         headers: {
           Authorization: userLog.token,
         },
       });
       setRemovedLoadBtn(true);
-      alert("Cliente cadastrado com sucesso!");
+      setMessageSucessAddClient(true);
 
       handleCloseModal();
       return;
     } catch (error) {
       setRemovedLoadBtn(true);
+      alert(error.response.data.message);
       console.log(error.response.data);
       return;
     }
