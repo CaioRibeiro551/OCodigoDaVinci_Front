@@ -7,10 +7,19 @@ import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationAddClient } from "../../validation/validationAddClient";
+import axios from "axios";
+import LoadingBtn from "../LoadingInput";
+import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 
 export default function ModalClients() {
   const { setModalClients, userLog } = useMainContext();
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    neighborhood: "",
+    city: "",
+    state: "",
+  });
+  const [removeLoad, setRemovedLoad] = useState(true);
+  const [removeLoadBtn, setRemovedLoadBtn] = useState(true);
 
   const {
     register,
@@ -20,35 +29,55 @@ export default function ModalClients() {
     resolver: yupResolver(validationAddClient),
   });
 
-  const createrUser = (data) => {
-    setForm({ ...data });
+  const createrUser = async (data) => {
     console.log({
       ...data,
     });
-    return;
+
+    try {
+      setRemovedLoadBtn(false);
+      const response = await Api.post("/clients", data, {
+        headers: {
+          Authorization: userLog.token,
+        },
+      });
+      setRemovedLoadBtn(true);
+      alert("Cliente cadastrado com sucesso!");
+
+      handleCloseModal();
+      return;
+    } catch (error) {
+      setRemovedLoadBtn(true);
+      console.log(error.response.data);
+      return;
+    }
+  };
+
+  const handleBuscaCep = async ({ target }) => {
+    try {
+      setRemovedLoad(false);
+      const { data } = await axios.get(
+        `https://viacep.com.br/ws/${target.value}/json/`
+      );
+      console.log(data);
+      setRemovedLoad(true);
+
+      setForm({
+        neighborhood: data.bairro,
+        city: data.localidade,
+        state: data.uf,
+      });
+      return;
+    } catch (error) {
+      setRemovedLoad(true);
+      return console.log(error);
+    }
   };
 
   const handleCloseModal = () => {
     setModalClients(false);
+    return;
   };
-
-  // const hadleOnSubmit = async () => {
-  //   try {
-  //     const response = await Api.post("/clients", form, {
-  //       headers: {
-  //         Authorization: userLog.token,
-  //       },
-  //     });
-
-  //     alert("Cliente cadastrado com sucesso!");
-  //     console.log(response);
-  //     handleCloseModal();
-  //     return;
-  //   } catch (error) {
-  //     cconsole.log(error);
-  //     return;
-  //   }
-  // };
 
   return (
     <div className="backdrop">
@@ -67,7 +96,7 @@ export default function ModalClients() {
         <div
           className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
         >
-          <label htmlFor="nome">Nome *</label>
+          <label htmlFor="name">Nome *</label>
           <input
             type="text"
             id="name"
@@ -78,7 +107,7 @@ export default function ModalClients() {
         </div>
 
         <div
-          className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
+          className={`container-inputs ${errors.email ? "erros-inputs" : ""}`}
         >
           <label htmlFor="email">E-mail *</label>
           <input
@@ -94,7 +123,7 @@ export default function ModalClients() {
 
         <div className="container-cpf-telefone">
           <div
-            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cpf">CPF*</label>
             <input
@@ -108,7 +137,7 @@ export default function ModalClients() {
             )}
           </div>
           <div
-            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.phone ? "erros-inputs" : ""}`}
           >
             <label htmlFor="phone">Telefone*</label>
             <input
@@ -147,6 +176,7 @@ export default function ModalClients() {
               type="text"
               id="cep"
               {...register("cep")}
+              onBlur={handleBuscaCep}
               placeholder="Digite seu CEP"
             />
           </div>
@@ -156,8 +186,10 @@ export default function ModalClients() {
               type="text"
               id="neighborhood"
               {...register("neighborhood")}
+              value={form.neighborhood}
               placeholder="Digite seu bairro"
             />
+            {!removeLoad && <LoadingBtn />}
           </div>
         </div>
         <div className="container-cidade-uf">
@@ -166,18 +198,22 @@ export default function ModalClients() {
             <input
               type="text"
               id="city"
+              value={form.city}
               {...register("city")}
               placeholder="Digite sua cidade"
             />
+            {!removeLoad && <LoadingBtn />}
           </div>
           <div className="container-inputs">
-            <label htmlFor="uf">UF</label>
+            <label htmlFor="state">UF</label>
             <input
               type="text"
-              id="uf"
-              {...register("uf")}
+              id="state"
+              value={form.state}
+              {...register("state")}
               placeholder="Digite a UF"
             />
+            {!removeLoad && <LoadingBtn />}
           </div>
         </div>
         <div className="buttons-submit">
@@ -189,10 +225,7 @@ export default function ModalClients() {
             Cancelar
           </button>
 
-          <button>
-            {/* type="button" onClick={hadleOnSubmit} */}
-            Atualizar
-          </button>
+          <button>{!removeLoadBtn ? <LoadingBtnWhite /> : "Aplicar"}</button>
         </div>
       </form>
     </div>

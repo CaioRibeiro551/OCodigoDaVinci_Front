@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.backdrop form img {
+.backdrop form .closer {
   width: 28px;
   height: 28px;
   position: absolute;
