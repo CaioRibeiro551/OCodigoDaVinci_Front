@@ -74,11 +74,14 @@
   cursor: pointer;
   gap: 10px;
 }
+.full-table-2 th:nth-child(3) {
+  flex-basis: 4.4%;
+}
 .full-table-2 th:nth-child(5) {
   flex-basis: 6%;
 }
 .full-table-2 th:nth-child(6) {
-  flex-basis: 11%;
+  flex-basis: 12.5%;
 }
 .icon-item p {
   display: flex;
