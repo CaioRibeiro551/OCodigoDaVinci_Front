@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import './style.css';
-import seta from '../../assets/seta.svg';
-import cicleInfo from '../../assets/circle-info.svg';
-import iconeEdit from '../../assets/icone-edit.svg';
-import iconeQuit from '../../assets/icone-quit.svg';
-import iconePolygon from '../../assets/icone-polygon.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Modal from '../ModalTeste/index';
-import ConfirmationModal from '../../components/ConfirmationLogout';
+import React, { useState } from "react";
+import "./style.css";
+import seta from "../../assets/seta.svg";
+import cicleInfo from "../../assets/circle-info.svg";
+import iconeEdit from "../../assets/icone-edit.svg";
+import iconeQuit from "../../assets/icone-quit.svg";
+import iconePolygon from "../../assets/icone-polygon.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import Modal from "../ModalTeste/index";
+import ConfirmationModal from "../../components/ConfirmationLogout";
 
 export default function Header() {
   const { setModalTeste, removeUserLog, userLog, modalTeste } =
@@ -33,7 +33,7 @@ export default function Header() {
 
   const confirmLogout = () => {
     removeUserLog();
-    navigator('/');
+    navigator("/");
 
     setIsConfirmationModalOpen(false);
   };
@@ -43,17 +43,17 @@ export default function Header() {
   };
 
   let textClient;
-  if (pathname === '/clients') {
-    textClient = 'Clientes';
-  } else if (pathname === '/cobrancas') {
-    textClient = 'Cobranças';
+  if (pathname === "/clients") {
+    textClient = "Clientes";
+  } else if (pathname === "/cobrancas") {
+    textClient = "Cobranças";
   }
 
   return (
     <>
       <header className="full-header">
         <div className="header-info">
-          {pathname === '/home' ? (
+          {pathname === "/home" ? (
             <h1 className="big-text">Resumo das cobranças</h1>
           ) : (
             <p className="text-client">{textClient}</p>
@@ -83,7 +83,7 @@ export default function Header() {
           )}
         </div>
       </header>
-      {modalTeste ? <Modal /> : ''}
+      {modalTeste ? <Modal /> : ""}
 
       <ConfirmationModal
         isOpen={isConfirmationModalOpen}

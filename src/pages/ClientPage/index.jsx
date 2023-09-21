@@ -1,24 +1,25 @@
-import FullTable from '../../components/FullTable';
-import Header from '../../components/Header';
-import MenuTableClients from '../../components/MenuTableClients';
-import Sidebar from '../../components/Sidebar';
-import { clients } from '../../utils/data';
-import './style.css';
-import ModalClients from '../../components/ModalClients';
-import { useMainContext } from '../../hooks/useMainContext';
-import { useState } from 'react';
+import FullTable from "../../components/FullTable";
+import Header from "../../components/Header";
+import MenuTableClients from "../../components/MenuTableClients";
+import Sidebar from "../../components/Sidebar";
+import { clients } from "../../utils/data";
+import "./style.css";
+import ModalClients from "../../components/ModalClients";
+import { useMainContext } from "../../hooks/useMainContext";
+import MensagemSucesso from "../../components/MensagemSucesso";
+import { useState } from "react";
 
 export default function ClientsPage() {
-  const { modalClients } = useMainContext();
+  const { modalClients, messageSucessAddClient } = useMainContext();
 
   const [lista, setLista] = useState(clients);
-  const [novoItem, setNovoItem] = useState('');
+  const [novoItem, setNovoItem] = useState("");
 
   const adicionarItem = () => {
-    if (novoItem.trim() !== '') {
+    if (novoItem.trim() !== "") {
       const novaLista = [...lista, novoItem];
       setLista(novaLista);
-      setNovoItem('');
+      setNovoItem("");
     }
   };
   return (
@@ -30,6 +31,7 @@ export default function ClientsPage() {
         <FullTable lista={lista} />
       </div>
       {modalClients && <ModalClients />}
+      {messageSucessAddClient && <MensagemSucesso />}
     </div>
   );
 }

@@ -4,8 +4,11 @@
   background-color: #c3d4fe;
   border-radius: 10px;
   box-shadow: 0px 4px 42px 0px rgba(0, 0, 0, 0.2);
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-size: 14px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
 }
 .mensage-item {
   width: 100%;
@@ -17,6 +20,7 @@
 }
 .mensage-item img {
   margin-right: 8px;
+  cursor: pointer;
 }
 .close {
   margin-left: 30px;

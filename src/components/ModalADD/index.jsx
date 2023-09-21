@@ -7,20 +7,10 @@ import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationAddClient } from "../../validation/validationAddClient";
-import axios from "axios";
-import LoadingBtn from "../LoadingInput";
-import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 
 export default function ModalClients() {
-  const { setModalClients, userLog, setMessageSucessAddClient } =
-    useMainContext();
-  const [form, setForm] = useState({
-    neighborhood: "",
-    city: "",
-    state: "",
-  });
-  const [removeLoad, setRemovedLoad] = useState(true);
-  const [removeLoadBtn, setRemovedLoadBtn] = useState(true);
+  const { setModalClients, userLog } = useMainContext();
+  const [form, setForm] = useState({});
 
   const {
     register,
@@ -30,71 +20,49 @@ export default function ModalClients() {
     resolver: yupResolver(validationAddClient),
   });
 
-  const createrUser = async (data) => {
-    try {
-      setRemovedLoadBtn(false);
-      await Api.post("/clients", data, {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-      setRemovedLoadBtn(true);
-      setMessageSucessAddClient(true);
+  console.log(errors);
 
-      handleCloseModal();
-      return;
-    } catch (error) {
-      setRemovedLoadBtn(true);
-      alert(error.response.data.message);
-      console.log(error.response.data);
-      return;
-    }
-  };
-
-  const handleBuscaCep = async ({ target }) => {
-    try {
-      setRemovedLoad(false);
-      const { data } = await axios.get(
-        `https://viacep.com.br/ws/${target.value}/json/`
-      );
-      console.log(data);
-      setRemovedLoad(true);
-
-      setForm({
-        neighborhood: data.bairro,
-        city: data.localidade,
-        state: data.uf,
-      });
-      return;
-    } catch (error) {
-      setRemovedLoad(true);
-      return console.log(error);
-    }
+  const createrUser = (data) => {
+    setForm({ ...data });
+    console.log({
+      ...data,
+    });
+    return;
   };
 
   const handleCloseModal = () => {
     setModalClients(false);
-    return;
   };
+
+  // const hadleOnSubmit = async () => {
+  //   try {
+  //     const response = await Api.post("/clients", form, {
+  //       headers: {
+  //         Authorization: userLog.token,
+  //       },
+  //     });
+
+  //     alert("Cliente cadastrado com sucesso!");
+  //     console.log(response);
+  //     handleCloseModal();
+  //     return;
+  //   } catch (error) {
+  //     cconsole.log(error);
+  //     return;
+  //   }
+  // };
 
   return (
     <div className="backdrop">
       <form onSubmit={handleSubmit(createrUser)}>
-        <img
-          className="closer"
-          src={CloseModal}
-          alt="Close"
-          onClick={handleCloseModal}
-        />
-        <div className="container-title">
-          <img src={clients} alt="icon client" />
-          <h1>Cadastro do cliente</h1>
-        </div>
+        <img src={CloseModal} alt="Close" onClick={handleCloseModal} />
+        <img src={clients} alt="" />
+        <h1>Cadastro do cliente</h1>
 
         <div
           className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
         >
-          <label htmlFor="name">Nome *</label>
+          <label htmlFor="nome">Nome *</label>
           <input
             type="text"
             id="name"
@@ -105,7 +73,7 @@ export default function ModalClients() {
         </div>
 
         <div
-          className={`container-inputs ${errors.email ? "erros-inputs" : ""}`}
+          className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
         >
           <label htmlFor="email">E-mail *</label>
           <input
@@ -121,7 +89,7 @@ export default function ModalClients() {
 
         <div className="container-cpf-telefone">
           <div
-            className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cpf">CPF*</label>
             <input
@@ -135,7 +103,7 @@ export default function ModalClients() {
             )}
           </div>
           <div
-            className={`container-inputs ${errors.phone ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
           >
             <label htmlFor="phone">Telefone*</label>
             <input
@@ -174,7 +142,6 @@ export default function ModalClients() {
               type="text"
               id="cep"
               {...register("cep")}
-              onBlur={handleBuscaCep}
               placeholder="Digite seu CEP"
             />
           </div>
@@ -184,10 +151,8 @@ export default function ModalClients() {
               type="text"
               id="neighborhood"
               {...register("neighborhood")}
-              value={form.neighborhood}
               placeholder="Digite seu bairro"
             />
-            {!removeLoad && <LoadingBtn />}
           </div>
         </div>
         <div className="container-cidade-uf">
@@ -196,34 +161,30 @@ export default function ModalClients() {
             <input
               type="text"
               id="city"
-              value={form.city}
               {...register("city")}
               placeholder="Digite sua cidade"
             />
-            {!removeLoad && <LoadingBtn />}
           </div>
           <div className="container-inputs">
-            <label htmlFor="state">UF</label>
+            <label htmlFor="uf">UF</label>
             <input
               type="text"
-              id="state"
-              value={form.state}
-              {...register("state")}
+              id="uf"
+              {...register("uf")}
               placeholder="Digite a UF"
             />
-            {!removeLoad && <LoadingBtn />}
           </div>
         </div>
         <div className="buttons-submit">
-          <button
-            className="btn-cancel"
-            type="button"
-            onClick={handleCloseModal}
-          >
-            Cancelar
+          <span>
+            <button type="button" onClick={handleCloseModal}>
+              Cancelar
+            </button>
+          </span>
+          <button>
+            {/* type="button" onClick={hadleOnSubmit} */}
+            Atualizar
           </button>
-
-          <button>{!removeLoadBtn ? <LoadingBtnWhite /> : "Aplicar"}</button>
         </div>
       </form>
     </div>

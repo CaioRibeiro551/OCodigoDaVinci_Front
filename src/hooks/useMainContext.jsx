@@ -6,9 +6,8 @@ export function useMainContextProvider() {
   const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
 
-
   const [modalClients, setModalClients] = useState(false);
-
+  const [messageSucessAddClient, setMessageSucessAddClient] = useState(false);
 
   return {
     userLog,
@@ -18,7 +17,8 @@ export function useMainContextProvider() {
     setModalTeste,
     modalClients,
     setModalClients,
-
+    messageSucessAddClient,
+    setMessageSucessAddClient,
   };
 }
 
