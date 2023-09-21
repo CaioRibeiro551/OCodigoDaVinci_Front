@@ -6,67 +6,66 @@ import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationPost } from "../../validation";
 import Axios from "../../services/api";
+import {
+  validationPasswordSignUp,
+  validationSignUp,
+} from "../../validation/validationSignUp";
 
 export default function FormSignUp({ stepIndex, setStepIndex }) {
   const [eye, setEye] = useState(false);
-  const [validationError, setValidationError] = useState("");
 
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationPost),
+    resolver: yupResolver(
+      stepIndex === 0 ? validationSignUp : validationPasswordSignUp
+    ),
   });
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const validateFormData = async () => {
+  const validateFormData = async (data) => {
     try {
       await Axios.post("/validate-email", {
-        email: formData.email,
+        email: data.email,
       });
 
-      setValidationError("");
       setStepIndex(stepIndex + 1);
     } catch (error) {
-      setValidationError(
-        (error.response.data.message = "O e-mail já está em uso.")
-      );
+      setError("root", {
+        serverError: {
+          type: error.response.status,
+          message: "O email já está cadastrado",
+        },
+      });
     }
   };
 
   const onSubmit = async (data) => {
-    if (stepIndex < 2) {
-      const updatedFormData = { ...formData, ...data };
-      setFormData(updatedFormData);
-      await validateFormData();
+    if (!data.password) {
+      await validateFormData(data);
     } else {
       try {
-        await Axios.post("/signup", formData);
-        navigate("/");
+        await Axios.post("/signup", data);
+        setStepIndex(stepIndex + 1);
       } catch (error) {
-        console.error();
+        console.error(error);
       }
     }
   };
 
-  useEffect(() => {}, [formData]);
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {stepIndex < 2 && (
+          <h1>{stepIndex < 1 ? "Adicione seus dados" : "Escolha uma senha"}</h1>
+        )}
         {stepIndex === 0 && (
           <>
-            <h1>Adicione seus dados</h1>
             <div className="container-inputs">
               <label htmlFor="name">Nome *</label>
               <input
@@ -75,26 +74,34 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
                 placeholder="Digite seu nome"
                 {...register("name")}
               />
-              <span className="error">{errors.name?.message}</span>
+              {errors.name && (
+                <span className="error">{errors.name?.message}</span>
+              )}
+            </div>
 
+            <div className="container-inputs">
               <label htmlFor="email">Email *</label>
               <input
-                type="email"
+                type="text"
                 id="email"
                 placeholder="Digite seu email"
                 {...register("email")}
               />
-              <span className="error">
-                {validationError ? validationError : errors.email?.message}
-              </span>
+              {errors.email ? (
+                <span className="error">{errors.email?.message}</span>
+              ) : (
+                errors?.root?.serverError?.type && (
+                  <span className="error">
+                    {errors.root.serverError?.message}
+                  </span>
+                )
+              )}
             </div>
           </>
         )}
 
         {stepIndex === 1 && (
           <>
-            <h1>Escolha uma senha</h1>
-
             <div className="container-inputs">
               <label htmlFor="password">Senha *</label>
               <input
@@ -102,9 +109,13 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
                 name="password"
                 id="password"
                 placeholder="Digite seu senha"
-                {...register("password")}
+                {...register("password", {
+                  required: "A senha e obrigatoria.",
+                })}
               />
-              <span className="error">{errors.password?.message}</span>
+              {errors.password && (
+                <span className="error">{errors.password?.message}</span>
+              )}
               <div className="password-toggle" onClick={() => setEye(!eye)}>
                 {eye ? <img src={eyeOpen} /> : <img src={eyeClose} />}
               </div>
@@ -116,13 +127,17 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
                   name="confirmPassword"
                   id="confirmPassword"
                   placeholder="Repita a senha"
-                  {...register("confirmPassword")}
+                  {...register("confirmPassword", {
+                    required: "A Repetir a senha e obrigatorio.",
+                  })}
                 />
-                <span className="errors">
+
+                {errors.confirmPassword && (
                   <span className="error">
                     {errors.confirmPassword?.message}
                   </span>
-                </span>
+                )}
+
                 <div className="password-toggle" onClick={() => setEye(!eye)}>
                   {eye ? <img src={eyeOpen} /> : <img src={eyeClose} />}
                 </div>
@@ -130,7 +145,6 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
             </div>
           </>
         )}
-
         {stepIndex === 2 && <></>}
         {stepIndex < 2 && (
           <>
@@ -143,17 +157,18 @@ export default function FormSignUp({ stepIndex, setStepIndex }) {
             </p>
           </>
         )}
-        {stepIndex >= 2 && (
-          <div className="container-finish">
-            <div className="finish">
-              <img src={Sucess} alt="finish" />
-              <h2>Cadastro realizado com sucesso</h2>
-            </div>
-
-            <button>Ir para o login</button>
-          </div>
-        )}
       </form>
+      {stepIndex >= 2 && (
+        <div className="container-finish">
+          <div className="finish">
+            <img src={Sucess} alt="finish" />
+            <h2>Cadastro realizado com sucesso</h2>
+          </div>
+          <button type="button" onClick={() => navigate("/")}>
+            Ir para o login
+          </button>
+        </div>
+      )}
     </>
   );
 }

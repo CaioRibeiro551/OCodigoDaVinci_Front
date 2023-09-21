@@ -5,18 +5,18 @@ import cicleInfo from "../../assets/circle-info.svg";
 import iconeEdit from "../../assets/icone-edit.svg";
 import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
-import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../ModalTeste/index";
+import ConfirmationModal from "../../components/ConfirmationLogout";
 
 export default function Header() {
   const { setModalTeste, removeUserLog, userLog, modalTeste } =
     useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
   let { pathname } = useLocation();
-
   const navigator = useNavigate();
 
   const handleModal = () => {
@@ -28,9 +28,26 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    navigator("/");
-    removeUserLog();
+    setIsConfirmationModalOpen(true);
   };
+
+  const confirmLogout = () => {
+    removeUserLog();
+    navigator("/");
+
+    setIsConfirmationModalOpen(false);
+  };
+
+  const cancelLogout = () => {
+    setIsConfirmationModalOpen(false);
+  };
+
+  let textClient;
+  if (pathname === "/clients") {
+    textClient = "Clientes";
+  } else if (pathname === "/cobrancas") {
+    textClient = "Cobranças";
+  }
 
   return (
     <>
@@ -39,13 +56,15 @@ export default function Header() {
           {pathname === "/home" ? (
             <h1 className="big-text">Resumo das cobranças</h1>
           ) : (
-            <p className="text-client">Clientes</p>
+            <p className="text-client">{textClient}</p>
           )}
         </div>
 
         <div className="user-info">
           <img className="circle-info" src={cicleInfo} alt="" />
-          <p>{userLog.name}</p>
+          <p className="user-name" title={userLog.name}>
+            {userLog.name}
+          </p>
           <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
           {openMineModal && (
             <div>
@@ -65,6 +84,12 @@ export default function Header() {
         </div>
       </header>
       {modalTeste ? <Modal /> : ""}
+
+      <ConfirmationModal
+        isOpen={isConfirmationModalOpen}
+        onCancel={cancelLogout}
+        onConfirm={confirmLogout}
+      />
     </>
   );
 }

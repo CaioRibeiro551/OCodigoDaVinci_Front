@@ -26,7 +26,6 @@ export default function SteperAside({ stepIndex, handleReturnStep }) {
         <div className="container-step">
           <div className="container-step-title">
             <div
-              onClick={handleReturnStep}
               className={`${
                 stepIndex >= 1 ? "outer-circle-complete " : "outer-circle"
               }`}
@@ -45,7 +44,6 @@ export default function SteperAside({ stepIndex, handleReturnStep }) {
         <div className="container-step">
           <div className="container-step-title">
             <div
-              onClick={handleReturnStep}
               className={`${
                 stepIndex >= 2 ? "outer-circle-complete " : "outer-circle"
               }`}

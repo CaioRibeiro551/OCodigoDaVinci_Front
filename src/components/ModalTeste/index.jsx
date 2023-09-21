@@ -9,7 +9,7 @@ export default function Modal() {
   const [form, setForm] = useState({
     name: userLog.name,
     email: userLog.email,
-    cpf: userLog.cpf.trim(),
+    cpf: userLog.cpf,
     phone: userLog.phone,
   });
   const [currentDados, setCurrentDados] = useState({});
@@ -36,7 +36,7 @@ export default function Modal() {
       const userUpdat = {
         name: userLog.name || form.name,
         email: userLog.email || form.email,
-        cpf: userLog.cpf.trim() || form.cpf.trim(),
+        cpf: userLog.cpf || form.cpf,
         phone: userLog.phone || form.phone,
       };
       setUserLog({ ...userLog, ...userUpdat });

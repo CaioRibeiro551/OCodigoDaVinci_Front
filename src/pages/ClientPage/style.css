@@ -1,32 +1,8 @@
 .container-clients {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 15rem 2rem 0 12.8rem;
-}
-
-.container-clients .sidebar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.container-clients .full-header {
-  position: fixed;
-  top: 0;
-  left: 12.8rem;
-  width: calc(100% - 14.8rem);
-}
-
-.main-page-client {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* width: calc(100% - 10.8rem); */
-  /* height: 100vh; */
-  /* margin-left: 10.8rem; */
-  padding: 0 40px;
+  min-width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
 }

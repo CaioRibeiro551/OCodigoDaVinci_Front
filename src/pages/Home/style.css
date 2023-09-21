@@ -1,13 +1,6 @@
 .container-home {
-  display: flex;
-  max-height: 100vh;
-}
-
-header {
-  display: flex;
-  width: calc(100vw - 11rem);
-  height: 11rem;
-  margin-bottom: 20px;
+  margin-left: 90px;
+  width: calc(100% - 90px);
 }
 
 .contents-home {

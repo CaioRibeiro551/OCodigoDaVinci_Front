@@ -1,0 +1,20 @@
+.container-cobrancas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100vh;
+  overflow-x: hidden;
+  width: calc(100vw - 150px - 50px);
+  overflow-x: hidden;
+}
+
+.main-page-cobrancas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: calc(1440px - 11rem);
+  max-width: 100%;
+  overflow-x: hidden;
+}

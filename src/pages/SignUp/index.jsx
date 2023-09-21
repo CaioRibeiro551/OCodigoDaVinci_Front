@@ -10,8 +10,10 @@ export default function SignUp() {
   const handleReturnStep = () => {
     if (stepIndex === 0) {
       return;
-    } else {
-      setStepIndex(stepIndex - 1);
+    } else if (stepIndex === 2) {
+      return;
+    } else if (stepIndex === 1) {
+      setStepIndex(0);
     }
   };
 
