@@ -8,9 +8,9 @@ export default function MensagemSucesso() {
   const { setMessageSucessAddClient } = useMainContext();
   const closeMessage = setTimeout(() => setMessageSucessAddClient(false), 5000);
 
-  const handleCloserMessage = () => {
-    clearTimeout(closeMessage);
+  const close = () => {
     setMessageSucessAddClient(false);
+    clearTimeout(closeMessage);
     return;
   };
 
@@ -21,9 +21,9 @@ export default function MensagemSucesso() {
     <>
       <div className="container-mensage">
         <div className="mensage-item">
-          <img src={CheckMensage} alt="Close" onClick={handleCloserMessage} />
+          <img src={CheckMensage} alt="info" />
           <p>Cadastro concluído com sucesso</p>
-          <img className="close" src={Close} alt="" />
+          <img className="close" src={Close} alt="close" onClick={close} />
         </div>
       </div>
     </>

@@ -20,6 +20,7 @@
 }
 .mensage-item img {
   margin-right: 8px;
+  cursor: pointer;
 }
 .close {
   margin-left: 30px;
