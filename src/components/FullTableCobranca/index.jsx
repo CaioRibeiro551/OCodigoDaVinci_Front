@@ -9,15 +9,16 @@ import { useMainContext } from '../../hooks/useMainContext';
 
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
-  const [remoLoad, setRemovedLoad] = useState(true);
+  const [removeLoad, setRemovedLoad] = useState(true);
   const { userLog } = useMainContext();
   useEffect(() => {
     async function getCobrancas() {
       try {
-        setRemovedLoad(false);
-        const response = await api.get(`/charges/${userLog.id}/charges`, {
+        setRemovedLoad(true);
+        const response = await api.get(`/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
+
         console.log(response);
         setCobrancas(response.data);
         setRemovedLoad(true);
@@ -53,14 +54,14 @@ export default function FullTableCobranca({}) {
           </tr>
         </thead>
         <tbody className="small-text">
-          {dadosCobrancas.map((item, index) => (
-            <tr key={index}>
-              <td>{item.cliente}</td>
-              <td>{item.idCob}</td>
-              <td>{item.valor}</td>
-              <td>{item.dataVencimento}</td>
+          {cobrancas.map((item) => (
+            <tr key={item.id}>
+              <td>{item.client_id}</td>
+              <td>{item.id}</td>
+              <td>{item.value}</td>
+              <td>{item.due_date}</td>
               <td>{item.status}</td>
-              <td title={item.descricao}>{item.descricao}</td>
+              <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
                 <p>

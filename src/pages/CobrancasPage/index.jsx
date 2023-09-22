@@ -12,8 +12,6 @@ import { useState } from 'react';
 
 export default function CobrancaPage() {
   const { modalClients } = useMainContext();
-
-  const [lista, setLista] = useState(clients);
   const [novoItem, setNovoItem] = useState('');
 
   const adicionarItem = () => {
@@ -29,7 +27,7 @@ export default function CobrancaPage() {
       <Header />
       <div className="main-page-cobrancas">
         <MenuTableCobranca />
-        <FullTableCobranca lista={lista} />
+        <FullTableCobranca />
       </div>
       {modalClients && <ModalClients />}
     </div>
