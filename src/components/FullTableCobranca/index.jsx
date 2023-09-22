@@ -5,21 +5,29 @@ import iconeCobranca from '../../assets/cobranca-icon.svg';
 import api from '../../services/api';
 import { useEffect, useState } from 'react';
 import { dadosCobrancas } from '../../utils/data';
+import { useMainContext } from '../../hooks/useMainContext';
 
 export default function FullTableCobranca({}) {
-  const [dadosAPI, setDadosAPI] = useState([]);
-
+  const [cobrancas, setCobrancas] = useState([]);
+  const [remoLoad, setRemovedLoad] = useState(true);
+  const { userLog } = useMainContext();
   useEffect(() => {
-    async function fetchDataFromAPI() {
+    async function getCobrancas() {
       try {
-        const response = await api.get('URL_DA_API');
-        setDadosAPI(response.data);
+        setRemovedLoad(false);
+        const response = await api.get(`/charges/${userLog.id}/charges`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+        console.log(response);
+        setCobrancas(response.data);
+        setRemovedLoad(true);
       } catch (error) {
-        console.error('Erro ao buscar dados da API', error);
+        console.log(error);
+        setRemovedLoad(true);
       }
     }
 
-    fetchDataFromAPI();
+    getCobrancas();
   }, []);
 
   return (
@@ -52,7 +60,7 @@ export default function FullTableCobranca({}) {
               <td>{item.valor}</td>
               <td>{item.dataVencimento}</td>
               <td>{item.status}</td>
-              <td>{item.descricao}</td>
+              <td title={item.descricao}>{item.descricao}</td>
 
               <td className="icon-item">
                 <p>
