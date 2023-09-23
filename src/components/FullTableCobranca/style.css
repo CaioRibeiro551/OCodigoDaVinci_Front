@@ -112,7 +112,27 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-/* Adicione isso ao seu arquivo style.css */
+
 .hovered {
   background-color: white;
+}
+.status-pendente {
+  background-color: #fcf6dc;
+  color: #c5a605;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.status-paga {
+  background-color: #eef6f6;
+  color: #1fa7af;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.status-outro {
+  background-color: #ffefef;
+  border-radius: 15px;
+  width: 60%;
+  color: #971d1d;
 }

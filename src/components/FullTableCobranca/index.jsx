@@ -4,8 +4,10 @@ import iconeExcluir from '../../assets/excluir.svg';
 import iconeCobranca from '../../assets/cobranca-icon.svg';
 import api from '../../services/api';
 import { useEffect, useState } from 'react';
-import { dadosCobrancas } from '../../utils/data';
+
 import { useMainContext } from '../../hooks/useMainContext';
+import { format } from 'date-fns'; //
+import Loading from '../../components/LoadButton';
 
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
@@ -18,19 +20,24 @@ export default function FullTableCobranca({}) {
         const response = await api.get(`/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
-
+        const formattedCobrancas = response.data.map((item) => ({
+          ...item,
+          due_date: format(new Date(item.due_date), 'dd/MM/yyyy'),
+        }));
         console.log(response);
-        setCobrancas(response.data);
-        setRemovedLoad(true);
+        setCobrancas(formattedCobrancas);
+        setRemovedLoad(false);
       } catch (error) {
         console.log(error);
-        setRemovedLoad(true);
+        setRemovedLoad(false);
       }
     }
 
     getCobrancas();
   }, []);
-
+  if (removeLoad) {
+    return <Loading />;
+  }
   return (
     <div className="container-full-table">
       <table className="full-table-2 table">
@@ -60,7 +67,19 @@ export default function FullTableCobranca({}) {
               <td>{item.id}</td>
               <td>{item.value}</td>
               <td>{item.due_date}</td>
-              <td>{item.status}</td>
+              <td>
+                <span
+                  className={`status-cell ${
+                    item.status === 'Pendente'
+                      ? 'status-pendente'
+                      : item.status === 'Paga'
+                      ? 'status-paga'
+                      : 'status-outro'
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </td>
               <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
