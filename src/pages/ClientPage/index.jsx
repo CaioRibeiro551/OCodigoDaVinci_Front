@@ -1,4 +1,4 @@
-import FullTable from "../../components/FullTable";
+import FullTableClients from "../../components/FullTableClients";
 import Header from "../../components/Header";
 import MenuTableClients from "../../components/MenuTableClients";
 import Sidebar from "../../components/Sidebar";
@@ -11,6 +11,7 @@ import { useState } from "react";
 
 export default function ClientsPage() {
   const { modalClients, messageSucessAddClient } = useMainContext();
+  const title = "Clientes";
 
   const [lista, setLista] = useState(clients);
   const [novoItem, setNovoItem] = useState("");
@@ -23,15 +24,18 @@ export default function ClientsPage() {
     }
   };
   return (
-    <div className="container-clients">
+    <div className="container-home ">
       <Sidebar />
-      <Header />
-      <div className="main-page-client ">
-        <MenuTableClients />
-        <FullTable lista={lista} />
+      <div className="caitainer-back">
+        <Header title={title} />
+
+        <div className="container-clients">
+          <MenuTableClients />
+          <FullTableClients lista={lista} />
+        </div>
+        {modalClients && <ModalClients />}
+        {messageSucessAddClient && <MensagemSucesso />}
       </div>
-      {modalClients && <ModalClients />}
-      {messageSucessAddClient && <MensagemSucesso />}
     </div>
   );
 }

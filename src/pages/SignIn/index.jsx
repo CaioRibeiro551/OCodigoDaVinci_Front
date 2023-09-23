@@ -34,7 +34,6 @@ export default function SignIn() {
     } catch (error) {
       setMessageFlash(true);
       useText(error.response.data.message);
-      console.error(error.response.data.message);
     }
   }
 

@@ -12,13 +12,6 @@ html {
   background-color: #f8f8f9;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .max-width {
   width: 100vw;
   max-width: 144rem;

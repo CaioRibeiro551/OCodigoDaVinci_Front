@@ -1,4 +1,4 @@
-import FullTable from "../../components/FullTable";
+import FullTable from "../../components/FullTableClients";
 import Header from "../../components/Header";
 import MenuTableClients from "../../components/MenuTableClients";
 import Sidebar from "../../components/Sidebar";
@@ -12,6 +12,7 @@ import { useState } from "react";
 
 export default function CobrancaPage() {
   const { modalClients } = useMainContext();
+  const title = "Cobranças";
 
   const [lista, setLista] = useState(clients);
   const [novoItem, setNovoItem] = useState("");
@@ -23,16 +24,18 @@ export default function CobrancaPage() {
       setNovoItem("");
     }
   };
-
   return (
-    <div className="container-cobrancas">
+    <div className="container-home ">
       <Sidebar />
-      <Header />
-      <div className="main-page-cobrancas">
-        <MenuTableCobranca />
-        <FullTableCobranca lista={lista} />
+      <div className="caitainer-back">
+        <Header title={title} />
+
+        <div className="container-clients">
+          <MenuTableCobranca />
+          <FullTableCobranca lista={lista} />
+        </div>
+        {modalClients && <ModalClients />}
       </div>
-      {modalClients && <ModalClients />}
     </div>
   );
 }
