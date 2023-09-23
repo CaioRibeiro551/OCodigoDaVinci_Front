@@ -6,6 +6,7 @@ import { useMainContext } from "../../hooks/useMainContext";
 
 export default function MenuTableClients() {
   const { setModalClients } = useMainContext();
+
   return (
     <div className="container-menu-table-clients">
       <div>

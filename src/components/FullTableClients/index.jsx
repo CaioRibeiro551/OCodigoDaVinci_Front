@@ -1,14 +1,17 @@
 import "./style.css";
 import Charge from "../../assets/cobranca.svg";
+import iconOrdem from "../../assets/cobranca-icon.svg";
 
-import { useState } from "react";
-export default function FullTable({ lista }) {
+export default function FullTableClients({ lista }) {
   return (
     <div className="container-full-table">
-      <table className="full-table table ">
+      <table className="full-table">
         <thead className="relative-text">
-          <tr className="font-roboto-bold font-tr">
-            <th>Cliente</th>
+          <tr>
+            <th>
+              <img src={iconOrdem} alt="" />
+              Cliente
+            </th>
             <th>CPF</th>
             <th>Email</th>
             <th>Telefone</th>
@@ -18,7 +21,7 @@ export default function FullTable({ lista }) {
         </thead>
         <tbody className="small-text ">
           {lista.map((item, index) => (
-            <tr className="font-roboto font-tr line">
+            <tr key={index}>
               <td>{item.nome}</td>
               <td>{item.cpf}</td>
               <td>{item.email}</td>
