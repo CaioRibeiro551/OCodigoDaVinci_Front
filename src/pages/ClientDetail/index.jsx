@@ -12,17 +12,17 @@ function ClientDetail() {
 
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
-  //   async function getOne() {
-  //     try {
-  //       const responde = await Axios.get("/showUser", {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
+  async function getOne() {
+    try {
+      const responde = await Axios.get("/showUser/121", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  //       console.log(responde);
-  //     } catch (error) {}
-  //   }
+      console.log(responde);
+    } catch (error) {}
+  }
   return (
     <div className="container-home ">
       <Sidebar />
