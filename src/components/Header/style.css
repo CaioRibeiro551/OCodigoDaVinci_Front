@@ -1,33 +1,37 @@
-.full-header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
-  border-bottom: 2px solid #acd9c5;
-  width: calc(97vw - 20rem);
+header {
+  width: calc(95vw - 7.5vw);
   height: 11rem;
   margin-bottom: 20px;
-  margin-left: 115px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  border-bottom: 2px solid #acd9c5;
+}
+
+.contents-header {
+  width: calc(100% - 7.5vw);
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-info {
-  width: 80%;
-}
-
-.header-info h1 {
-  color: #343447;
+  display: flex;
 }
 
 .user-info {
   position: relative;
   display: flex;
   align-items: center;
+
   color: #0e8750;
-  padding-left: 590px;
-  padding-bottom: 10px;
-  padding-right: 80px;
+}
+
+.header-info h1 {
+  color: #343447;
 }
 
 .user-info p {
@@ -40,7 +44,7 @@
   cursor: pointer;
 }
 .user-info p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-size: 18px;
 }
 .circle-info {
@@ -73,8 +77,8 @@
 }
 .button-edit {
   position: absolute;
-  right: 55px;
-  top: 50px;
+  right: -25px;
+  top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,13 +95,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   cursor: pointer;
-}
-
-.user-name:hover {
-  white-space: normal;
-  background-color: #fff;
-  position: absolute;
-  z-index: 1;
 }
 
 .button-item {
@@ -119,7 +116,7 @@
 }
 
 .button-item p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-size: 8px;
   margin: 0;
 }
@@ -132,12 +129,23 @@
 .text-client {
   color: #0e8750;
 
-  font-family: 'Inter';
+  font-family: "Inter";
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: 2.4rem;
-
   margin-left: 25px;
   margin-top: 60px;
+}
+.text-client span {
+  color: #747488;
+
+  font-family: Inter;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.4rem;
+}
+.separar-title {
+  padding: 0 20px;
 }

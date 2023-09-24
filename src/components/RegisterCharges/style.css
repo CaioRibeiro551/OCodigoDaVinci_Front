@@ -108,28 +108,22 @@ form .container-cidade-uf .container-inputs {
   color: #0e8750;
 }
 
-.erros-inputs input {
-  border: 1px solid #e70000;
-}
-.erros-inputs span {
-  color: #e70000;
-  font-family: Nunito;
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-align: left;
+/*
+  animation: showModal 1s; 
+  @keyframes showModal {
+    from {
+      opacity: 0;
+      width: 0;
+    }
+    to {
+      opacity: 1;
+      width: 50vw;
+    }
+  } */
+.container-inputs-2 {
+  width: 42.4rem;
 }
 
-/*
-animation: showModal 1s; 
-@keyframes showModal {
-  from {
-    opacity: 0;
-    width: 0;
-  }
-  to {
-    opacity: 1;
-    width: 50vw;
-  }
-} */
+.input-description {
+  height: 200px;
+}
