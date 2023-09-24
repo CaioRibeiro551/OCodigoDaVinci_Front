@@ -5,12 +5,9 @@ import iconeCobranca from "../../assets/cobranca-icon.svg";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-export default function FullTableCobranca({ cobrancas, handleOpen }) {
-  let { pathname } = useLocation();
 import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
-
 
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
