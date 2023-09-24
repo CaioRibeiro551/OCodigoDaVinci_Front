@@ -4,26 +4,32 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
-import MenuTableClients from "../../components/MenuTableClients";
+
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
+import MenuTableClientDetail from "../../components/MenuTableClientDatails";
 
 function ClientDetail() {
-  const { userLog } = useMainContext();
-
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
 
+  const { userLog } = useMainContext();
+  const [open, setOpen] = useState(false);
+
+  const handleCloseModal = () => {};
   const [showClient, setShowClient] = useState();
   const [showCharges, setShowCharges] = useState([]);
 
+  const handleOpen = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
   useEffect(() => {
     async function getOne() {
       try {
         const response = await Axios.get(`/clients/134/clients/134`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
-        console.log(response.data);
+
         setShowClient(response.data);
       } catch (error) {
         console.log(error);
@@ -39,7 +45,7 @@ function ClientDetail() {
         const response = await Axios.get(`/clients/134/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
-        console.log(response.data);
+
         setShowCharges(response.data);
       } catch (error) {
         console.log(error);
@@ -56,26 +62,28 @@ function ClientDetail() {
         <Header title={title} subtitle={subtitle} />
 
         <main className="container-clients">
-          <MenuTableClients />
+          <MenuTableClientDetail name={showClient?.name} />
           <div>
             <div className="content-start">
               <div className="contents-title-detail">
                 <h2 className="medium-text ">Dados do cliente</h2>
-                <button className="btn-cancel">Teste</button>
+                <button className="btn-cancel btn-large" type="button">
+                  Editar Cliente
+                </button>
               </div>
               <div>
                 <div className="container-text-detail">
                   <div className="container-text-up">
                     <div className="content-text">
-                      <span>E-mail</span>
+                      <h6>E-mail</h6>
                       <p>{showClient?.email}</p>
                     </div>
                     <div className="content-text">
-                      <span>Telefone</span>
+                      <h6>Telefone</h6>
                       <p>{showClient?.phone}</p>
                     </div>
                     <div className="content-text">
-                      <span>CPFl</span>
+                      <h6>CPFl</h6>
                       <p>{showClient?.cpf}</p>
                     </div>
                   </div>
@@ -83,36 +91,42 @@ function ClientDetail() {
                 <div className="container-text-detail">
                   <div className="container-text-back">
                     <div className="content-text">
-                      <span>Endereço</span>
+                      <h6>Endereço</h6>
                       <p>{showClient?.address}</p>
                     </div>
                     <div className="content-text">
-                      <span>Bairro</span>
+                      <h6>Bairro</h6>
                       <p>{showClient?.neighborhood}</p>
                     </div>
                     <div className="content-text">
-                      <span>Complemento</span>
+                      <h6>Complemento</h6>
                       <p>{showClient?.complement}</p>
                     </div>
                     <div className="content-text">
-                      <span>CEP</span>
+                      <h6>CEP</h6>
                       <p>{showClient?.cep}</p>
                     </div>
                     <div className="content-text">
-                      <span>Cidade</span>
+                      <h6>Cidade</h6>
                       <p>{showClient?.city}</p>
                     </div>
                     <div className="content-text">
-                      <span>UF</span>
+                      <h6>UF</h6>
                       <p>{showClient?.state}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <RegisterCharges />
+              {open && (
+                <RegisterCharges
+                  handleOpen={handleOpen}
+                  name={showClient?.name}
+                  id={id}
+                />
+              )}
             </div>
           </div>
-          <FullTableCobranca cobrancas={showCharges} />
+          <FullTableCobranca cobrancas={showCharges} handleOpen={handleOpen} />
         </main>
       </div>
     </div>

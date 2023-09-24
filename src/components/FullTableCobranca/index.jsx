@@ -4,7 +4,7 @@ import iconeExcluir from "../../assets/excluir.svg";
 import iconeCobranca from "../../assets/cobranca-icon.svg";
 import { useLocation } from "react-router-dom";
 
-export default function FullTableCobranca({ cobrancas }) {
+export default function FullTableCobranca({ cobrancas, handleOpen }) {
   let { pathname } = useLocation();
 
   return (
@@ -15,7 +15,25 @@ export default function FullTableCobranca({ cobrancas }) {
           : "container-resume-table"
       }`}
     >
-      <table className="full-table table">
+      <table className="full-table">
+        {pathname !== "/cobrancas" && (
+          <caption>
+            <div>
+              <div>
+                <h2> Cobraças do cliente</h2>
+              </div>
+              <div>
+                <button
+                  onClick={handleOpen}
+                  type="button"
+                  className="btn-large"
+                >
+                  + Nova cobrança
+                </button>
+              </div>
+            </div>
+          </caption>
+        )}
         <thead className="relative-text">
           <tr>
             {pathname === "/cobrancas" && (
@@ -64,7 +82,6 @@ export default function FullTableCobranca({ cobrancas }) {
                   <img src={iconeEdit} alt="Editar" />
                   <span>Editar </span>
                 </p>
-
                 <p>
                   <img src={iconeExcluir} alt="Excluir" />
                   <span>Excluir </span>

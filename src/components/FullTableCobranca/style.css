@@ -55,7 +55,7 @@
   overflow: hidden;
 }
 
-.full-table-2 td a {
+.full-table-2 td p {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +88,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 .icon-item img {
   width: 20px;
@@ -104,13 +105,6 @@
 }
 .icon-item p:nth-child(2) {
   color: #ae1100;
-}
-.small-text tr td:nth-child(6) {
-  display: inline-block;
-  max-width: 180px;
-  line-height: 55px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .hovered {

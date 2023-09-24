@@ -50,7 +50,7 @@
   display: flex;
 }
 
-.content-start span {
+.content-start h6 {
   color: #3f3f55;
   font-family: Nunito;
   font-size: 1.6rem;
@@ -73,4 +73,29 @@
   justify-content: space-between;
 
   margin-top: 5.5rem;
+}
+.full-table caption div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.full-table caption div div {
+  margin: 0 5px;
+}
+
+.full-table caption div h2 {
+  color: #3f3f55;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 2.34rem */
+}
+
+.full-table caption div button {
+  width: 26.4rem;
+  height: 3.6rem;
+  padding: 0.6rem 0.7rem 0.7rem 0.5rem;
+  justify-content: center;
+  align-items: center;
 }
