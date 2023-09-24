@@ -2,11 +2,47 @@ import "./style.css";
 import iconeEdit from "../../assets/icone-edit.svg";
 import iconeExcluir from "../../assets/excluir.svg";
 import iconeCobranca from "../../assets/cobranca-icon.svg";
+import api from "../../services/api";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   let { pathname } = useLocation();
+import { useMainContext } from "../../hooks/useMainContext";
+import { format } from "date-fns";
+import Loading from "../../components/LoadingPage";
 
+
+export default function FullTableCobranca({}) {
+  const [cobrancas, setCobrancas] = useState([]);
+  const [removeLoad, setRemovedLoad] = useState(true);
+  const { userLog } = useMainContext();
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    async function getCobrancas() {
+      try {
+        setRemovedLoad(true);
+        const response = await api.get(`/charges`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+        const formattedCobrancas = response.data.map((item) => ({
+          ...item,
+          due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
+        }));
+        console.log(response);
+        setCobrancas(formattedCobrancas);
+        setRemovedLoad(false);
+      } catch (error) {
+        console.log(error);
+        setRemovedLoad(false);
+      }
+    }
+
+    getCobrancas();
+  }, []);
+  if (removeLoad) {
+    return <Loading />;
+  }
   return (
     <div
       className={`${
@@ -36,12 +72,12 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         )}
         <thead className="relative-text">
           <tr>
-            {pathname === "/cobrancas" && (
-              <th>
-                <img src={iconeCobranca} alt="" />
-                Cliente
-              </th>
-            )}
+            <th>
+              {" "}
+              <img src={iconeCobranca} alt="" />
+              Cliente
+            </th>
+
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
