@@ -2,7 +2,8 @@ import "./style.css";
 import Charge from "../../assets/cobranca.svg";
 import iconOrdem from "../../assets/cobranca-icon.svg";
 
-export default function FullTableClients({ lista }) {
+export default function FullTable({ lista }) {
+  console.log(lista);
   return (
     <div className="container-full-table">
       <table className="full-table">
@@ -20,12 +21,12 @@ export default function FullTableClients({ lista }) {
           </tr>
         </thead>
         <tbody className="small-text ">
-          {lista.map((item, index) => (
-            <tr key={index}>
-              <td>{item.nome}</td>
+          {lista.map((item) => (
+            <tr className="font-roboto font-tr line" key={item.id}>
+              <td>{item.name}</td>
               <td>{item.cpf}</td>
               <td>{item.email}</td>
-              <td>{item.telefone}</td>
+              <td>{item.phone}</td>
               <td>{item.status}</td>
               <td>
                 <a className="link-table" href="#">

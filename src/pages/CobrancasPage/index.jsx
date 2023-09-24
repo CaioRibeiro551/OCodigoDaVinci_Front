@@ -1,8 +1,7 @@
-import FullTable from "../../components/FullTableClients";
 import Header from "../../components/Header";
-import MenuTableClients from "../../components/MenuTableClients";
+
 import Sidebar from "../../components/Sidebar";
-import { clients } from "../../utils/data";
+
 import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import MenuTableCobranca from "../../components/MenuTableCobranca";
@@ -12,14 +11,11 @@ import { useState, useEffect } from "react";
 import Axios from "../../services/api";
 
 export default function CobrancaPage() {
-  const { modalClients } = useMainContext();
+  const { modalClients, userLog } = useMainContext();
   const title = "Cobranças";
-
-  const [lista, setLista] = useState(clients);
 
   const [cobrancas, setCobrancas] = useState([]);
   const [remoLoad, setRemovedLoad] = useState(true);
-  const { userLog } = useMainContext();
 
   useEffect(() => {
     async function getCobrancas() {
@@ -28,9 +24,10 @@ export default function CobrancaPage() {
         const response = await Axios.get(`/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
-
+        setRemovedLoad(true);
         setCobrancas(response.data);
       } catch (error) {
+        setRemovedLoad(true);
         console.log(error);
       }
     }
@@ -38,13 +35,6 @@ export default function CobrancaPage() {
     getCobrancas();
   }, []);
 
-  const adicionarItem = () => {
-    if (novoItem.trim() !== "") {
-      const novaLista = [...lista, novoItem];
-      setLista(novaLista);
-      setNovoItem("");
-    }
-  };
   return (
     <div className="container-home ">
       <Sidebar />

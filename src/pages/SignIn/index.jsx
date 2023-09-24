@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import MessageFlash from "../../components/MensageFlash";
 
 export default function SignIn() {
-  const [text, useText] = useState("");
+  const [text, setText] = useState("");
   const {
     register,
     handleSubmit,
