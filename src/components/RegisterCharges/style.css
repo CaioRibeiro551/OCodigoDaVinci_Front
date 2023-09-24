@@ -108,6 +108,15 @@ form .container-cidade-uf .container-inputs {
   color: #0e8750;
 }
 
+.radio-buttons label {
+  color: #3f3f55;
+  font-family: Nunito;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 /*
   animation: showModal 1s; 
   @keyframes showModal {

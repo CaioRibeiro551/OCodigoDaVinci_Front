@@ -10,9 +10,9 @@ import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import { ValidationCharges } from "../../validation/ValidiationCharges";
 
-export default function RegisterCharges({ name, handleOpen, id }) {
-  const { userLog } = useMainContext();
-
+export default function RegisterCharges({ name, client_id }) {
+  const { userLog, handleOpen } = useMainContext();
+  console.log(client_id);
   const {
     register,
     handleSubmit,
@@ -22,22 +22,16 @@ export default function RegisterCharges({ name, handleOpen, id }) {
   });
 
   const onSubmit = async (data) => {
+    const newCharge = { ...data, client_id };
+
     try {
-      setRemovedLoadBtn(false);
-      await Api.post(`/clients/${id}/charges`, data, {
+      await Api.post(`/clients/${client_id}/charges`, newCharge, {
         headers: {
           Authorization: userLog.token,
         },
       });
-      setRemovedLoadBtn(true);
-      setMessageSucessAddClient(true);
-      handleCloseModal();
-      return;
     } catch (error) {
-      setRemovedLoadBtn(true);
-      alert(error.response.data.message);
-      console.log(error.response.data);
-      return;
+      console.log(error.response);
     }
   };
 

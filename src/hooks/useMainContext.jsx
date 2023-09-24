@@ -10,6 +10,10 @@ export function useMainContextProvider() {
   const [messageSucessAddClient, setMessageSucessAddClient] = useState(false);
 
   const [messageFlash, setMessageFlash] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
 
   return {
     userLog,
@@ -23,6 +27,8 @@ export function useMainContextProvider() {
     setMessageSucessAddClient,
     messageFlash,
     setMessageFlash,
+    handleOpen,
+    open,
   };
 }
 
