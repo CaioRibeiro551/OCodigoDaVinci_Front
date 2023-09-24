@@ -8,7 +8,7 @@ import { useMainContext } from "../../hooks/useMainContext";
 import MensagemSucesso from "../../components/MensagemSucesso";
 import { useEffect, useState } from "react";
 import Axios from "../../services/api";
-import LoadingPage from "../../components/LoadingPage/index";
+import LoadingPage from "../../components/LoadingPage/index"; //
 
 export default function ClientsPage() {
   const { modalClients, messageSucessAddClient, userLog } = useMainContext();
