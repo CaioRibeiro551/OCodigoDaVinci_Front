@@ -5,7 +5,6 @@ import iconeCobranca from "../../assets/cobranca-icon.svg";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
@@ -49,7 +48,25 @@ export default function FullTableCobranca({}) {
           : "container-resume-table"
       }`}
     >
-      <table className="full-table table">
+      <table className="full-table">
+        {pathname !== "/cobrancas" && (
+          <caption>
+            <div>
+              <div>
+                <h2> Cobraças do cliente</h2>
+              </div>
+              <div>
+                <button
+                  onClick={handleOpen}
+                  type="button"
+                  className="btn-large"
+                >
+                  + Nova cobrança
+                </button>
+              </div>
+            </div>
+          </caption>
+        )}
         <thead className="relative-text">
           <tr>
             <th>
@@ -98,7 +115,6 @@ export default function FullTableCobranca({}) {
                   <img src={iconeEdit} alt="Editar" />
                   <span>Editar </span>
                 </p>
-
                 <p>
                   <img src={iconeExcluir} alt="Excluir" />
                   <span>Excluir </span>

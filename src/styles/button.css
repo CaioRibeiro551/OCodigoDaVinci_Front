@@ -25,3 +25,9 @@ button:hover {
 button:active {
   filter: grayscale(60%);
 }
+
+.btn-cancel {
+  border: 3px solid #dedee9;
+  background: #f8f8f9;
+  color: #0e8750;
+}
