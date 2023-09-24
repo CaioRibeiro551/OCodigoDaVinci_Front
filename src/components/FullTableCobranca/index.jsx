@@ -1,9 +1,9 @@
-import './style.css';
-import iconeEdit from '../../assets/icone-edit.svg';
-import iconeExcluir from '../../assets/excluir.svg';
-import iconeCobranca from '../../assets/cobranca-icon.svg';
+import "./style.css";
+import iconeEdit from "../../assets/icone-edit.svg";
+import iconeExcluir from "../../assets/excluir.svg";
+import iconeCobranca from "../../assets/cobranca-icon.svg";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function FullTable({ lista }) {
   return (

@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import MessageFlash from "../../components/MensageFlash";
 
 export default function SignIn() {
-  const [text, useText] = useState("");
+  const [text, setText] = useState("");
   const {
     register,
     handleSubmit,
@@ -33,7 +33,7 @@ export default function SignIn() {
       navigate("/home");
     } catch (error) {
       setMessageFlash(true);
-      useText(error.response.data.message);
+      setText(error.response.data.message);
       console.error(error.response.data.message);
     }
   }
