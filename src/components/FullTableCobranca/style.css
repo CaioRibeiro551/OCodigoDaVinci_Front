@@ -1,3 +1,12 @@
+.container-full-table {
+  margin-top: 2.576rem;
+  border-radius: 3rem;
+  padding: 0 2.2rem;
+  overflow-y: auto;
+  max-height: 61.8rem;
+  background-color: #fff;
+}
+
 .full-table-2 {
   display: table;
   border-collapse: separate;
@@ -96,7 +105,34 @@
 .icon-item p:nth-child(2) {
   color: #ae1100;
 }
+.small-text tr td:nth-child(6) {
+  display: inline-block;
+  max-width: 180px;
+  line-height: 55px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .hovered {
   background-color: white;
+}
+.status-pendente {
+  background-color: #fcf6dc;
+  color: #c5a605;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.status-paga {
+  background-color: #eef6f6;
+  color: #1fa7af;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.status-outro {
+  background-color: #ffefef;
+  border-radius: 15px;
+  width: 60%;
+  color: #971d1d;
 }

@@ -2,37 +2,10 @@ import "./style.css";
 import iconeEdit from "../../assets/icone-edit.svg";
 import iconeExcluir from "../../assets/excluir.svg";
 import iconeCobranca from "../../assets/cobranca-icon.svg";
-import api from "../../services/api";
-import { useEffect, useState } from "react";
-import { dadosCobrancas } from "../../utils/data";
-import { useMainContext } from "../../hooks/useMainContext";
 import { useLocation } from "react-router-dom";
 
-export default function FullTableCobranca({}) {
-  const [cobrancas, setCobrancas] = useState([]);
-  const [remoLoad, setRemovedLoad] = useState(true);
-  const { userLog } = useMainContext();
-
+export default function FullTableCobranca({ cobrancas }) {
   let { pathname } = useLocation();
-
-  useEffect(() => {
-    async function getCobrancas() {
-      try {
-        setRemovedLoad(false);
-        const response = await api.get(`/charges`, {
-          headers: { Authorization: `Bearer ${userLog.token}` },
-        });
-
-        setCobrancas(response.data);
-        setRemovedLoad(true);
-      } catch (error) {
-        console.log(error);
-        setRemovedLoad(true);
-      }
-    }
-
-    getCobrancas();
-  }, []);
 
   return (
     <div
@@ -45,12 +18,12 @@ export default function FullTableCobranca({}) {
       <table className="full-table table">
         <thead className="relative-text">
           <tr>
-            <th>
-              {" "}
-              <img src={iconeCobranca} alt="" />
-              Cliente
-            </th>
-
+            {pathname === "/cobrancas" && (
+              <th>
+                <img src={iconeCobranca} alt="" />
+                Cliente
+              </th>
+            )}
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
@@ -63,14 +36,28 @@ export default function FullTableCobranca({}) {
           </tr>
         </thead>
         <tbody className="small-text">
-          {dadosCobrancas.map((item, index) => (
-            <tr key={index}>
-              <td>{item.cliente}</td>
-              <td>{item.idCob}</td>
-              <td>{item.valor}</td>
-              <td>{item.dataVencimento}</td>
-              <td>{item.status}</td>
-              <td title={item.descricao}>{item.descricao}</td>
+          {cobrancas.map((item) => (
+            <tr key={item.id}>
+              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+              <td>
+                <span>{item.id}</span>
+              </td>
+              <td>{item.value}</td>
+              <td>{item.due_date}</td>
+              <td>
+                <span
+                  className={`status-cell ${
+                    item.status === "Pendente"
+                      ? "status-pendente"
+                      : item.status === "Paga"
+                      ? "status-paga"
+                      : "status-outro"
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </td>
+              <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
                 <p>

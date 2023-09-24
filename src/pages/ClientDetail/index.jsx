@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -6,23 +6,49 @@ import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
 import MenuTableClients from "../../components/MenuTableClients";
 import FullTableCobranca from "../../components/FullTableCobranca";
+import RegisterCharges from "../../components/RegisterCharges";
 
 function ClientDetail() {
   const { userLog } = useMainContext();
 
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
-  async function getOne() {
-    try {
-      const responde = await Axios.get("/showUser/121", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
 
-      console.log(responde);
-    } catch (error) {}
-  }
+  const [showClient, setShowClient] = useState();
+  const [showCharges, setShowCharges] = useState([]);
+
+  useEffect(() => {
+    async function getOne() {
+      try {
+        const response = await Axios.get(`/clients/134/clients/134`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+        console.log(response.data);
+        setShowClient(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getOne();
+  }, []);
+
+  useEffect(() => {
+    async function getCharges() {
+      try {
+        const response = await Axios.get(`/clients/134/charges`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+        console.log(response.data);
+        setShowCharges(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getCharges();
+  }, []);
+
   return (
     <div className="container-home ">
       <Sidebar />
@@ -42,15 +68,15 @@ function ClientDetail() {
                   <div className="container-text-up">
                     <div className="content-text">
                       <span>E-mail</span>
-                      <p>email@text</p>
+                      <p>{showClient?.email}</p>
                     </div>
                     <div className="content-text">
                       <span>Telefone</span>
-                      <p>'31 9 9462 8654'</p>
+                      <p>{showClient?.phone}</p>
                     </div>
                     <div className="content-text">
                       <span>CPFl</span>
-                      <p>054 365 255 87</p>
+                      <p>{showClient?.cpf}</p>
                     </div>
                   </div>
                 </div>
@@ -58,34 +84,35 @@ function ClientDetail() {
                   <div className="container-text-back">
                     <div className="content-text">
                       <span>Endereço</span>
-                      <p>email@text</p>
+                      <p>{showClient?.address}</p>
                     </div>
                     <div className="content-text">
                       <span>Bairro</span>
-                      <p>'31 9 9462 8654'</p>
+                      <p>{showClient?.neighborhood}</p>
                     </div>
                     <div className="content-text">
                       <span>Complemento</span>
-                      <p>054 365 255 87</p>
+                      <p>{showClient?.complement}</p>
                     </div>
                     <div className="content-text">
                       <span>CEP</span>
-                      <p>054 365 255 87</p>
+                      <p>{showClient?.cep}</p>
                     </div>
                     <div className="content-text">
                       <span>Cidade</span>
-                      <p>054 365 255 87</p>
+                      <p>{showClient?.city}</p>
                     </div>
                     <div className="content-text">
                       <span>UF</span>
-                      <p>054 365 255 87</p>
+                      <p>{showClient?.state}</p>
                     </div>
                   </div>
                 </div>
               </div>
+              <RegisterCharges />
             </div>
           </div>
-          <FullTableCobranca />
+          <FullTableCobranca cobrancas={showCharges} />
         </main>
       </div>
     </div>
