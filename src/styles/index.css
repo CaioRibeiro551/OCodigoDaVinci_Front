@@ -78,17 +78,3 @@ html {
 .flex {
   display: flex;
 }
-
-.btn-large {
-  width: 26.4rem;
-  height: 3.6rem;
-  padding: 0.6rem 0.7rem 0.7rem 0.5rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-cancel {
-  border: 3px solid #dedee9;
-  background: #f8f8f9;
-  color: #0e8750;
-}

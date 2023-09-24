@@ -1,7 +1,5 @@
 import Header from "../../components/Header";
-
 import Sidebar from "../../components/Sidebar";
-
 import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import MenuTableCobranca from "../../components/MenuTableCobranca";

@@ -12,9 +12,10 @@ import Loading from "../../components/LoadingPage";
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
-  const { userLog } = useMainContext();
+  const { userLog, handleOpen } = useMainContext();
 
   const { pathname } = useLocation();
+
   useEffect(() => {
     async function getCobrancas() {
       try {
@@ -26,7 +27,6 @@ export default function FullTableCobranca({}) {
           ...item,
           due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
         }));
-        console.log(response);
         setCobrancas(formattedCobrancas);
         setRemovedLoad(false);
       } catch (error) {
@@ -57,8 +57,8 @@ export default function FullTableCobranca({}) {
               </div>
               <div>
                 <button
-                  onClick={handleOpen}
                   type="button"
+                  onClick={handleOpen}
                   className="btn-large"
                 >
                   + Nova cobrança

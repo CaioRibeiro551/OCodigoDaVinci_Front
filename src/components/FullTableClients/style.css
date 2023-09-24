@@ -109,3 +109,19 @@
   font-weight: 600;
   line-height: normal;
 }
+
+#Link {
+  color: #747488;
+  font-family: Nunito;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 4rem; /* 285.714% */
+  letter-spacing: 0.007rem;
+}
+
+#Link:hover {
+  color: #da0175;
+  font-weight: 600;
+  scale: 1.2;
+}

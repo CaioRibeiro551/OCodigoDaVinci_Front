@@ -7,26 +7,25 @@ import { useMainContext } from "../../hooks/useMainContext";
 
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
-import MenuTableClientDetail from "../../components/MenuTableClientDatails";
+import MenuTableClientDetail from "../../components/MenuTableClientDetail";
+import { useParams } from "react-router-dom";
 
 function ClientDetail() {
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
 
-  const { userLog } = useMainContext();
-  const [open, setOpen] = useState(false);
+  const { id } = useParams();
+
+  const { userLog, handleOpen, open } = useMainContext();
 
   const handleCloseModal = () => {};
   const [showClient, setShowClient] = useState();
   const [showCharges, setShowCharges] = useState([]);
 
-  const handleOpen = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
   useEffect(() => {
     async function getOne() {
       try {
-        const response = await Axios.get(`/clients/134/clients/134`, {
+        const response = await Axios.get(`/clients/${id}/clients/${id}`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
 
@@ -42,7 +41,7 @@ function ClientDetail() {
   useEffect(() => {
     async function getCharges() {
       try {
-        const response = await Axios.get(`/clients/134/charges`, {
+        const response = await Axios.get(`/clients/${id}/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
 
@@ -118,11 +117,7 @@ function ClientDetail() {
                 </div>
               </div>
               {open && (
-                <RegisterCharges
-                  handleOpen={handleOpen}
-                  name={showClient?.name}
-                  id={id}
-                />
+                <RegisterCharges name={showClient?.name} client_id={id} />
               )}
             </div>
           </div>
