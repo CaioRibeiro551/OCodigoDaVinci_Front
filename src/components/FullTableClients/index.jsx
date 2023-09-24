@@ -1,14 +1,18 @@
 import "./style.css";
 import Charge from "../../assets/cobranca.svg";
+import iconOrdem from "../../assets/cobranca-icon.svg";
 
 export default function FullTable({ lista }) {
   console.log(lista);
   return (
     <div className="container-full-table">
-      <table className="full-table table ">
+      <table className="full-table">
         <thead className="relative-text">
-          <tr className="font-roboto-bold font-tr">
-            <th>Cliente</th>
+          <tr>
+            <th>
+              <img src={iconOrdem} alt="" />
+              Cliente
+            </th>
             <th>CPF</th>
             <th>Email</th>
             <th>Telefone</th>

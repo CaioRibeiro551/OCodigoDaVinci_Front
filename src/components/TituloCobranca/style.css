@@ -1,5 +1,5 @@
 .container-information {
-  width: 36rem;
+  width: 25vw;
   height: 11.1rem;
   text-align: center;
   font-family: "Montserrat";
@@ -7,7 +7,7 @@
 }
 
 .container-information-content {
-  width: 36rem;
+  width: 25vw;
   height: 11.1rem;
 
   display: flex;

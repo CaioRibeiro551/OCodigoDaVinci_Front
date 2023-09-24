@@ -29,7 +29,7 @@
 }
 
 .full-table-2 th {
-  column-span: '2';
+  column-span: "2";
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -94,7 +94,7 @@
   height: 20px;
 }
 .icon-item p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   margin-top: 5px;
   font-size: 12px;
   text-align: center;

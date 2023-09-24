@@ -33,8 +33,7 @@ export default function SignIn() {
       navigate("/home");
     } catch (error) {
       setMessageFlash(true);
-      setText(error.response.data.message);
-      console.error(error.response.data.message);
+      useText(error.response.data.message);
     }
   }
 

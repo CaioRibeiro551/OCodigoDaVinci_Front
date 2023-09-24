@@ -1,4 +1,4 @@
-import FullTable from "../../components/FullTable";
+import FullTableClients from "../../components/FullTableClients";
 import Header from "../../components/Header";
 import MenuTableClients from "../../components/MenuTableClients";
 import Sidebar from "../../components/Sidebar";
@@ -14,6 +14,8 @@ export default function ClientsPage() {
   const { modalClients, messageSucessAddClient, userLog } = useMainContext();
   const [clients, setClients] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
+
+  const title = "Clientes";
 
   const getClients = async () => {
     try {
@@ -36,18 +38,19 @@ export default function ClientsPage() {
   }, []);
 
   return (
-    <div className="container-clients">
+    <div className="container-home ">
       <Sidebar />
-      <Header />
-      <div className="main-page-client ">
-        <MenuTableClients />
-        <FullTable lista={clients} />
-        {!removeLoad && <LoadingPage />}
+      <div className="caitainer-back">
+        <Header title={title} />
+
+        <div className="container-clients">
+          <MenuTableClients />
+          <FullTableClients lista={clients} />
+          {!removeLoad && <LoadingPage />}
+        </div>
+        {modalClients && <ModalClients />}
+        {messageSucessAddClient && <MensagemSucesso />}
       </div>
-      {modalClients && (
-        <ModalClients setClients={setClients} clients={clients} />
-      )}
-      {messageSucessAddClient && <MensagemSucesso />}
     </div>
   );
 }

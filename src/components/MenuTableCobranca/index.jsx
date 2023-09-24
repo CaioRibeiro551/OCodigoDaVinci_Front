@@ -1,15 +1,16 @@
-import './style.css';
-import IconFilter from '../../assets/filter.svg';
-import IconSheach from '../../assets/sheach.svg';
-import IconClients from '../../assets/clients.svg';
-import { useMainContext } from '../../hooks/useMainContext';
+import "./style.css";
+import IconFilter from "../../assets/filter.svg";
+import IconSheach from "../../assets/sheach.svg";
+import IconClients from "../../assets/clients.svg";
+import { useMainContext } from "../../hooks/useMainContext";
 
-export default function MenuTableCobrancas() {
+export default function MenuTableClients() {
+  const { setModalClients } = useMainContext();
   return (
     <div className="container-menu-table-clients">
       <div>
         <img src={IconClients} alt="clientes" />
-        <h1>Cobranças</h1>
+        <h1>Cobranças </h1>
       </div>
       <div>
         <img src={IconFilter} alt="filtro" />

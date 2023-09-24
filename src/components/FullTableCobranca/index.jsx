@@ -4,15 +4,18 @@ import iconeExcluir from "../../assets/excluir.svg";
 import iconeCobranca from "../../assets/cobranca-icon.svg";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { useMainContext } from "../../hooks/useMainContext";
-import { format } from "date-fns"; //
+import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
 
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
   const { userLog } = useMainContext();
+
+  const { pathname } = useLocation();
   useEffect(() => {
     async function getCobrancas() {
       try {
@@ -39,8 +42,14 @@ export default function FullTableCobranca({}) {
     return <Loading />;
   }
   return (
-    <div className="container-full-table">
-      <table className="full-table-2 table">
+    <div
+      className={`${
+        pathname === "/cobrancas"
+          ? "container-full-table"
+          : "container-resume-table"
+      }`}
+    >
+      <table className="full-table table">
         <thead className="relative-text">
           <tr>
             <th>
@@ -63,8 +72,10 @@ export default function FullTableCobranca({}) {
         <tbody className="small-text">
           {cobrancas.map((item) => (
             <tr key={item.id}>
-              <td>{item.client_id}</td>
-              <td>{item.id}</td>
+              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+              <td>
+                <span>{item.id}</span>
+              </td>
               <td>{item.value}</td>
               <td>{item.due_date}</td>
               <td>

@@ -8,7 +8,7 @@ export default function ResumeTable({ item }) {
         <caption
           className={`${
             item.Width === "small" ? "table-small" : "table-large"
-          } teste-2`}
+          } teste-2 `}
         >
           {item.Imagem ? <img src={item.Imagem} alt="" /> : ""} {item.Title}
           <span
@@ -52,11 +52,12 @@ export default function ResumeTable({ item }) {
         </tbody>
 
         <tfoot className="">
-          <tr key="3">
+          <tr>
             <td />
             <td className="bottom-table">
               <Link to={"/clients"}>Ver todos</Link>
             </td>
+
             <td />
           </tr>
         </tfoot>

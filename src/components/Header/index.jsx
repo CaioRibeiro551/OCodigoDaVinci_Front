@@ -8,9 +8,9 @@ import iconePolygon from "../../assets/icone-polygon.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "../ModalTeste/index";
-import ConfirmationModal from "../../components/ConfirmationLogout";
+import ConfirmationModal from "../ConfirmationModal";
 
-export default function Header() {
+export default function Header({ title, subtitle }) {
   const { setModalTeste, removeUserLog, userLog, modalTeste } =
     useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
@@ -42,45 +42,48 @@ export default function Header() {
     setIsConfirmationModalOpen(false);
   };
 
-  let textClient;
-  if (pathname === "/clients") {
-    textClient = "Clientes";
-  } else if (pathname === "/cobrancas") {
-    textClient = "Cobranças";
-  }
-
   return (
     <>
-      <header className="full-header">
-        <div className="header-info">
-          {pathname === "/home" ? (
-            <h1 className="big-text">Resumo das cobranças</h1>
-          ) : (
-            <p className="text-client">{textClient}</p>
-          )}
-        </div>
+      <header>
+        <div className="contents-header">
+          <div className="header-info">
+            {pathname === "/home" ? (
+              <h1 className="big-text">{title}</h1>
+            ) : (
+              <p className="text-client">
+                {title}{" "}
+                {subtitle && (
+                  <span>
+                    {" "}
+                    <span className="separar-title">{">"}</span> {subtitle}
+                  </span>
+                )}
+              </p>
+            )}
+          </div>
 
-        <div className="user-info">
-          <img className="circle-info" src={cicleInfo} alt="" />
-          <p className="user-name" title={userLog.name}>
-            {userLog.name}
-          </p>
-          <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
-          {openMineModal && (
-            <div>
-              <div className="button-edit">
-                <img className="polygon-item" src={iconePolygon} alt="" />
-                <div className="button-item">
-                  <img src={iconeEdit} alt="" onClick={handleModal} />
-                  <p>Editar</p>
-                </div>
-                <div className="button-item">
-                  <img src={iconeQuit} alt="" onClick={handleLogout} />
-                  <p>Sair</p>
+          <div className="user-info">
+            <img className="circle-info" src={cicleInfo} alt="" />
+            <p className="user-name" title={userLog.name}>
+              {userLog.name}
+            </p>
+            <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
+            {openMineModal && (
+              <div>
+                <div className="button-edit">
+                  <img className="polygon-item" src={iconePolygon} alt="" />
+                  <div className="button-item">
+                    <img src={iconeEdit} alt="" onClick={handleModal} />
+                    <p>Editar</p>
+                  </div>
+                  <div className="button-item">
+                    <img src={iconeQuit} alt="" onClick={handleLogout} />
+                    <p>Sair</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </header>
       {modalTeste ? <Modal /> : ""}
