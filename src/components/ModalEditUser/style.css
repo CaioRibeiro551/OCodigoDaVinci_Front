@@ -18,12 +18,12 @@
   position: relative;
 }
 
-.backdrop form > img {
+.backdrop img {
   width: 28px;
   height: 28px;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 40px;
+  right: 35px;
 }
 
 .backdrop form h1 {

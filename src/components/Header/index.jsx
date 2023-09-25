@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import "./style.css";
-import seta from "../../assets/seta.svg";
-import cicleInfo from "../../assets/circle-info.svg";
-import iconeEdit from "../../assets/icone-edit.svg";
-import iconeQuit from "../../assets/icone-quit.svg";
-import iconePolygon from "../../assets/icone-polygon.svg";
-import { useMainContext } from "../../hooks/useMainContext";
-import { useNavigate, useLocation } from "react-router-dom";
-import Modal from "../ModalTeste/index";
-import ConfirmationModal from "../ConfirmationModal";
+import React, { useState } from 'react';
+import './style.css';
+import seta from '../../assets/seta.svg';
+import cicleInfo from '../../assets/circle-info.svg';
+import iconeEdit from '../../assets/icone-edit.svg';
+import iconeQuit from '../../assets/icone-quit.svg';
+import iconePolygon from '../../assets/icone-polygon.svg';
+import { useMainContext } from '../../hooks/useMainContext';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Modal from '../../components/ModalEditUser';
+import ConfirmationModal from '../ConfirmationModal';
 
 export default function Header({ title, subtitle }) {
   const { setModalTeste, removeUserLog, userLog, modalTeste } =
@@ -33,7 +33,7 @@ export default function Header({ title, subtitle }) {
 
   const confirmLogout = () => {
     removeUserLog();
-    navigator("/");
+    navigator('/');
 
     setIsConfirmationModalOpen(false);
   };
@@ -47,15 +47,15 @@ export default function Header({ title, subtitle }) {
       <header>
         <div className="contents-header">
           <div className="header-info">
-            {pathname === "/home" ? (
+            {pathname === '/home' ? (
               <h1 className="big-text">{title}</h1>
             ) : (
               <p className="text-client">
-                {title}{" "}
+                {title}{' '}
                 {subtitle && (
                   <span>
-                    {" "}
-                    <span className="separar-title">{">"}</span> {subtitle}
+                    {' '}
+                    <span className="separar-title">{'>'}</span> {subtitle}
                   </span>
                 )}
               </p>
@@ -86,7 +86,7 @@ export default function Header({ title, subtitle }) {
           </div>
         </div>
       </header>
-      {modalTeste ? <Modal /> : ""}
+      {modalTeste ? <Modal /> : ''}
 
       <ConfirmationModal
         isOpen={isConfirmationModalOpen}
