@@ -1,15 +1,17 @@
-import { useState } from "react";
-import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
-import Axios from "../../services/api";
-import { useMainContext } from "../../hooks/useMainContext";
-import { useForm } from "react-hook-form";
-import { validationSignIn } from "../../validation/ValidationSignIn";
-import { yupResolver } from "@hookform/resolvers/yup";
-import MessageFlash from "../../components/MensageFlash";
+import { useState } from 'react';
+import './style.css';
+import { Link, useNavigate } from 'react-router-dom';
+import Axios from '../../services/api';
+import { useMainContext } from '../../hooks/useMainContext';
+import { useForm } from 'react-hook-form';
+import { validationSignIn } from '../../validation/ValidationSignIn';
+import { yupResolver } from '@hookform/resolvers/yup';
+import MessageFlash from '../../components/MensageFlash';
+import LoadButton from '../../components/LoadButton';
 
 export default function SignIn() {
-  const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [text, setText] = useState('');
   const {
     register,
     handleSubmit,
@@ -24,16 +26,19 @@ export default function SignIn() {
 
   async function onSubmit(data) {
     try {
-      const responde = await Axios.post("/login", data);
+      setIsLoading(true);
+      const responde = await Axios.post('/login', data);
       setUserLog({
         id: responde.data.id,
         name: responde.data.name,
         token: responde.data.token,
       });
-      navigate("/home");
+      navigate('/home');
     } catch (error) {
       setMessageFlash(true);
       useText(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -50,7 +55,7 @@ export default function SignIn() {
                 type="email"
                 id="email"
                 placeholder="Digite seu email"
-                {...register("email")}
+                {...register('email')}
               />
               {errors.email && (
                 <span className="error">{errors.email?.message}</span>
@@ -62,13 +67,15 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 placeholder="Digite sua senha"
-                {...register("password")}
+                {...register('password')}
               />
               {errors.password && (
                 <span className="error">{errors.password?.message}</span>
               )}
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? <LoadButton /> : 'Entrar'}
+            </button>
 
             <p>
               Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>
