@@ -2,7 +2,7 @@ import "./style.css";
 import CloseModal from "../../assets/close.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import IconClients from "../../assets/clients.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,6 +10,7 @@ import { validationAddClient } from "../../validation/validationAddClient";
 import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import MensagemFlash from "../../components/MensageFlash";
+import InputMask from "react-input-mask";
 
 export default function ModalClients({ clients, setClients }) {
   const {
@@ -46,37 +47,46 @@ export default function ModalClients({ clients, setClients }) {
     return;
   };
 
+  const handleCloseModal = () => {
+    setModalClients(false);
+    return;
+  };
+
   const createrUser = async (data) => {
+    const userCpf = data.cpf.replace(/[^0-9]/, "");
+    const userPhone = data.phone.replace(/[^0-9]/, "");
+    const userCep = data.cep.replace(/[^0-9]/, "");
+    console.log(data, userCpf);
+
     try {
       setRemovedLoadBtn(false);
-      await Api.post("/clients", data, {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
+      const response = await Api.post(
+        "/clients",
+        { ...data, cpf: userCpf, cep: userCep, phone: userPhone },
+        {
+          headers: {
+            Authorization: userLog.token,
+          },
+        }
+      );
+
+      console.log(response);
+
       setRemovedLoadBtn(true);
+      setModalClients(false);
       setMessageSucessAddClient(true);
-      setClients([...clients, data]);
-      handleCloseModal();
       return;
     } catch (error) {
       setRemovedLoadBtn(true);
-      setText(error.response.data.message);
+      // setText(error.response);
       setMessageFlash(true);
+      console.log(error.response);
       return;
     }
   };
 
   const handleBuscaCep = async ({ target }) => {
     if (!target.value.trim()) {
-      setText("Digite um CEP");
-      setMessageFlash(true);
-      return;
-    }
-
-    if (target.value.trim().length != 8) {
-      setText("CEP deve conter 8 digitos");
-      setMessageFlash(true);
       return;
     }
 
@@ -88,7 +98,6 @@ export default function ModalClients({ clients, setClients }) {
         },
       });
       setRemovedLoad(true);
-      console.log(data);
       setForm({
         neighborhood: data.neighborhood,
         city: data.city,
@@ -102,11 +111,6 @@ export default function ModalClients({ clients, setClients }) {
       setMessageFlash(true);
       return;
     }
-  };
-
-  const handleCloseModal = () => {
-    setModalClients(false);
-    return;
   };
 
   return (
@@ -156,7 +160,8 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cpf">CPF*</label>
-            <input
+            <InputMask
+              mask={"999.999.999-99"}
               type="cpf"
               id="cpf"
               {...register("cpf")}
@@ -171,7 +176,8 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.phone ? "erros-inputs" : ""}`}
           >
             <label htmlFor="phone">Telefone*</label>
-            <input
+            <InputMask
+              mask={"(99) 99999-9999"}
               type="text"
               id="phone"
               {...register("phone")}
@@ -207,7 +213,8 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.cep ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cep">CEP</label>
-            <input
+            <InputMask
+              mask={"99999-999"}
               type="text"
               id="cep"
               {...register("cep")}

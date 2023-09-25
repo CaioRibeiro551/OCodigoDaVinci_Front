@@ -2,8 +2,8 @@ import "./style.css";
 import Charge from "../../assets/cobranca.svg";
 import iconOrdem from "../../assets/cobranca-icon.svg";
 
-export default function FullTable({ lista }) {
-  console.log(lista);
+export default function FullTable({ clients }) {
+  console.log(clients);
   return (
     <div className="container-full-table">
       <table className="full-table">
@@ -21,7 +21,7 @@ export default function FullTable({ lista }) {
           </tr>
         </thead>
         <tbody className="small-text ">
-          {lista.map((item) => (
+          {clients.map((item) => (
             <tr className="font-roboto font-tr line" key={item.id}>
               <td>{item.name}</td>
               <td>{item.cpf}</td>

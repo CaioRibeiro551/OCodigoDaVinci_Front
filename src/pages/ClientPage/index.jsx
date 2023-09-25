@@ -35,7 +35,7 @@ export default function ClientsPage() {
   };
   useEffect(() => {
     getClients();
-  }, []);
+  }, [modalClients]);
 
   return (
     <div className="container-home ">
@@ -45,10 +45,12 @@ export default function ClientsPage() {
 
         <div className="container-clients">
           <MenuTableClients />
-          <FullTableClients lista={clients} />
+          <FullTableClients clients={clients} />
           {!removeLoad && <LoadingPage />}
         </div>
-        {modalClients && <ModalClients />}
+        {modalClients && (
+          <ModalClients clients={clients} setClients={setClients} />
+        )}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
     </div>

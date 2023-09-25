@@ -1,13 +1,15 @@
 .confirmation-modal {
+  width: 100px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   justify-content: center;
-  top: 15%;
-  right: 0;
+  top: 0px;
+  right: 0px;
   background-color: white;
   padding: 10px;
+  border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
@@ -21,13 +23,26 @@
 .buttons-logout button {
   width: 50%;
   font-size: 1.4rem;
+  height: 25px;
+  font-weight: 700;
 }
+
+.buttons-logout button:first-child {
+  border: 1px solid #dedee9;
+  background: #f8f8f9;
+  color: #0e8750;
+}
+
+.buttons-logout button:first-child:hover {
+  border: 1px solid #0e8750;
+}
+
 .confirmation-modal p {
   font-family: "Nunito";
-  font-size: 16px;
+  font-size: 1.6rem;
   text-align: center;
 }
+
 .confirmation-modal button {
-  margin-top: 50px;
-  margin-top: 15px;
+  margin-top: 8px;
 }

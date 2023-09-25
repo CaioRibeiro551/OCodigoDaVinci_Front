@@ -69,30 +69,27 @@ export default function Header({ title, subtitle }) {
             </p>
             <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
             {openMineModal && (
-              <div>
-                <div className="button-edit">
-                  <img className="polygon-item" src={iconePolygon} alt="" />
-                  <div className="button-item">
-                    <img src={iconeEdit} alt="" onClick={handleModal} />
-                    <p>Editar</p>
-                  </div>
-                  <div className="button-item">
-                    <img src={iconeQuit} alt="" onClick={handleLogout} />
-                    <p>Sair</p>
-                  </div>
+              <div className="button-edit">
+                <img className="polygon-item" src={iconePolygon} alt="" />
+                <div className="button-item">
+                  <img src={iconeEdit} alt="" onClick={handleModal} />
+                  <p>Editar</p>
                 </div>
+                <div className="button-item">
+                  <img src={iconeQuit} alt="" onClick={handleLogout} />
+                  <p>Sair</p>
+                </div>
+                <ConfirmationModal
+                  isOpen={isConfirmationModalOpen}
+                  onCancel={cancelLogout}
+                  onConfirm={confirmLogout}
+                />
               </div>
             )}
           </div>
         </div>
       </header>
       {modalTeste ? <Modal /> : ""}
-
-      <ConfirmationModal
-        isOpen={isConfirmationModalOpen}
-        onCancel={cancelLogout}
-        onConfirm={confirmLogout}
-      />
     </>
   );
 }
