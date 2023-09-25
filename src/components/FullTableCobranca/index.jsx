@@ -1,13 +1,13 @@
-import "./style.css";
-import iconeEdit from "../../assets/icone-edit.svg";
-import iconeExcluir from "../../assets/excluir.svg";
-import iconeCobranca from "../../assets/cobranca-icon.svg";
-import api from "../../services/api";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useMainContext } from "../../hooks/useMainContext";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
+import './style.css';
+import iconeEdit from '../../assets/icone-edit.svg';
+import iconeExcluir from '../../assets/excluir.svg';
+import iconeCobranca from '../../assets/cobranca-icon.svg';
+import api from '../../services/api';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useMainContext } from '../../hooks/useMainContext';
+import { format } from 'date-fns';
+import Loading from '../../components/LoadingPage';
 
 export default function FullTableCobranca({}) {
   const [cobrancas, setCobrancas] = useState([]);
@@ -25,10 +25,11 @@ export default function FullTableCobranca({}) {
         });
         const formattedCobrancas = response.data.map((item) => ({
           ...item,
-          due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
+          due_date: format(new Date(item.due_date), 'dd/MM/yyyy'),
         }));
         setCobrancas(formattedCobrancas);
         setRemovedLoad(false);
+        console.log(response);
       } catch (error) {
         console.log(error);
         setRemovedLoad(false);
@@ -43,13 +44,13 @@ export default function FullTableCobranca({}) {
   return (
     <div
       className={`${
-        pathname === "/cobrancas"
-          ? "container-full-table"
-          : "container-resume-table"
+        pathname === '/cobrancas'
+          ? 'container-full-table'
+          : 'container-resume-table'
       }`}
     >
       <table className="full-table">
-        {pathname !== "/cobrancas" && (
+        {pathname !== '/cobrancas' && (
           <caption>
             <div>
               <div>
@@ -70,7 +71,7 @@ export default function FullTableCobranca({}) {
         <thead className="relative-text">
           <tr>
             <th>
-              {" "}
+              {' '}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -89,7 +90,7 @@ export default function FullTableCobranca({}) {
         <tbody className="small-text">
           {cobrancas.map((item) => (
             <tr key={item.id}>
-              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+              {pathname === '/cobrancas' && <td>{item.client_name}</td>}
               <td>
                 <span>{item.id}</span>
               </td>
@@ -98,11 +99,13 @@ export default function FullTableCobranca({}) {
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === "Pendente"
-                      ? "status-pendente"
-                      : item.status === "Paga"
-                      ? "status-paga"
-                      : "status-outro"
+                    item.status === 'Pendente'
+                      ? 'pendente'
+                      : item.status === 'Paga'
+                      ? 'paga'
+                      : item.status === 'Vencida'
+                      ? 'vencida'
+                      : 'status-outro'
                   }`}
                 >
                   {item.status}
