@@ -26,6 +26,11 @@ export default function FullTableCobranca({}) {
         const formattedCobrancas = response.data.map((item) => ({
           ...item,
           due_date: format(new Date(item.due_date), 'dd/MM/yyyy'),
+          value: parseFloat(item.value).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+          }),
         }));
         setCobrancas(formattedCobrancas);
         setRemovedLoad(false);
