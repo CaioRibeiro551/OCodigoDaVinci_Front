@@ -12,13 +12,13 @@
   backdrop-filter: blur(2px);
 }
 
-.backdrop form {
+.backdrop form.form-edite-user {
   width: 380px;
   padding: 30px;
   position: relative;
 }
 
-.backdrop form > img {
+.backdrop img.closer {
   width: 28px;
   height: 28px;
   position: absolute;
@@ -51,4 +51,17 @@
 
 .container-cpf-telefone .container-inputs input {
   width: 100%;
+}
+
+.erros-inputs input {
+  border: 1px solid #e70000;
+}
+.erros-inputs span {
+  color: #e70000;
+  font-family: Nunito;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: left;
 }

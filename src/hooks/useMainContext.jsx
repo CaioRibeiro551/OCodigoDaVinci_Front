@@ -9,6 +9,8 @@ export function useMainContextProvider() {
   const [modalClients, setModalClients] = useState(false);
   const [messageSucessAddClient, setMessageSucessAddClient] = useState(false);
 
+  const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
+
   const [messageFlash, setMessageFlash] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -29,6 +31,8 @@ export function useMainContextProvider() {
     setMessageFlash,
     handleOpen,
     open,
+    messageSucessUpdateUser,
+    setMessageSucessUpdateUser,
   };
 }
 

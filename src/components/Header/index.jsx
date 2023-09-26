@@ -7,12 +7,18 @@ import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import Modal from "../ModalTeste/index";
+import Modal from "../../components/ModalEditUser";
 import ConfirmationModal from "../ConfirmationModal";
+import MessageSucessUpdateUser from "../MensageSucessUpdateUser";
 
 export default function Header({ title, subtitle }) {
-  const { setModalTeste, removeUserLog, userLog, modalTeste } =
-    useMainContext();
+  const {
+    setModalTeste,
+    removeUserLog,
+    userLog,
+    modalTeste,
+    messageSucessUpdateUser,
+  } = useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
@@ -93,6 +99,8 @@ export default function Header({ title, subtitle }) {
         onCancel={cancelLogout}
         onConfirm={confirmLogout}
       />
+
+      {messageSucessUpdateUser && <MessageSucessUpdateUser />}
     </>
   );
 }
