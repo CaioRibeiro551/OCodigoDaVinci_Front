@@ -38,6 +38,11 @@ export default function ModalClients({ clients, setClients }) {
     resolver: yupResolver(validationAddClient),
   });
 
+  const handleCloseModal = () => {
+    setModalClients(false);
+    return;
+  };
+
   const handleChange = ({ target }) => {
     const key = target.name;
     const value = target.value;
@@ -102,11 +107,6 @@ export default function ModalClients({ clients, setClients }) {
       setMessageFlash(true);
       return;
     }
-  };
-
-  const handleCloseModal = () => {
-    setModalClients(false);
-    return;
   };
 
   return (

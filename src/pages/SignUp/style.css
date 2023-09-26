@@ -31,6 +31,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.signup-container-rigth {
+  display: flex;
+  flex-direction: column;
+}
+
 .signup-container-rigth form {
   width: 350px;
   background-color: #f8f8f9;
@@ -109,6 +115,9 @@
   font-style: normal;
   font-weight: 600;
   line-height: 2rem;
+}
+.signup-container-rigth .container-inputs input {
+  height: 3.8rem;
 }
 
 .signup-container-rigth .password-toggle {
