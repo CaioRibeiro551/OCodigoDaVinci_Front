@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useMainContext } from '../../hooks/useMainContext';
 import { format } from 'date-fns';
 import Loading from '../../components/LoadingPage';
-import { useLocation } from "react-router-dom";
+
 
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
