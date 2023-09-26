@@ -40,7 +40,7 @@ export default function SignIn() {
       navigate("/home");
     } catch (error) {
       setMessageFlash(true);
-      useText(error.response.data.message);
+      setText(error.response.data.message);
     } finally {
       setIsLoading(false);
     }

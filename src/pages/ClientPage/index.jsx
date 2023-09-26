@@ -9,9 +9,11 @@ import MensagemSucesso from "../../components/MensagemSucesso";
 import { useEffect, useState } from "react";
 import Axios from "../../services/api";
 import LoadingPage from "../../components/LoadingPage/index"; //
+import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
-  const { modalClients, messageSucessAddClient, userLog } = useMainContext();
+  const { modalClients, messageSucessAddClient, userLog, modalEditeClients } =
+    useMainContext();
   const [clients, setClients] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
 
@@ -48,6 +50,7 @@ export default function ClientsPage() {
           <FullTableClients lista={clients} />
         </div>
         {modalClients && <ModalClients />}
+        {modalEditeClients && <ModalEditeClients />}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
       {!removeLoad && <LoadingPage />}
