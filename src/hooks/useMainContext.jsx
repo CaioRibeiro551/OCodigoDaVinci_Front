@@ -8,6 +8,9 @@ export function useMainContextProvider() {
 
   const [modalClients, setModalClients] = useState(false);
   const [messageSucessAddClient, setMessageSucessAddClient] = useState(false);
+  const [modalEditeClients, setModalEditeClients] = useState(false);
+
+  const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
 
   const [messageFlash, setMessageFlash] = useState(false);
   const [open, setOpen] = useState(false);
@@ -36,6 +39,11 @@ export function useMainContextProvider() {
     open,
     openEdith,
     handleOpenEdith,
+    messageSucessUpdateUser,
+    setMessageSucessUpdateUser,
+    modalEditeClients,
+    setModalEditeClients,
+
   };
 }
 

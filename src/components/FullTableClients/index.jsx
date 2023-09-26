@@ -31,7 +31,17 @@ export default function FullTable({ lista }) {
               <td>{item.cpf}</td>
               <td>{item.email}</td>
               <td>{item.phone}</td>
-              <td>{item.status}</td>
+              <td>
+                <span
+                  className={`status-cell ${
+                    item.status === "Inadimplente"
+                      ? "status-Inadimplente"
+                      : "status-Em-dia"
+                  }`}
+                >
+                  {item.status}
+                </span>
+              </td>
               <td>
                 <a className="link-table" href="#">
                   <img src={Charge} alt="" />
