@@ -1,14 +1,14 @@
-import './style.css';
-import CloseModal from '../../assets/close.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import clients from '../../assets/clients.svg';
-import Api from '../../services/api';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import LoadingBtn from '../LoadingInput';
-import LoadingBtnWhite from '../../components/LoadingBtnWhite';
-import { ValidationCharges } from '../../validation/ValidiationCharges';
-// import InputMask from 'react-input-mask';
+import "./style.css";
+import CloseModal from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import clients from "../../assets/clients.svg";
+import Api from "../../services/api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import LoadingBtn from "../LoadingInput";
+import LoadingBtnWhite from "../../components/LoadingBtnWhite";
+import { ValidationCharges } from "../../validation/ValidiationCharges";
+import InputMask from "react-input-mask";
 
 export default function RegisterCharges({ name, client_id }) {
   const { userLog, handleOpen } = useMainContext();
@@ -63,7 +63,7 @@ export default function RegisterCharges({ name, client_id }) {
             cols="20"
             rows="5"
             placeholder="Escreva a descrição aqui"
-            {...register('description')}
+            {...register("description")}
           />
           {errors.description && (
             <span className="error">{errors.description.message}</span>
@@ -77,7 +77,7 @@ export default function RegisterCharges({ name, client_id }) {
               className=" input-description"
               mask="99/99/9999"
               placeholder="Data de Vencimento"
-              {...register('due_date')}
+              {...register("due_date")}
             />
             {errors.due_date && (
               <span className="error">{errors.due_date?.message}</span>
@@ -88,7 +88,7 @@ export default function RegisterCharges({ name, client_id }) {
             <input
               type="text"
               placeholder="Digite o Valor"
-              {...register('value')}
+              {...register("value")}
             />
             {errors.value && (
               <span className="error">{errors.value.message}</span>
@@ -102,7 +102,7 @@ export default function RegisterCharges({ name, client_id }) {
               value="Paga"
               id="status-paga"
               checked
-              {...register('status')}
+              {...register("status")}
             />
             <label htmlFor="status-paga">Cobrança Paga</label>
           </div>
@@ -111,7 +111,7 @@ export default function RegisterCharges({ name, client_id }) {
               type="radio"
               value="Pendente"
               id="status-pendente"
-              {...register('status')}
+              {...register("status")}
             />
             <label htmlFor="status-pendente">Cobrança Pendente</label>
           </div>
