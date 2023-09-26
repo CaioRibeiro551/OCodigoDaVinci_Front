@@ -1,7 +1,7 @@
-import "./style.css";
-import Charge from "../../assets/cobranca.svg";
-import iconOrdem from "../../assets/cobranca-icon.svg";
-import { NavLink } from "react-router-dom";
+import './style.css';
+import Charge from '../../assets/cobranca.svg';
+import iconOrdem from '../../assets/cobranca-icon.svg';
+import { NavLink } from 'react-router-dom';
 
 export default function FullTable({ lista }) {
   return (
@@ -25,7 +25,7 @@ export default function FullTable({ lista }) {
             <tr className="font-roboto font-tr line" key={item.id}>
               <td>
                 <NavLink to={`/client-detail/${item.id}`} id="Link">
-                  {item.name}{" "}
+                  {item.name}{' '}
                 </NavLink>
               </td>
               <td>{item.cpf}</td>

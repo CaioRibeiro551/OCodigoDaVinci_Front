@@ -1,3 +1,4 @@
+
 import FullTableClients from "../../components/FullTableClients";
 import Header from "../../components/Header";
 import MenuTableClients from "../../components/MenuTableClients";
@@ -11,18 +12,19 @@ import Axios from "../../services/api";
 import LoadingPage from "../../components/LoadingPage/index"; //
 import ModalEditeClients from "../../components/ModalEditClients";
 
+
 export default function ClientsPage() {
   const { modalClients, messageSucessAddClient, userLog, modalEditeClients } =
     useMainContext();
   const [clients, setClients] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
 
-  const title = "Clientes";
+  const title = 'Clientes';
 
   const getClients = async () => {
     try {
       setRemovedLoad(false);
-      const { data } = await Axios.get("/clients", {
+      const { data } = await Axios.get('/clients', {
         headers: {
           Authorization: userLog.token,
         },
@@ -31,13 +33,12 @@ export default function ClientsPage() {
       setClients(data);
       setRemovedLoad(true);
     } catch (error) {
-      console.log(error);
       setRemovedLoad(true);
     }
   };
   useEffect(() => {
     getClients();
-  }, []);
+  }, [modalClients]);
 
   return (
     <div className="container-home ">

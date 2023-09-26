@@ -18,6 +18,11 @@ export function useMainContextProvider() {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  const [openEdith, setOpenEdith] = useState(false);
+  const handleOpenEdith = () => {
+    setOpenEdith((prevOpen) => !prevOpen);
+  };
+
   return {
     userLog,
     setUserLog,
@@ -32,10 +37,13 @@ export function useMainContextProvider() {
     setMessageFlash,
     handleOpen,
     open,
+    openEdith,
+    handleOpenEdith,
     messageSucessUpdateUser,
     setMessageSucessUpdateUser,
     modalEditeClients,
     setModalEditeClients,
+
   };
 }
 
