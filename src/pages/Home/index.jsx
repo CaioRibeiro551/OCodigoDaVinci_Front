@@ -9,9 +9,8 @@ import Axios from "../../services/api";
 import pagasImg from "../../assets/pagas.svg";
 import vencidasImg from "../../assets/vencidas.svg";
 import previstasIMG from "../../assets/previstas.png";
-import LoadingPage from "../../components/LoadingPage/index";
+import { ResumeLargeTable } from "../../components/ResumeLargeTable";
 import ResumeSmallTable from "../../components/ResumeSmallTable";
-import ResumeLargeTable from "../../components/ResumeLargeTable";
 
 const headerTitle = {
   header: "Resumo das cobranças",
@@ -23,7 +22,7 @@ const headerTitle = {
 };
 
 export default function Home() {
-  const [removeLoad, setRemovedLoad] = useState(true);
+
   const { modalTeste, userLog } = useMainContext();
   const [clients, setClients] = useState([]);
   const [charges, setCharges] = useState([]);

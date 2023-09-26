@@ -3,7 +3,7 @@ import "./style.css";
 import inadimplentesIMG from "../../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "../../assets/clientes-em-dia.svg";
 
-export default function ResumeLargeTable({ clients, header }) {
+export function ResumeLargeTable({ clients, header }) {
   return (
     <>
       <table className="resume-table ">

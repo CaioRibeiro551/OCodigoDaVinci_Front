@@ -4,13 +4,11 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
-
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
 import MenuTableClientDetail from "../../components/MenuTableClientDetail";
-
 import { useParams } from "react-router-dom";
-import ModalEditClients from "../../components/ModalEdithClients";
+import ModalEditClients from "../../components/ModalEditClients";
 
 function ClientDetail() {
   const title = "Clientes";
@@ -21,7 +19,6 @@ function ClientDetail() {
   const { userLog, handleOpen, open, handleOpenEdith, openEdith } =
     useMainContext();
 
-  const handleCloseModal = () => {};
   const [showClient, setShowClient] = useState();
   const [showCharges, setShowCharges] = useState([]);
 
@@ -39,7 +36,7 @@ function ClientDetail() {
     }
 
     getOne();
-  }, []);
+  }, [openEdith]);
 
   useEffect(() => {
     async function getCharges() {
