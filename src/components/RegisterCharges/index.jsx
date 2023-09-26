@@ -10,7 +10,7 @@ import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import { ValidationCharges } from "../../validation/ValidiationCharges";
 import InputMask from "react-input-mask";
 
-export default function RegisterCharges({ name, client_id }) {
+export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
   const { userLog, handleOpen } = useMainContext();
 
   const {
@@ -23,15 +23,16 @@ export default function RegisterCharges({ name, client_id }) {
   });
 
   const onSubmit = async (data) => {
-    const newCharge = { ...data, client_id };
+    const newCharge = { ...data, id: cobrancaReg.id };
 
     try {
-      await Api.post(`/clients/${client_id}/charges`, newCharge, {
+      await Api.post(`/clients/${cobrancaReg.id}/charges`, newCharge, {
         headers: {
           Authorization: userLog.token,
         },
       });
       handleOpen();
+      setOpenModalRegister(false);
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +54,12 @@ export default function RegisterCharges({ name, client_id }) {
 
         <div className="container-inputs">
           <label htmlFor="name">Nome *</label>
-          <input type="text" name="name" defaultValue={name} disabled />
+          <input
+            type="text"
+            name="name"
+            defaultValue={cobrancaReg.name}
+            disabled
+          />
         </div>
 
         <div className="container-inputs-2">

@@ -12,10 +12,13 @@ export function useMainContextProvider() {
 
   const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
 
+  const [openModalRegister, setOpenModalRegister] = useState(false);
+
   const [messageFlash, setMessageFlash] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
+    setOpenModalRegister(false);
   };
 
   const [openEdith, setOpenEdith] = useState(false);
@@ -43,7 +46,8 @@ export function useMainContextProvider() {
     setMessageSucessUpdateUser,
     modalEditeClients,
     setModalEditeClients,
-
+    openModalRegister,
+    setOpenModalRegister,
   };
 }
 
