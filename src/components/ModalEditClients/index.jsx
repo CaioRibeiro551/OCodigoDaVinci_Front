@@ -116,7 +116,7 @@ export default function ModalEditClients({ id, client }) {
         />
         <div className="container-title">
           <img src={IconClients} alt="icon client" />
-          <h1>Cadastro do cliente</h1>
+          <h1> Editar cliente</h1>
         </div>
 
         <div
