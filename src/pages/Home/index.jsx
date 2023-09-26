@@ -1,4 +1,4 @@
-import Modal from "../../components/ModalTeste";
+import Modal from "../../components/ModalEditUser";
 import Sidebar from "../../components/Sidebar/index";
 import TituloCobranca from "../../components/TituloCobranca";
 import Header from "../../components/Header/index";
