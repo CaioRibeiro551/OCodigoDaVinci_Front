@@ -2,22 +2,22 @@ import "./style.css";
 import CloseModal from "../../assets/close.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import IconClients from "../../assets/clients.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { validationAddClient } from "../../validation/validationAddClient";
 import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import MensagemFlash from "../../components/MensageFlash";
-import { validationEditClient } from "../../validation/validationEditClient ";
 
-export default function ModalEditeClients({ clients, setClients }) {
+export default function ModalEditClients({ id, client }) {
   const {
-    setModalEditeClients,
     userLog,
     setMessageSucessAddClient,
     messageFlash,
     setMessageFlash,
+    handleOpenEdith,
   } = useMainContext();
 
   const [text, setText] = useState(false);
@@ -27,6 +27,7 @@ export default function ModalEditeClients({ clients, setClients }) {
     city: "",
     state: "",
   });
+
   const [removeLoad, setRemovedLoad] = useState(true);
   const [removeLoadBtn, setRemovedLoadBtn] = useState(true);
 
@@ -35,7 +36,7 @@ export default function ModalEditeClients({ clients, setClients }) {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationEditClient),
+    resolver: yupResolver(validationAddClient),
   });
 
   const handleChange = ({ target }) => {
@@ -49,15 +50,14 @@ export default function ModalEditeClients({ clients, setClients }) {
   const createrUser = async (data) => {
     try {
       setRemovedLoadBtn(false);
-      await Api.patch(`/clients/${id}`, data, {
+      await Api.patch(`clients/${id}`, data, {
         headers: {
           Authorization: userLog.token,
         },
       });
       setRemovedLoadBtn(true);
       setMessageSucessAddClient(true);
-      setClients([...clients, data]);
-      handleCloseModal();
+      handleOpenEdith();
       return;
     } catch (error) {
       setRemovedLoadBtn(true);
@@ -69,8 +69,8 @@ export default function ModalEditeClients({ clients, setClients }) {
 
   const handleBuscaCep = async ({ target }) => {
     if (!target.value.trim()) {
-      setText("Digite um CEP");
-      setMessageFlash(true);
+      // setText("Digite um CEP");
+      // setMessageFlash(true);
       return;
     }
 
@@ -103,11 +103,7 @@ export default function ModalEditeClients({ clients, setClients }) {
       return;
     }
   };
-
-  const handleCloseModal = () => {
-    setModalEditeClients(false);
-    return;
-  };
+  console.log(client);
 
   return (
     <div className="backdrop">
@@ -116,7 +112,7 @@ export default function ModalEditeClients({ clients, setClients }) {
           className="closer"
           src={CloseModal}
           alt="Close"
-          onClick={handleCloseModal}
+          onClick={handleOpenEdith}
         />
         <div className="container-title">
           <img src={IconClients} alt="icon client" />
@@ -131,6 +127,7 @@ export default function ModalEditeClients({ clients, setClients }) {
             type="text"
             id="name"
             {...register("name")}
+            defaultValue={client.name}
             placeholder="Digite seu nome"
           />
           {errors.name && <span>{errors.name.message}</span>}
@@ -145,6 +142,7 @@ export default function ModalEditeClients({ clients, setClients }) {
             id="email"
             {...register("email")}
             placeholder="Digite seu email"
+            defaultValue={client.email}
           />
           {errors.email && (
             <span className="erros-inputs">{errors.email.message}</span>
@@ -161,6 +159,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               id="cpf"
               {...register("cpf")}
               placeholder="Digite seu CPF"
+              defaultValue={client.cpf}
             />
             {errors.cpf && (
               <span className="erros-inputs">{errors.cpf.message}</span>
@@ -176,6 +175,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               id="phone"
               {...register("phone")}
               placeholder="Digite seu telefone"
+              defaultValue={client.phone}
             />
             {errors.phone && (
               <span className="erros-inputs">{errors.phone.message}</span>
@@ -190,6 +190,7 @@ export default function ModalEditeClients({ clients, setClients }) {
             id="address"
             {...register("address")}
             placeholder="Digite seu endereço"
+            defaultValue={client.address}
           />
         </div>
         <div className="container-inputs">
@@ -213,6 +214,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               {...register("cep")}
               onBlur={handleBuscaCep}
               placeholder="Digite seu CEP"
+              defaultValue={client.cep}
             />
             {errors.cep && (
               <span className="erros-inputs">{errors.cep.message}</span>
@@ -228,6 +230,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               value={form.neighborhood}
               onChange={handleChange}
               placeholder="Digite seu bairro"
+              defaultValue={client.neighborhood}
             />
             {!removeLoad && <LoadingBtn />}
           </div>
@@ -243,6 +246,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               value={form.city}
               onChange={handleChange}
               placeholder="Digite sua cidade"
+              defaultValue={client.city}
             />
             {!removeLoad && <LoadingBtn />}
           </div>
@@ -256,6 +260,7 @@ export default function ModalEditeClients({ clients, setClients }) {
               value={form.state}
               onChange={handleChange}
               placeholder="Digite a UF"
+              defaultValue={client.state}
             />
             {!removeLoad && <LoadingBtn />}
           </div>
@@ -265,7 +270,7 @@ export default function ModalEditeClients({ clients, setClients }) {
           <button
             className="btn-cancel"
             type="button"
-            onClick={handleCloseModal}
+            onClick={handleOpenEdith}
           >
             Cancelar
           </button>

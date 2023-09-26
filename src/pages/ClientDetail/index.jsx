@@ -4,11 +4,11 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
-
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
 import MenuTableClientDetail from "../../components/MenuTableClientDetail";
 import { useParams } from "react-router-dom";
+import ModalEditClients from "../../components/ModalEditClients";
 
 function ClientDetail() {
   const title = "Clientes";
@@ -16,9 +16,9 @@ function ClientDetail() {
 
   const { id } = useParams();
 
-  const { userLog, handleOpen, open } = useMainContext();
+  const { userLog, handleOpen, open, handleOpenEdith, openEdith } =
+    useMainContext();
 
-  const handleCloseModal = () => {};
   const [showClient, setShowClient] = useState();
   const [showCharges, setShowCharges] = useState([]);
 
@@ -36,7 +36,7 @@ function ClientDetail() {
     }
 
     getOne();
-  }, []);
+  }, [openEdith]);
 
   useEffect(() => {
     async function getCharges() {
@@ -46,13 +46,11 @@ function ClientDetail() {
         });
 
         setShowCharges(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
 
     getCharges();
-  }, []);
+  }, [open]);
 
   return (
     <div className="container-home ">
@@ -66,7 +64,11 @@ function ClientDetail() {
             <div className="content-start">
               <div className="contents-title-detail">
                 <h2 className="medium-text ">Dados do cliente</h2>
-                <button className="btn-cancel btn-large" type="button">
+                <button
+                  onClick={handleOpenEdith}
+                  className="btn-cancel btn-large"
+                  type="button"
+                >
                   Editar Cliente
                 </button>
               </div>
@@ -119,6 +121,7 @@ function ClientDetail() {
               {open && (
                 <RegisterCharges name={showClient?.name} client_id={id} />
               )}
+              {openEdith && <ModalEditClients id={id} client={showClient} />}
             </div>
           </div>
           <FullTableCobranca cobrancas={showCharges} handleOpen={handleOpen} />

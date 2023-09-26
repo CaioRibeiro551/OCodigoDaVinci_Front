@@ -31,13 +31,12 @@ export default function ClientsPage() {
       setClients(data);
       setRemovedLoad(true);
     } catch (error) {
-      console.log(error);
       setRemovedLoad(true);
     }
   };
   useEffect(() => {
     getClients();
-  }, []);
+  }, [modalClients]);
 
   return (
     <div className="container-home ">

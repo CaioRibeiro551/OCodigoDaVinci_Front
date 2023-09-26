@@ -107,7 +107,7 @@ export default function Modal() {
             alt="Close"
             onClick={handleCloseModal}
           />
-          <h1>Adicione seus dados</h1>
+          <h1>Edite seus dados</h1>
 
           <div
             className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
