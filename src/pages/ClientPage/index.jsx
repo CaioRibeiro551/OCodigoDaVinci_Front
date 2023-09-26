@@ -29,7 +29,6 @@ export default function ClientsPage() {
       setClients(data);
       setRemovedLoad(true);
     } catch (error) {
-      console.log(error);
       setRemovedLoad(true);
     }
   };

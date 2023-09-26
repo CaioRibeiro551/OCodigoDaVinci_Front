@@ -2,44 +2,12 @@ import "./style.css";
 import iconeEdit from "../../assets/icone-edit.svg";
 import iconeExcluir from "../../assets/excluir.svg";
 import iconeCobranca from "../../assets/cobranca-icon.svg";
-import api from "../../services/api";
-import { useEffect, useState } from "react";
+
 import { useLocation } from "react-router-dom";
-import { useMainContext } from "../../hooks/useMainContext";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
 
-export default function FullTableCobranca({}) {
-  const [cobrancas, setCobrancas] = useState([]);
-  const [removeLoad, setRemovedLoad] = useState(true);
-  const { userLog, handleOpen } = useMainContext();
-
+export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    async function getCobrancas() {
-      try {
-        setRemovedLoad(true);
-        const response = await api.get(`/charges`, {
-          headers: { Authorization: `Bearer ${userLog.token}` },
-        });
-        const formattedCobrancas = response.data.map((item) => ({
-          ...item,
-          due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
-        }));
-        setCobrancas(formattedCobrancas);
-        setRemovedLoad(false);
-      } catch (error) {
-        console.log(error);
-        setRemovedLoad(false);
-      }
-    }
-
-    getCobrancas();
-  }, []);
-  if (removeLoad) {
-    return <Loading />;
-  }
   return (
     <div
       className={`${

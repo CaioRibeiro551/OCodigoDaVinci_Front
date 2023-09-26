@@ -19,7 +19,7 @@ export const validationSignUp = yup.object().shape({
     }),
   email: yup
     .string()
-    .required("Email é um campo obrigatório")
+    .required("O campo email é obrigatório")
     .min(8, "Email deve ter no mínimo 8 caracteres")
     .email("Formato de email inválido")
     .transform((email) => email.toLowerCase()),
@@ -28,10 +28,10 @@ export const validationSignUp = yup.object().shape({
 export const validationPasswordSignUp = yup.object().shape({
   password: yup
     .string()
-    .required("A senha é obrigatória.")
-    .min(6, "A senha deve ter pelo menos 6 caracteres"),
+    .required("O compo senha é obrigatório.")
+    .min(6, "O campo senha deve ter no minimo 6 caracteres"),
   confirmPassword: yup
     .string()
-    .required("A repetição da senha é obrigatória.")
-    .oneOf([yup.ref("password"), null], "As senhas devem ser iguais"),
+    .required("O compo repetir a senha é obrigatório.")
+    .oneOf([yup.ref("password"), null], "As senha não coincidem"),
 });

@@ -2,7 +2,6 @@ import "./style.css";
 import CloseModal from "../../assets/close.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import clients from "../../assets/clients.svg";
-import { useState } from "react";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,12 +9,15 @@ import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import { ValidationCharges } from "../../validation/ValidiationCharges";
 
+import InputMask from "react-input-mask";
+
 export default function RegisterCharges({ name, client_id }) {
   const { userLog, handleOpen } = useMainContext();
-  console.log(client_id);
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(ValidationCharges),
@@ -30,8 +32,9 @@ export default function RegisterCharges({ name, client_id }) {
           Authorization: userLog.token,
         },
       });
+      handleOpen();
     } catch (error) {
-      console.log(error.response);
+      console.error(error);
     }
   };
 
@@ -71,25 +74,25 @@ export default function RegisterCharges({ name, client_id }) {
         <div className="container-cpf-telefone">
           <div className="container-inputs">
             <label htmlFor="date">Vencimento *</label>
-            <input
+            <InputMask
               className=" input-description"
-              type="date"
-              {...register("due_date")}
+              mask="99/99/9999"
               placeholder="Data de Vencimento"
+              {...register("due_date")}
             />
             {errors.due_date && (
-              <span className="error">{errors.due_date.message}</span>
+              <span className="error">{errors.due_date?.message}</span>
             )}
           </div>
           <div className="container-inputs">
             <label htmlFor="value">Valor*</label>
             <input
               type="text"
-              {...register("value")}
               placeholder="Digite o Valor"
+              {...register("value")}
             />
-            {errors.due_date && (
-              <span className="error">{errors.due_date.message}</span>
+            {errors.value && (
+              <span className="error">{errors.value.message}</span>
             )}
           </div>
         </div>

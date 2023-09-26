@@ -52,7 +52,7 @@ function ClientDetail() {
     }
 
     getCharges();
-  }, []);
+  }, [open]);
 
   return (
     <div className="container-home ">
