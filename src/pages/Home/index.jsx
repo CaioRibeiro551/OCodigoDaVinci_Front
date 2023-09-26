@@ -22,7 +22,7 @@ const headerTitle = {
 };
 
 export default function Home() {
-  const [removeLoad, setRemovedLoad] = useState(true);
+
   const { modalTeste, userLog } = useMainContext();
   const [clients, setClients] = useState([]);
   const [charges, setCharges] = useState([]);

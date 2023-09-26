@@ -6,32 +6,42 @@ import MenuTableCobranca from "../../components/MenuTableCobranca";
 import FullTableCobranca from "../../components/FullTableCobranca";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useState, useEffect } from "react";
-import Axios from "../../services/api";
+
+import api from "../../services/api";
+import { format } from "date-fns";
+import Loading from "../../components/LoadingPage";
 
 export default function CobrancaPage() {
-  const { modalClients, userLog } = useMainContext();
+  const { modalClients, userLog, handleOpen } = useMainContext();
   const title = "Cobranças";
 
   const [cobrancas, setCobrancas] = useState([]);
-  const [remoLoad, setRemovedLoad] = useState(true);
+  const [removeLoad, setRemovedLoad] = useState(true);
 
   useEffect(() => {
     async function getCobrancas() {
       try {
-        setRemovedLoad(false);
-        const response = await Axios.get(`/charges`, {
+        setRemovedLoad(true);
+        const response = await api.get(`/charges`, {
           headers: { Authorization: `Bearer ${userLog.token}` },
         });
-        setRemovedLoad(true);
-        setCobrancas(response.data);
+        const formattedCobrancas = response.data.map((item) => ({
+          ...item,
+          due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
+        }));
+        setCobrancas(formattedCobrancas);
+        setRemovedLoad(false);
       } catch (error) {
-        setRemovedLoad(true);
         console.log(error);
+        setRemovedLoad(false);
       }
     }
 
     getCobrancas();
   }, []);
+  if (removeLoad) {
+    return <Loading />;
+  }
 
   return (
     <div className="container-home ">
@@ -41,7 +51,7 @@ export default function CobrancaPage() {
 
         <div className="container-clients">
           <MenuTableCobranca />
-          <FullTableCobranca cobrancas={cobrancas} />
+          <FullTableCobranca cobrancas={cobrancas} handleOpen={handleOpen} />
         </div>
         {modalClients && <ModalClients />}
       </div>
