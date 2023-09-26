@@ -10,8 +10,6 @@ import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import { ValidationCharges } from "../../validation/ValidiationCharges";
 import InputMask from "react-input-mask";
 
-import InputMask from "react-input-mask";
-
 export default function RegisterCharges({ name, client_id }) {
   const { userLog, handleOpen } = useMainContext();
 
