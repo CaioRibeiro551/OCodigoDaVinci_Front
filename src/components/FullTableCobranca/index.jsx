@@ -1,30 +1,27 @@
-
-import './style.css';
-import iconeEdit from '../../assets/icone-edit.svg';
-import iconeExcluir from '../../assets/excluir.svg';
-import iconeCobranca from '../../assets/cobranca-icon.svg';
-import api from '../../services/api';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useMainContext } from '../../hooks/useMainContext';
-import { format } from 'date-fns';
-import Loading from '../../components/LoadingPage';
-
+import "./style.css";
+import iconeEdit from "../../assets/icone-edit.svg";
+import iconeExcluir from "../../assets/excluir.svg";
+import iconeCobranca from "../../assets/cobranca-icon.svg";
+import api from "../../services/api";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useMainContext } from "../../hooks/useMainContext";
+import { format } from "date-fns";
+import Loading from "../../components/LoadingPage";
 
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
 
-
   return (
     <div
       className={`${
-        pathname === '/cobrancas'
-          ? 'container-full-table'
-          : 'container-resume-table'
+        pathname === "/cobrancas"
+          ? "container-full-table"
+          : "container-resume-table"
       }`}
     >
       <table className="full-table">
-        {pathname !== '/cobrancas' && (
+        {pathname !== "/cobrancas" && (
           <caption>
             <div>
               <div>
@@ -45,7 +42,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         <thead className="relative-text">
           <tr>
             <th>
-              {' '}
+              {" "}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -64,7 +61,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         <tbody className="small-text">
           {cobrancas.map((item) => (
             <tr key={item.id}>
-              {pathname === '/cobrancas' && <td>{item.client_name}</td>}
+              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
               <td>
                 <span>{item.id}</span>
               </td>
@@ -73,13 +70,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === 'Pendente'
-                      ? 'pendente'
-                      : item.status === 'Paga'
-                      ? 'paga'
-                      : item.status === 'Vencida'
-                      ? 'vencida'
-                      : 'status-outro'
+                    item.status === "Pendente"
+                      ? "pendente"
+                      : item.status === "Paga"
+                      ? "paga"
+                      : item.status === "Vencida"
+                      ? "vencida"
+                      : "status-outro"
                   }`}
                 >
                   {item.status}
