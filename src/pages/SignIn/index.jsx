@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../services/api";
@@ -7,8 +7,10 @@ import { useForm } from "react-hook-form";
 import { validationSignIn } from "../../validation/ValidationSignIn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MessageFlash from "../../components/MensageFlash";
+import LoadButton from "../../components/LoadButton";
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
   const {
     register,
@@ -24,16 +26,23 @@ export default function SignIn() {
 
   async function onSubmit(data) {
     try {
+      setIsLoading(true);
       const responde = await Axios.post("/login", data);
+      console.log(responde);
       setUserLog({
         id: responde.data.id,
         name: responde.data.name,
+        email: responde.data.email,
+        cpf: responde.data.cpf,
+        phone: responde.data.phone,
         token: responde.data.token,
       });
       navigate("/home");
     } catch (error) {
       setMessageFlash(true);
-      useText(error.response.data.message);
+      setText(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -68,7 +77,9 @@ export default function SignIn() {
                 <span className="error">{errors.password?.message}</span>
               )}
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? <LoadButton /> : "Entrar"}
+            </button>
 
             <p>
               Ainda não possui conta?<Link to="/signup"> Cadastre-se</Link>

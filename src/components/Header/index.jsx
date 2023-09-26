@@ -7,12 +7,18 @@ import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import Modal from "../ModalTeste/index";
+import Modal from "../../components/ModalEditUser";
 import ConfirmationModal from "../ConfirmationModal";
+import MessageSucessUpdateUser from "../MensageSucessUpdateUser";
 
 export default function Header({ title, subtitle }) {
-  const { setModalTeste, removeUserLog, userLog, modalTeste } =
-    useMainContext();
+  const {
+    setModalTeste,
+    removeUserLog,
+    userLog,
+    modalTeste,
+    messageSucessUpdateUser,
+  } = useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
@@ -69,18 +75,21 @@ export default function Header({ title, subtitle }) {
             </p>
             <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
             {openMineModal && (
-              <div>
-                <div className="button-edit">
-                  <img className="polygon-item" src={iconePolygon} alt="" />
-                  <div className="button-item">
-                    <img src={iconeEdit} alt="" onClick={handleModal} />
-                    <p>Editar</p>
-                  </div>
-                  <div className="button-item">
-                    <img src={iconeQuit} alt="" onClick={handleLogout} />
-                    <p>Sair</p>
-                  </div>
+              <div className="button-edit">
+                <img className="polygon-item" src={iconePolygon} alt="" />
+                <div className="button-item">
+                  <img src={iconeEdit} alt="" onClick={handleModal} />
+                  <p>Editar</p>
                 </div>
+                <div className="button-item">
+                  <img src={iconeQuit} alt="" onClick={handleLogout} />
+                  <p>Sair</p>
+                </div>
+                <ConfirmationModal
+                  isOpen={isConfirmationModalOpen}
+                  onCancel={cancelLogout}
+                  onConfirm={confirmLogout}
+                />
               </div>
             )}
           </div>
@@ -88,11 +97,7 @@ export default function Header({ title, subtitle }) {
       </header>
       {modalTeste ? <Modal /> : ""}
 
-      <ConfirmationModal
-        isOpen={isConfirmationModalOpen}
-        onCancel={cancelLogout}
-        onConfirm={confirmLogout}
-      />
+      {messageSucessUpdateUser && <MessageSucessUpdateUser />}
     </>
   );
 }

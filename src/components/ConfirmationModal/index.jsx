@@ -6,7 +6,7 @@ export default function ConfirmationModal({ isOpen, onCancel, onConfirm }) {
 
   return (
     <div className="confirmation-modal">
-      <p>Deseja realmente sair?</p>
+      <p>Deseja sair?</p>
       <div className="buttons-logout">
         <button onClick={onCancel}>Não</button>
         <button onClick={onConfirm}>Sim</button>
