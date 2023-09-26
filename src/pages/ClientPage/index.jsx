@@ -46,11 +46,11 @@ export default function ClientsPage() {
         <div className="container-clients">
           <MenuTableClients />
           <FullTableClients lista={clients} />
-          {!removeLoad && <LoadingPage />}
         </div>
         {modalClients && <ModalClients />}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
+      {!removeLoad && <LoadingPage />}
     </div>
   );
 }

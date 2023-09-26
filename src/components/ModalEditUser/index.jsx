@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import CloseModal from '../../assets/close.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import api from '../../services/api';
-import { validationEditUser } from '../../validation/validationEditUser';
-import LoadButton from '../../components/LoadButton/';
+import React, { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import CloseModal from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import api from "../../services/api";
+import { validationEditUser } from "../../validation/validationEditUser";
+import LoadButton from "../../components/LoadButton/";
+import "./style.css";
 
 export default function Modal() {
-  const { setModalTeste, userLog, setUserLog } = useMainContext();
+  const {
+    setModalTeste,
+    userLog,
+    setUserLog,
+    modalTeste,
+    setMessageSucessUpdateUser,
+  } = useMainContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -19,14 +26,21 @@ export default function Modal() {
   } = useForm({
     resolver: yupResolver(validationEditUser),
     defaultValues: {
-      name: userLog.name || '',
-      email: userLog.email || '',
-      cpf: userLog.cpf || '',
-      phone: userLog.phone || '',
-      newPassword: '',
-      password: '',
+      name: userLog.name || "",
+      email: userLog.email || "",
+      cpf: userLog.cpf.trim() || "",
+      phone: userLog.phone || "",
+      newPassword: "",
+      password: "",
     },
   });
+
+  const hadleChange = ({ target }) => {
+    const key = target.name;
+    const value = target.value;
+    setUserData({ ...userData, [key]: value });
+    return;
+  };
 
   const handleCloseModal = () => {
     setModalTeste(false);
@@ -34,16 +48,23 @@ export default function Modal() {
 
   const onSubmit = async (data) => {
     setIsLoading(true);
+    const cpf = data.cpf.replaceAll(".", "").replace("-", "");
+    const user = { ...data, cpf };
     try {
-      const response = await api.patch('/update-me', data, {
+      const response = await api.patch("/update-me", user, {
         headers: {
           Authorization: userLog.token,
         },
       });
+
+      setUserLog({ ...userLog, ...user });
+      setModalTeste(false);
+      setIsLoading(false);
+      setMessageSucessUpdateUser(true);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      setError('root', {
+      setError("root", {
         serverError: {
           type: error.response.status,
           message: error.response.data.message,
@@ -53,16 +74,16 @@ export default function Modal() {
 
     const validateFormData = async (data) => {
       try {
-        await Axios.post('/validate-email', {
+        await Axios.post("/validate-email", {
           email: data.email,
         });
 
         setStepIndex(stepIndex + 1);
       } catch (error) {
-        setError('root', {
+        setError("root", {
           serverError: {
             type: error.response.status,
-            message: 'O email já está cadastrado',
+            message: "O email já está cadastrado",
           },
         });
       }
@@ -79,11 +100,18 @@ export default function Modal() {
   return (
     <>
       <div className="backdrop">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <img src={CloseModal} alt="Close" onClick={handleCloseModal} />
+        <form className="form-edite-user" onSubmit={handleSubmit(onSubmit)}>
+          <img
+            className="closer"
+            src={CloseModal}
+            alt="Close"
+            onClick={handleCloseModal}
+          />
           <h1>Adicione seus dados</h1>
 
-          <div className="container-inputs">
+          <div
+            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
+          >
             <label htmlFor="name">Nome *</label>
             <Controller
               name="name"
@@ -97,7 +125,9 @@ export default function Modal() {
             )}
           </div>
 
-          <div className="container-inputs">
+          <div
+            className={`container-inputs ${errors.email ? "erros-inputs" : ""}`}
+          >
             <label htmlFor="email">E-mail *</label>
             <Controller
               name="email"
@@ -118,7 +148,9 @@ export default function Modal() {
           </div>
 
           <div className="container-cpf-telefone">
-            <div className="container-inputs">
+            <div
+              className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
+            >
               <label htmlFor="cpf">CPF</label>
               <Controller
                 name="cpf"
@@ -131,7 +163,12 @@ export default function Modal() {
                 <span className="error">{errors.cpf.message}</span>
               )}
             </div>
-            <div className="container-inputs">
+
+            <div
+              className={`container-inputs ${
+                errors.phone ? "erros-inputs" : ""
+              }`}
+            >
               <label htmlFor="telefone">Telefone</label>
               <Controller
                 name="phone"
@@ -150,7 +187,11 @@ export default function Modal() {
             </div>
           </div>
 
-          <div className="container-inputs">
+          <div
+            className={`container-inputs ${
+              errors.newPassword ? "erros-inputs" : ""
+            }`}
+          >
             <label htmlFor="newPassword">Nova senha</label>
             <Controller
               name="newPassword"
@@ -168,7 +209,11 @@ export default function Modal() {
             )}
           </div>
 
-          <div className="container-inputs">
+          <div
+            className={`container-inputs ${
+              errors.password ? "erros-inputs" : ""
+            }`}
+          >
             <label htmlFor="password">Confirmar senha</label>
             <Controller
               name="password"
