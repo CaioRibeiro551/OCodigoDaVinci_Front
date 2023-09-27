@@ -1,14 +1,14 @@
 .container-details-charges {
-  width: 100vw;
+  width: 92.5vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
   position: fixed;
   bottom: 0;
-  right: 0;
-  z-index: 5;
+  left: 7.5vw;
   color: #3f3f55;
   font-size: 1.6rem;
   font-style: normal;
