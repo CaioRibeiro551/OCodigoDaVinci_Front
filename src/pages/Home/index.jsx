@@ -11,7 +11,7 @@ import vencidasImg from '../../assets/vencidas.svg';
 import previstasIMG from '../../assets/previstas.png';
 import { ResumeLargeTable } from '../../components/ResumeLargeTable';
 import ResumeSmallTable from '../../components/ResumeSmallTable';
-import Menssage from '../../components/MensageExcluirCobranca';
+import Menssage from '../../components/MensagemErroExclusaoCobranca';
 
 const headerTitle = {
   header: 'Resumo das cobranças',
@@ -145,6 +145,7 @@ export default function Home() {
                 header={headerTitle.Inadimplente}
               />
             </div>
+            <Menssage />
           </div>
         </div>
       </div>
