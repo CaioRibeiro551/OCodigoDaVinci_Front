@@ -17,7 +17,6 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
 
   const OpenDetailsCharge = (e, item) => {
     const valid = e.target.tagName;
-    console.log(valid);
     if (valid === "SPAN" || valid === "IMG") {
       return;
     }
