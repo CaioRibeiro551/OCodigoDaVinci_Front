@@ -7,30 +7,34 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
-import { ValidationCharges } from "../../validation/ValidiationCharges";
+import { ValidationEditCharges } from "../../validation/ValidiationEditCharges";
 import InputMask from "react-input-mask";
 
-export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
+export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
   const { userLog, handleOpen } = useMainContext();
-  console.log(cobrancaReg);
+
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(ValidationCharges),
+    resolver: yupResolver(ValidationEditCharges),
   });
 
   const onSubmit = async (data) => {
     const newCharge = { ...data, id: cobrancaReg.id };
 
     try {
-      await Api.post(`/clients/${cobrancaReg.id}/charges`, newCharge, {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
+      await Api.patch(
+        ` "/clients/:client_id/charges/:id" /clients/${cobrancaReg.id}/`,
+        newCharge,
+        {
+          headers: {
+            Authorization: userLog.token,
+          },
+        }
+      );
       handleOpen();
       setOpenModalRegister(false);
     } catch (error) {
@@ -49,7 +53,7 @@ export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
         />
         <div className="container-title">
           <img src={clients} alt="icon client" />
-          <h1>Cadastro de Cobrança</h1>
+          <h1>Edição de Cobrança</h1>
         </div>
 
         <div className="container-inputs">

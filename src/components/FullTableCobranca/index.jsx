@@ -8,9 +8,23 @@ import { useLocation } from "react-router-dom";
 import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
+import DetailsCharges from "../DetailsCharges";
 
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
+  const [detailsItem, setDetailsItem] = useState({});
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const OpenDetailsCharge = (e, item) => {
+    const valid = e.target.tagName;
+    console.log(valid);
+    if (valid === "SPAN" || valid === "IMG") {
+      return;
+    }
+    setDetailsItem(item);
+    setOpenDetails(true);
+    return;
+  };
 
   return (
     <div
@@ -60,7 +74,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         </thead>
         <tbody className="small-text">
           {cobrancas.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
               <td>
                 <span>{item.id}</span>
@@ -98,6 +112,9 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
           ))}
         </tbody>
       </table>
+      {openDetails && (
+        <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
+      )}
     </div>
   );
 }
