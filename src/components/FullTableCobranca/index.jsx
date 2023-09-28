@@ -1,4 +1,3 @@
-
 import "./style.css";
 import iconeEdit from "../../assets/icone-edit.svg";
 import iconeExcluir from "../../assets/excluir.svg";
@@ -11,15 +10,19 @@ import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
 import DetailsCharges from "../DetailsCharges";
 
-
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
 
   const OpenDetailsCharge = (e, item) => {
-    const valid = e.target.tagName;
-    if (valid === "SPAN" || valid === "IMG") {
+    const valid = e.target.classList;
+
+    if (
+      valid[0] === "icon-item" ||
+      valid[0] === "delete" ||
+      valid[0] === "edit"
+    ) {
       return;
     }
     setDetailsItem(item);
@@ -30,13 +33,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
   return (
     <div
       className={`${
-        pathname === '/cobrancas'
-          ? 'container-full-table'
-          : 'container-resume-table'
+        pathname === "/cobrancas"
+          ? "container-full-table"
+          : "container-resume-table"
       }`}
     >
       <table className="full-table">
-        {pathname !== '/cobrancas' && (
+        {pathname !== "/cobrancas" && (
           <caption>
             <div>
               <div>
@@ -57,7 +60,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         <thead className="relative-text">
           <tr>
             <th>
-              {' '}
+              {" "}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -75,7 +78,6 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         </thead>
         <tbody className="small-text">
           {cobrancas.map((item) => (
-
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
 
@@ -87,13 +89,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === 'Pendente'
-                      ? 'pendente'
-                      : item.status === 'Paga'
-                      ? 'paga'
-                      : item.status === 'Vencida'
-                      ? 'vencida'
-                      : 'status-outro'
+                    item.status === "Pendente"
+                      ? "pendente"
+                      : item.status === "Paga"
+                      ? "paga"
+                      : item.status === "Vencida"
+                      ? "vencida"
+                      : "status-outro"
                   }`}
                 >
                   {item.status}
@@ -102,13 +104,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
               <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
-                <p>
-                  <img src={iconeEdit} alt="Editar" />
-                  <span>Editar </span>
+                <p className="edit">
+                  <img className="edit" src={iconeEdit} alt="Editar" />
+                  <span className="edit">Editar </span>
                 </p>
-                <p>
-                  <img src={iconeExcluir} alt="Excluir" />
-                  <span>Excluir </span>
+                <p className="delete">
+                  <img className="delete" src={iconeExcluir} alt="Excluir" />
+                  <span className="delete">Excluir </span>
                 </p>
               </td>
             </tr>
