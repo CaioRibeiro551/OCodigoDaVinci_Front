@@ -29,7 +29,7 @@
 }
 
 .full-table-2 th {
-  column-span: '2';
+  column-span: "2";
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -95,7 +95,7 @@
   height: 20px;
 }
 .icon-item p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   margin-top: 5px;
   font-size: 12px;
   text-align: center;
@@ -110,23 +110,25 @@
 .hovered {
   background-color: white;
 }
+
+.pendente,
+.paga,
+.vencida {
+  padding: 2px 12px;
+  border-radius: 8px;
+}
+
 .pendente {
-  background-color: #ede4b4;
+  background-color: #fcf6dc;
   color: #c5a605;
-  border-radius: 15px;
-  width: 60%;
 }
 
 .paga {
-  background-color: #c6fcff;
+  background-color: #eef6f6;
   color: #1fa7af;
-  border-radius: 15px;
-  width: 60%;
 }
 
 .vencida {
-  background-color: #ffbfbf;
-  border-radius: 15px;
-  width: 60%;
+  background-color: #ffefef;
   color: #971d1d;
 }
