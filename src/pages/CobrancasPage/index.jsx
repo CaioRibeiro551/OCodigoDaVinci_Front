@@ -1,19 +1,19 @@
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import "./style.css";
-import ModalClients from "../../components/ModalClients";
-import MenuTableCobranca from "../../components/MenuTableCobranca";
-import FullTableCobranca from "../../components/FullTableCobranca";
-import { useMainContext } from "../../hooks/useMainContext";
-import { useState, useEffect } from "react";
+import Header from '../../components/Header';
+import Sidebar from '../../components/Sidebar';
+import './style.css';
+import ModalClients from '../../components/ModalClients';
+import MenuTableCobranca from '../../components/MenuTableCobranca';
+import FullTableCobranca from '../../components/FullTableCobranca';
+import { useMainContext } from '../../hooks/useMainContext';
+import { useState, useEffect } from 'react';
 
-import api from "../../services/api";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
+import api from '../../services/api';
+import { format } from 'date-fns';
+import Loading from '../../components/LoadingPage';
 
 export default function CobrancaPage() {
   const { modalClients, userLog, handleOpen } = useMainContext();
-  const title = "Cobranças";
+  const title = 'Cobranças';
 
   const [cobrancas, setCobrancas] = useState([]);
   const [removeLoad, setRemovedLoad] = useState(true);
@@ -27,7 +27,7 @@ export default function CobrancaPage() {
         });
         const formattedCobrancas = response.data.map((item) => ({
           ...item,
-          due_date: format(new Date(item.due_date), "dd/MM/yyyy"),
+          due_date: format(new Date(item.due_date), 'dd/MM/yyyy'),
         }));
         setCobrancas(formattedCobrancas);
         setRemovedLoad(false);
@@ -51,7 +51,11 @@ export default function CobrancaPage() {
 
         <div className="container-clients">
           <MenuTableCobranca />
-          <FullTableCobranca cobrancas={cobrancas} handleOpen={handleOpen} />
+          <FullTableCobranca
+            cobrancas={cobrancas}
+            handleOpen={handleOpen}
+            setCobrancas={setCobrancas}
+          />
         </div>
         {modalClients && <ModalClients />}
       </div>

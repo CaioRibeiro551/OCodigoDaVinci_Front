@@ -1,27 +1,40 @@
-import "./style.css";
-import iconeEdit from "../../assets/icone-edit.svg";
-import iconeExcluir from "../../assets/excluir.svg";
-import iconeCobranca from "../../assets/cobranca-icon.svg";
-import api from "../../services/api";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useMainContext } from "../../hooks/useMainContext";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
-import DetailsCharges from "../DetailsCharges";
+import './style.css';
+import iconeEdit from '../../assets/icone-edit.svg';
+import iconeExcluir from '../../assets/excluir.svg';
+import iconeCobranca from '../../assets/cobranca-icon.svg';
+import api from '../../services/api';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { format } from 'date-fns';
+import Loading from '../../components/LoadingPage';
+import DetailsCharges from '../DetailsCharges';
+import MenssagemConfirm from '../../components/MensageExcluirCobranca'; // Certifique-se de usar o nome correto do componente
+import { useMainContext } from '../../hooks/useMainContext';
 
-export default function FullTableCobranca({ cobrancas, handleOpen }) {
+export default function FullTableCobranca({
+  cobrancas,
+  handleOpen,
+  setCobrancas,
+}) {
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
+  const [currentIdCobranca, setcurrentIdCobranca] = useState(null);
+  const { userLog, cobrancaExcluir, setCobrancaExcluir } = useMainContext();
+
+  const handleExibirModal = (id) => {
+    setcurrentIdCobranca(id);
+    setCobrancaExcluir(true);
+    return;
+  };
 
   const OpenDetailsCharge = (e, item) => {
     const valid = e.target.classList;
 
     if (
-      valid[0] === "icon-item" ||
-      valid[0] === "delete" ||
-      valid[0] === "edit"
+      valid[0] === 'icon-item' ||
+      valid[0] === 'delete' ||
+      valid[0] === 'edit'
     ) {
       return;
     }
@@ -29,17 +42,17 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
     setOpenDetails(true);
     return;
   };
-
+  useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div
       className={`${
-        pathname === "/cobrancas"
-          ? "container-full-table"
-          : "container-resume-table"
+        pathname === '/cobrancas'
+          ? 'container-full-table'
+          : 'container-resume-table'
       }`}
     >
       <table className="full-table">
-        {pathname !== "/cobrancas" && (
+        {pathname !== '/cobrancas' && (
           <caption>
             <div>
               <div>
@@ -60,7 +73,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         <thead className="relative-text">
           <tr>
             <th>
-              {" "}
+              {' '}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -79,7 +92,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         <tbody className="small-text">
           {cobrancas.map((item) => (
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
-              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+              {pathname === '/cobrancas' && <td>{item.client_name}</td>}
 
               <td>
                 <span>{item.id}</span>
@@ -89,13 +102,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === "Pendente"
-                      ? "pendente"
-                      : item.status === "Paga"
-                      ? "paga"
-                      : item.status === "Vencida"
-                      ? "vencida"
-                      : "status-outro"
+                    item.status === 'Pendente'
+                      ? 'pendente'
+                      : item.status === 'Paga'
+                      ? 'paga'
+                      : item.status === 'Vencida'
+                      ? 'vencida'
+                      : 'status-outro'
                   }`}
                 >
                   {item.status}
@@ -108,7 +121,10 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
                   <img className="edit" src={iconeEdit} alt="Editar" />
                   <span className="edit">Editar </span>
                 </p>
-                <p className="delete">
+                <p
+                  className="delete"
+                  onClick={() => handleExibirModal(item.id)}
+                >
                   <img className="delete" src={iconeExcluir} alt="Excluir" />
                   <span className="delete">Excluir </span>
                 </p>
@@ -119,6 +135,14 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
       </table>
       {openDetails && (
         <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
+      )}
+
+      {cobrancaExcluir && (
+        <MenssagemConfirm
+          currentIdCobranca={currentIdCobranca}
+          setCobrancas={setCobrancas}
+          cobrancas={cobrancas}
+        />
       )}
     </div>
   );
