@@ -42,6 +42,7 @@ export default function FullTableCobranca({
     setOpenDetails(true);
     return;
   };
+  console.log(cobrancas);
   useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div
@@ -94,11 +95,10 @@ export default function FullTableCobranca({
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
               {pathname === '/cobrancas' && <td>{item.client_name}</td>}
 
-              <td>
-                <span>{item.id}</span>
-              </td>
-              <td>{item.value}</td>
+              <td>{item.id}</td>
+              <td>R$ {item.value}</td>
               <td>{item.due_date}</td>
+
               <td>
                 <span
                   className={`status-cell ${

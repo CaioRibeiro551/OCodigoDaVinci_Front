@@ -49,14 +49,15 @@ export default function CobrancaPage() {
       <div className="caitainer-back">
         <Header title={title} />
 
-        <div className="container-clients">
+        <main className="container-clients">
           <MenuTableCobranca />
           <FullTableCobranca
             cobrancas={cobrancas}
             handleOpen={handleOpen}
             setCobrancas={setCobrancas}
           />
-        </div>
+        </main>
+
         {modalClients && <ModalClients />}
       </div>
     </div>

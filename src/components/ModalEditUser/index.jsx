@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import CloseModal from "../../assets/close.svg";
-import { useMainContext } from "../../hooks/useMainContext";
-import api from "../../services/api";
-import { validationEditUser } from "../../validation/validationEditUser";
-import LoadButton from "../../components/LoadButton/";
-import "./style.css";
+import React, { useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import CloseModal from '../../assets/close.svg';
+import { useMainContext } from '../../hooks/useMainContext';
+import api from '../../services/api';
+import { validationEditUser } from '../../validation/validationEditUser';
+import LoadButton from '../../components/LoadButton/';
+import './style.css';
+// import ReactInputMask from "react-input-mask";
 
 export default function Modal() {
   const {
@@ -26,45 +27,40 @@ export default function Modal() {
   } = useForm({
     resolver: yupResolver(validationEditUser),
     defaultValues: {
-      name: userLog.name || "",
-      email: userLog.email || "",
-      cpf: userLog.cpf.trim() || "",
-      phone: userLog.phone || "",
-      newPassword: "",
-      password: "",
+      name: userLog.name || '',
+      email: userLog.email || '',
+      cpf: userLog.cpf.trim() || '',
+      phone: userLog.phone || '',
+      newPassword: '',
+      password: '',
     },
   });
-
-  const hadleChange = ({ target }) => {
-    const key = target.name;
-    const value = target.value;
-    setUserData({ ...userData, [key]: value });
-    return;
-  };
 
   const handleCloseModal = () => {
     setModalTeste(false);
   };
 
   const onSubmit = async (data) => {
+    if (data.email !== userLog.email) {
+      validateFormData(data);
+    }
+
     setIsLoading(true);
-    const cpf = data.cpf.replaceAll(".", "").replace("-", "");
-    const user = { ...data, cpf };
     try {
-      const response = await api.patch("/update-me", user, {
+      await api.patch('/update-me', data, {
         headers: {
           Authorization: userLog.token,
         },
       });
 
-      setUserLog({ ...userLog, ...user });
+      setUserLog({ ...userLog, ...data });
       setModalTeste(false);
       setIsLoading(false);
       setMessageSucessUpdateUser(true);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      setError("root", {
+      setError('root', {
         serverError: {
           type: error.response.status,
           message: error.response.data.message,
@@ -74,16 +70,16 @@ export default function Modal() {
 
     const validateFormData = async (data) => {
       try {
-        await Axios.post("/validate-email", {
+        await Axios.post('/validate-email', {
           email: data.email,
         });
 
         setStepIndex(stepIndex + 1);
       } catch (error) {
-        setError("root", {
+        setError('root', {
           serverError: {
             type: error.response.status,
-            message: "O email já está cadastrado",
+            message: 'O email já está cadastrado',
           },
         });
       }
@@ -110,7 +106,7 @@ export default function Modal() {
           <h1>Edite seus dados</h1>
 
           <div
-            className={`container-inputs ${errors.name ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.name ? 'erros-inputs' : ''}`}
           >
             <label htmlFor="name">Nome *</label>
             <Controller
@@ -126,7 +122,7 @@ export default function Modal() {
           </div>
 
           <div
-            className={`container-inputs ${errors.email ? "erros-inputs" : ""}`}
+            className={`container-inputs ${errors.email ? 'erros-inputs' : ''}`}
           >
             <label htmlFor="email">E-mail *</label>
             <Controller
@@ -149,14 +145,18 @@ export default function Modal() {
 
           <div className="container-cpf-telefone">
             <div
-              className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
+              className={`container-inputs ${errors.cpf ? 'erros-inputs' : ''}`}
             >
               <label htmlFor="cpf">CPF</label>
               <Controller
                 name="cpf"
                 control={control}
                 render={({ field }) => (
-                  <input type="text" {...field} placeholder="Digite seu CPF" />
+                  <ReactInputMask
+                    mark="999.999.999-99"
+                    {...field}
+                    placeholder="Digite seu CPF"
+                  />
                 )}
               />
               {errors.cpf && (
@@ -166,7 +166,7 @@ export default function Modal() {
 
             <div
               className={`container-inputs ${
-                errors.phone ? "erros-inputs" : ""
+                errors.phone ? 'erros-inputs' : ''
               }`}
             >
               <label htmlFor="telefone">Telefone</label>
@@ -189,7 +189,7 @@ export default function Modal() {
 
           <div
             className={`container-inputs ${
-              errors.newPassword ? "erros-inputs" : ""
+              errors.newPassword ? 'erros-inputs' : ''
             }`}
           >
             <label htmlFor="newPassword">Nova senha</label>
@@ -211,7 +211,7 @@ export default function Modal() {
 
           <div
             className={`container-inputs ${
-              errors.password ? "erros-inputs" : ""
+              errors.password ? 'erros-inputs' : ''
             }`}
           >
             <label htmlFor="password">Confirmar senha</label>

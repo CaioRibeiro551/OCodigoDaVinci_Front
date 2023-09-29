@@ -78,7 +78,7 @@ header {
 .button-edit {
   position: absolute;
   right: -25px;
-  top: 30px;
+  top: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -126,9 +126,9 @@ header {
   top: -9px;
 }
 
-.text-client {
-  color: #0e8750;
-
+.text-client,
+h5 {
+  color: #747488;
   font-family: "Inter";
   font-size: 1.6rem;
   font-style: normal;
@@ -137,8 +137,9 @@ header {
   margin-left: 25px;
   margin-top: 60px;
 }
-.text-client span {
-  color: #747488;
+.text-client span,
+a {
+  color: #0e8750;
 
   font-family: Inter;
   font-size: 1.6rem;
