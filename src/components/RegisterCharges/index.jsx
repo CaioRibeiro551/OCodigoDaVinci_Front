@@ -8,11 +8,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import LoadingBtn from '../LoadingInput';
 import LoadingBtnWhite from '../../components/LoadingBtnWhite';
 import { ValidationCharges } from '../../validation/ValidiationCharges';
-// import ReactInputMask from "react-input-mask";
+import ReactInputMask from 'react-input-mask';
 
 export default function RegisterCharges({ id, client }) {
   const { userLog, handleOpen } = useMainContext();
-  console.log(cobrancaReg);
+
   const {
     register,
     handleSubmit,
@@ -102,7 +102,7 @@ export default function RegisterCharges({ id, client }) {
               type="radio"
               value="Paga"
               id="status-paga"
-              checked
+              // checked
               {...register('status')}
             />
             <label htmlFor="status-paga">Cobrança Paga</label>

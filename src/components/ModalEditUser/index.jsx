@@ -7,7 +7,7 @@ import api from '../../services/api';
 import { validationEditUser } from '../../validation/validationEditUser';
 import LoadButton from '../../components/LoadButton/';
 import './style.css';
-// import ReactInputMask from "react-input-mask";
+import ReactInputMask from 'react-input-mask';
 
 export default function Modal() {
   const {

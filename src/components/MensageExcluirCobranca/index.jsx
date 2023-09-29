@@ -6,20 +6,19 @@ import { useEffect } from 'react';
 import api from '../../services/api';
 
 export default function MensagemExcluirCobranca({
-  currentIdCobranca,
+  currentCobrancas,
   setCobrancas,
   cobrancas,
 }) {
   const { setCobrancaExcluir, userLog } = useMainContext();
 
   const handleDeleteCobranca = async () => {
-    console.log(currentIdCobranca);
     try {
-      await api.delete(`/charges/${currentIdCobranca}`, {
+      await api.delete(`/charges/${currentCobrancas.id}`, {
         headers: { Authorization: `Bearer ${userLog.token}` },
       });
-      console.log(cobrancas);
-      setCobrancas(cobrancas.filter((item) => item.id !== currentIdCobranca));
+
+      setCobrancas(cobrancas.filter((item) => item.id !== currentCobrancas.id));
       setCobrancaExcluir(false);
       handleClose();
     } catch (error) {
@@ -36,7 +35,7 @@ export default function MensagemExcluirCobranca({
     <>
       <div className="container-mensage-sucess-up-user" onClick={close}>
         <span className="close">
-          <img src={Close} alt="" />
+          <img onClick={handleClose} src={Close} alt="" />
         </span>
         <div className="mensage-item-sucess">
           <img
@@ -46,10 +45,18 @@ export default function MensagemExcluirCobranca({
             alt="close"
           />
 
-          <p>Tem certeza que deseja excluir esta cobrança? </p>
+          {currentCobrancas.status === 'Pendente' ? (
+            <p>Tem certeza que deseja excluir esta cobrança? </p>
+          ) : (
+            <p>Essa cobrança não pode ser excluída</p>
+          )}
           <span className="confirmation-buttons">
-            <button onClick={handleClose}>Não</button>
-            <button onClick={handleDeleteCobranca}>Sim</button>
+            {currentCobrancas.status === 'Pendente' && (
+              <button onClick={handleClose}>Não</button>
+            )}
+            {currentCobrancas.status === 'Pendente' && (
+              <button onClick={handleDeleteCobranca}>Sim</button>
+            )}
           </span>
         </div>
       </div>

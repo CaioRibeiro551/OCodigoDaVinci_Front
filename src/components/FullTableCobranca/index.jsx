@@ -19,11 +19,11 @@ export default function FullTableCobranca({
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
-  const [currentIdCobranca, setcurrentIdCobranca] = useState(null);
+  const [currentCobrancas, setcurrentCobrancas] = useState(null);
   const { userLog, cobrancaExcluir, setCobrancaExcluir } = useMainContext();
 
-  const handleExibirModal = (id) => {
-    setcurrentIdCobranca(id);
+  const handleExibirModal = (currentCharge) => {
+    setcurrentCobrancas(currentCharge);
     setCobrancaExcluir(true);
     return;
   };
@@ -121,10 +121,7 @@ export default function FullTableCobranca({
                   <img className="edit" src={iconeEdit} alt="Editar" />
                   <span className="edit">Editar </span>
                 </p>
-                <p
-                  className="delete"
-                  onClick={() => handleExibirModal(item.id)}
-                >
+                <p className="delete" onClick={() => handleExibirModal(item)}>
                   <img className="delete" src={iconeExcluir} alt="Excluir" />
                   <span className="delete">Excluir </span>
                 </p>
@@ -139,7 +136,7 @@ export default function FullTableCobranca({
 
       {cobrancaExcluir && (
         <MenssagemConfirm
-          currentIdCobranca={currentIdCobranca}
+          currentCobrancas={currentCobrancas}
           setCobrancas={setCobrancas}
           cobrancas={cobrancas}
         />
