@@ -1,16 +1,18 @@
-import './style.css';
-import CloseModal from '../../assets/close.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import clients from '../../assets/clients.svg';
-import Api from '../../services/api';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import LoadingBtn from '../LoadingInput';
-import LoadingBtnWhite from '../../components/LoadingBtnWhite';
-import { ValidationCharges } from '../../validation/ValidiationCharges';
-// import InputMask from "react-input-mask";
 
-export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
+import "./style.css";
+import CloseModal from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import clients from "../../assets/clients.svg";
+import Api from "../../services/api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import LoadingBtn from "../LoadingInput";
+import LoadingBtnWhite from "../../components/LoadingBtnWhite";
+import { ValidationCharges } from "../../validation/ValidiationCharges";
+import ReactInputMask from "react-input-mask";
+
+
+export default function RegisterCharges({ id, client }) {
   const { userLog, handleOpen } = useMainContext();
   console.log(cobrancaReg);
   const {
@@ -23,16 +25,16 @@ export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
   });
 
   const onSubmit = async (data) => {
-    const newCharge = { ...data, id: cobrancaReg.id };
-
+    const newCharge = { ...data, id };
+    console.log(id);
     try {
-      await Api.post(`/clients/${cobrancaReg.id}/charges`, newCharge, {
+      await Api.post(`/clients/${id}/charges`, newCharge, {
         headers: {
           Authorization: userLog.token,
         },
       });
+
       handleOpen();
-      setOpenModalRegister(false);
     } catch (error) {
       console.error(error);
     }
@@ -54,12 +56,7 @@ export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
 
         <div className="container-inputs">
           <label htmlFor="name">Nome *</label>
-          <input
-            type="text"
-            name="name"
-            defaultValue={cobrancaReg.name}
-            disabled
-          />
+          <input type="text" name="name" defaultValue={client.name} disabled />
         </div>
 
         <div className="container-inputs-2">
@@ -79,7 +76,7 @@ export default function RegisterCharges({ cobrancaReg, setOpenModalRegister }) {
         <div className="container-cpf-telefone">
           <div className="container-inputs">
             <label htmlFor="date">Vencimento *</label>
-            <InputMask
+            <ReactInputMask
               className=" input-description"
               mask="99/99/9999"
               placeholder="Data de Vencimento"

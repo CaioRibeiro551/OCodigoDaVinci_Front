@@ -28,7 +28,7 @@ export default function SignIn() {
     try {
       setIsLoading(true);
       const responde = await Axios.post("/login", data);
-      console.log(responde);
+
       setUserLog({
         id: responde.data.id,
         name: responde.data.name,

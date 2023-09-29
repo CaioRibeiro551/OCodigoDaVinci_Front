@@ -29,7 +29,6 @@ export function ResumeLargeTable({ clients, header }) {
             <th>CPF</th>
           </tr>
         </thead>
-
         <tbody className="small-text">
           {clients.slice(0, 4).map((client) => (
             <tr key={client.id}>

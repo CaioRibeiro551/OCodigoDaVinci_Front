@@ -10,11 +10,11 @@ import "./styles/input.css";
 import { MainContextProvider } from "./context/MainContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <MainContextProvider>
+  <MainContextProvider>
+    <React.StrictMode>
+      <BrowserRouter>
         <MainRouter />
-      </MainContextProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+      </BrowserRouter>
+    </React.StrictMode>
+  </MainContextProvider>
 );
