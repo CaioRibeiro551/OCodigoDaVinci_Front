@@ -25,10 +25,8 @@ const headerTitle = {
 
 export default function Home() {
 
-  const { modalTeste, clients, charges, removeLoad } = useMainContext();
+  const { modalTeste, clients, charges, removeLoad, modalTeste } = useMainContext();
 
-  const { modalTeste, userLog } = useMainContext();
-  
 
   const clientsEmDia = clients.filter((client) => client.status == 'Em dia');
 
