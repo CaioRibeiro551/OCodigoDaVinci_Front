@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useLocalStorage } from "react-use";
 import { MainContext } from "../context/MainContext";
-import Axios from "../services/api";
 
-export function useMainContextProvider() {
+export function useStateProvider() {
   const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
-  const [removeLoad, setRemovedLoad] = useState(true);
+  const [removeLoad, setRemovedLoad] = useState(false);
   const [modalClients, setModalClients] = useState(false);
   const [messageSucessAddClient, setMessageSucessAddClient] = useState(false);
   const [modalEditeClients, setModalEditeClients] = useState(false);
@@ -24,52 +23,6 @@ export function useMainContextProvider() {
   const handleOpenEdith = () => {
     setOpenEdith((prevOpen) => !prevOpen);
   };
-
-  const [clients, setClients] = useState([]);
-  const getClients = async () => {
-    try {
-      setRemovedLoad(true);
-      const { data } = await Axios.get("/clients", {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-
-      setClients(data);
-      setRemovedLoad(false);
-    } catch (error) {
-      setRemovedLoad(false);
-      throw error;
-    }
-  };
-
-  useEffect(() => {
-    if (userLog.token) {
-      getClients();
-    }
-  }, [userLog.token, clients]);
-
-  const [charges, setCharges] = useState([]);
-
-  const getCharges = async () => {
-    try {
-      const { data } = await Axios.get(`/charges`, {
-        headers: { Authorization: `Bearer ${userLog.token}` },
-      });
-
-      setCharges(data);
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  useEffect(() => {
-    if (userLog.token) {
-      getCharges();
-    }
-  }, [userLog.token, charges]);
-
-  const [showClient, setShowClient] = useState();
 
   return {
     userLog,
@@ -93,11 +46,6 @@ export function useMainContextProvider() {
     setModalEditeClients,
     openModalRegister,
     setOpenModalRegister,
-    clients,
-    removeLoad,
-    charges,
-    showClient,
-    setShowClient,
   };
 }
 

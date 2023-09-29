@@ -7,14 +7,13 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
 
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
 
   return (
     <div
-      className={`${
+      className={` ${
         pathname === "/cobrancas"
           ? "container-full-table"
           : "container-resume-table"
@@ -41,12 +40,12 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         )}
         <thead className="relative-text">
           <tr>
-            <th>
-              {" "}
-              <img src={iconeCobranca} alt="" />
-              Cliente
-            </th>
-
+            {pathname === "/cobrancas" && (
+              <th>
+                <img src={iconeCobranca} alt="" />
+                Cliente
+              </th>
+            )}
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
@@ -62,11 +61,9 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
           {cobrancas.map((item) => (
             <tr key={item.id}>
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
-              <td>
-                <span>{item.id}</span>
-              </td>
-              <td>{item.value}</td>
-              <td>{item.due_date}</td>
+              <td>{item.id}</td>
+              <td>R$ {item.value}</td>
+              <td>{format(new Date(item.due_date), "dd/MM/yyyy")}</td>
               <td>
                 <span
                   className={`status-cell ${

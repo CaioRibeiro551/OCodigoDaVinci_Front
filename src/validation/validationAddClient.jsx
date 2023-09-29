@@ -24,18 +24,11 @@ export const validationAddClient = yup.object().shape({
     .email("Formato de email invalido")
     .transform((email) => email.toLowerCase()),
   cpf: yup.string().required("CPF é um campo obrigatório"),
-
   phone: yup.string().required("Campo telefone é obrigatório"),
-
   address: yup.string(),
-
   complemet: yup.string(),
-
   cep: yup.string(),
-
   neighborhood: yup.string(),
-
   city: yup.string(),
-
   uf: yup.string(),
 });

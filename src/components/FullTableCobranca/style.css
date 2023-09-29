@@ -29,7 +29,7 @@
 }
 
 .full-table-2 th {
-  column-span: '2';
+  column-span: "2";
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -49,6 +49,7 @@
 
 .full-table-2 td {
   width: 16rem;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -67,27 +68,22 @@
   font-weight: 600;
   line-height: normal;
 }
-.icon-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  gap: 10px;
-}
-.full-table-2 th:nth-child(3) {
-  flex-basis: 4.4%;
-}
-.full-table-2 th:nth-child(5) {
-  flex-basis: 6%;
-}
-.full-table-2 th:nth-child(6) {
-  flex-basis: 12.5%;
+
+.full-table td:nth-child(1) {
+  padding-left: 8px;
 }
 
+.full-table .icon-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
 .icon-item p {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   z-index: 1;
 }
 .icon-item img {
@@ -95,7 +91,7 @@
   height: 20px;
 }
 .icon-item p {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   margin-top: 5px;
   font-size: 12px;
   text-align: center;
@@ -111,22 +107,22 @@
   background-color: white;
 }
 .pendente {
-  background-color: #ede4b4;
+  background-color: #fcf6dc;
   color: #c5a605;
-  border-radius: 15px;
-  width: 60%;
+  border-radius: 0.8rem;
+  width: 65%;
 }
 
 .paga {
-  background-color: #c6fcff;
+  background-color: #eef6f6;
   color: #1fa7af;
-  border-radius: 15px;
-  width: 60%;
+  border-radius: 0.8rem;
+  width: 45%;
 }
 
 .vencida {
-  background-color: #ffbfbf;
-  border-radius: 15px;
-  width: 60%;
+  background-color: #ffefef;
+  border-radius: 0.8rem;
+  width: 55%;
   color: #971d1d;
 }

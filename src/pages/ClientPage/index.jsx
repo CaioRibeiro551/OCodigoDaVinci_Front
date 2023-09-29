@@ -6,37 +6,17 @@ import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import { useMainContext } from "../../hooks/useMainContext";
 import MensagemSucesso from "../../components/MensagemSucesso";
-import { useEffect, useState } from "react";
-import Axios from "../../services/api";
-import LoadingPage from "../../components/LoadingPage/index"; //
+import { useState } from "react";
+import Loading from "../../components/LoadingPage/index";
 import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
-  const { modalClients, messageSucessAddClient, userLog, modalEditeClients } =
+  const { modalClients, messageSucessAddClient, modalEditeClients, clients } =
     useMainContext();
-  const [clients, setClients] = useState([]);
-  const [removeLoad, setRemovedLoad] = useState(true);
+
+  const [removeLoad, setRemovedLoad] = useState(false);
 
   const title = "Clientes";
-
-  const getClients = async () => {
-    try {
-      setRemovedLoad(false);
-      const { data } = await Axios.get("/clients", {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-
-      setClients(data);
-      setRemovedLoad(true);
-    } catch (error) {
-      setRemovedLoad(true);
-    }
-  };
-  useEffect(() => {
-    getClients();
-  }, [modalClients]);
 
   return (
     <div className="container-home ">
@@ -52,7 +32,6 @@ export default function ClientsPage() {
         {modalEditeClients && <ModalEditeClients />}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
-      {!removeLoad && <LoadingPage />}
     </div>
   );
 }

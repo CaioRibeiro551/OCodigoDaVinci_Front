@@ -4,13 +4,12 @@ import TituloCobranca from "../../components/TituloCobranca";
 import Header from "../../components/Header/index";
 import { useMainContext } from "../../hooks/useMainContext";
 import "./style.css";
-import { useState, useEffect } from "react";
-import Axios from "../../services/api";
 import pagasImg from "../../assets/pagas.svg";
 import vencidasImg from "../../assets/vencidas.svg";
 import previstasIMG from "../../assets/previstas.png";
 import { ResumeLargeTable } from "../../components/ResumeLargeTable";
 import ResumeSmallTable from "../../components/ResumeSmallTable";
+import Loading from "../../components/LoadingPage";
 
 const headerTitle = {
   header: "Resumo das cobranças",
@@ -22,42 +21,7 @@ const headerTitle = {
 };
 
 export default function Home() {
-
-  const { modalTeste, userLog } = useMainContext();
-  const [clients, setClients] = useState([]);
-  const [charges, setCharges] = useState([]);
-
-  const getClients = async () => {
-    try {
-      const { data } = await Axios.get("/clients", {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-
-      setClients(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getCharges = async () => {
-    try {
-      const { data } = await Axios.get("/charges", {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-
-      setCharges(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getClients();
-    getCharges();
-  }, []);
+  const { modalTeste, clients, charges, removeLoad } = useMainContext();
 
   const clientsEmDia = clients.filter((client) => client.status == "Em dia");
 
@@ -75,7 +39,7 @@ export default function Home() {
     (charge) => charge.status == "Pendente"
   );
 
-  const totalVencidas = cobrancasPagas.reduce((total, objeto) => {
+  const totalVencidas = cobrancasVencidas.reduce((total, objeto) => {
     return total + Number(objeto.value);
   }, 0);
 
