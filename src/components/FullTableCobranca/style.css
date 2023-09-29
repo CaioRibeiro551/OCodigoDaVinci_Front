@@ -106,23 +106,37 @@
 .hovered {
   background-color: white;
 }
+
+.pendente,
+.paga,
+.vencida {
+  padding: 2px 12px;
+  border-radius: 8px;
+}
+
 .pendente {
   background-color: #fcf6dc;
   color: #c5a605;
+
   border-radius: 0.8rem;
   width: 65%;
+
 }
 
 .paga {
   background-color: #eef6f6;
   color: #1fa7af;
+
   border-radius: 0.8rem;
   width: 45%;
+
 }
 
 .vencida {
   background-color: #ffefef;
+
   border-radius: 0.8rem;
   width: 55%;
+
   color: #971d1d;
 }

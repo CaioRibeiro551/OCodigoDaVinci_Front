@@ -8,8 +8,29 @@ import { useLocation } from "react-router-dom";
 import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
 
+import Loading from "../../components/LoadingPage";
+import DetailsCharges from "../DetailsCharges";
+
+
 export default function FullTableCobranca({ cobrancas, handleOpen }) {
   const { pathname } = useLocation();
+  const [detailsItem, setDetailsItem] = useState({});
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const OpenDetailsCharge = (e, item) => {
+    const valid = e.target.classList;
+
+    if (
+      valid[0] === "icon-item" ||
+      valid[0] === "delete" ||
+      valid[0] === "edit"
+    ) {
+      return;
+    }
+    setDetailsItem(item);
+    setOpenDetails(true);
+    return;
+  };
 
   return (
     <div
@@ -59,11 +80,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         </thead>
         <tbody className="small-text">
           {cobrancas.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
               <td>{format(new Date(item.due_date), "dd/MM/yyyy")}</td>
+
               <td>
                 <span
                   className={`status-cell ${
@@ -82,19 +105,22 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
               <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
-                <p>
-                  <img src={iconeEdit} alt="Editar" />
-                  <span>Editar </span>
+                <p className="edit">
+                  <img className="edit" src={iconeEdit} alt="Editar" />
+                  <span className="edit">Editar </span>
                 </p>
-                <p>
-                  <img src={iconeExcluir} alt="Excluir" />
-                  <span>Excluir </span>
+                <p className="delete">
+                  <img className="delete" src={iconeExcluir} alt="Excluir" />
+                  <span className="delete">Excluir </span>
                 </p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {openDetails && (
+        <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
+      )}
     </div>
   );
 }
