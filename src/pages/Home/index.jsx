@@ -1,18 +1,16 @@
-
-import Modal from "../../components/ModalEditUser";
-import Sidebar from "../../components/Sidebar/index";
-import TituloCobranca from "../../components/TituloCobranca";
-import Header from "../../components/Header/index";
-import { useMainContext } from "../../hooks/useMainContext";
-import "./style.css";
-import pagasImg from "../../assets/pagas.svg";
-import vencidasImg from "../../assets/vencidas.svg";
-import previstasIMG from "../../assets/previstas.png";
-import { ResumeLargeTable } from "../../components/ResumeLargeTable";
-import ResumeSmallTable from "../../components/ResumeSmallTable";
-import Loading from "../../components/LoadingPage";
+import Modal from '../../components/ModalEditUser';
+import Sidebar from '../../components/Sidebar/index';
+import TituloCobranca from '../../components/TituloCobranca';
+import Header from '../../components/Header/index';
+import { useMainContext } from '../../hooks/useMainContext';
+import './style.css';
+import pagasImg from '../../assets/pagas.svg';
+import vencidasImg from '../../assets/vencidas.svg';
+import previstasIMG from '../../assets/previstas.png';
+import { ResumeLargeTable } from '../../components/ResumeLargeTable';
+import ResumeSmallTable from '../../components/ResumeSmallTable';
+import Loading from '../../components/LoadingPage';
 import Menssage from '../../components/MensagemErroExclusaoCobranca';
-
 
 const headerTitle = {
   header: 'Resumo das cobranças',
@@ -24,9 +22,7 @@ const headerTitle = {
 };
 
 export default function Home() {
-
   const { modalTeste, clients, charges, removeLoad } = useMainContext();
-
 
   const clientsEmDia = clients.filter((client) => client.status == 'Em dia');
 
@@ -114,7 +110,6 @@ export default function Home() {
                 header={headerTitle.Inadimplente}
               />
             </div>
-            <Menssage />
           </div>
         </div>
       </div>

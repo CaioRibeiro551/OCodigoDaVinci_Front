@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { useLocalStorage } from "react-use";
-import { MainContext } from "../context/MainContext";
-import Axios from "../services/api";
+import { useContext, useEffect, useState } from 'react';
+import { useLocalStorage } from 'react-use';
+import { MainContext } from '../context/MainContext';
+import Axios from '../services/api';
 
 export function useMainContextProvider() {
-  const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
+  const [userLog, setUserLog, removeUserLog] = useLocalStorage('user', {});
   const [modalTeste, setModalTeste] = useState(false);
   const [removeLoad, setRemovedLoad] = useState(true);
   const [modalClients, setModalClients] = useState(false);
@@ -25,11 +25,12 @@ export function useMainContextProvider() {
     setOpenEdith((prevOpen) => !prevOpen);
   };
 
+  const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
   const getClients = async () => {
     try {
       setRemovedLoad(true);
-      const { data } = await Axios.get("/clients", {
+      const { data } = await Axios.get('/clients', {
         headers: {
           Authorization: userLog.token,
         },
@@ -93,6 +94,8 @@ export function useMainContextProvider() {
     setModalEditeClients,
     openModalRegister,
     setOpenModalRegister,
+    cobrancaExcluir,
+    setCobrancaExcluir,
     clients,
     removeLoad,
     charges,
