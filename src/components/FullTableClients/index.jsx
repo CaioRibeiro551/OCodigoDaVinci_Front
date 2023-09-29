@@ -2,16 +2,16 @@ import "./style.css";
 import Charge from "../../assets/cobranca.svg";
 import iconOrdem from "../../assets/cobranca-icon.svg";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, memo } from "react";
 import RegisterCharges from "../RegisterCharges";
 import { useMainContext } from "../../hooks/useMainContext";
 
-export default function FullTable({ lista }) {
+function FullTable({ lista }) {
   const [cobrancaReg, setCobrancaReg] = useState([]);
-  const { openModalRegister, setOpenModalRegister } = useMainContext();
+  const { open, handleOpen } = useMainContext();
 
   const handleModal = (item) => {
-    setOpenModalRegister(true);
+    handleOpen();
     setCobrancaReg(item);
     return;
   };
@@ -55,25 +55,17 @@ export default function FullTable({ lista }) {
                 </span>
               </td>
               <td>
-                <a
-                  className="link-table"
-                  href="#"
-                  onClick={() => handleModal(item)}
-                >
-                  <img src={Charge} alt="" />
+                <p className="link-table">
+                  <img onClick={() => handleModal(item)} src={Charge} alt="" />
                   <span>Criar cobrança</span>
-                </a>
+                </p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {openModalRegister && (
-        <RegisterCharges
-          setOpenModalRegister={setOpenModalRegister}
-          cobrancaReg={cobrancaReg}
-        />
-      )}
+      {open && <RegisterCharges id={cobrancaReg.id} client={cobrancaReg} />}
     </div>
   );
 }
+export default memo(FullTable);

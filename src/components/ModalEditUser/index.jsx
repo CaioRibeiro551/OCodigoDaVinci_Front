@@ -7,6 +7,7 @@ import api from "../../services/api";
 import { validationEditUser } from "../../validation/validationEditUser";
 import LoadButton from "../../components/LoadButton/";
 import "./style.css";
+import ReactInputMask from "react-input-mask";
 
 export default function Modal() {
   const {
@@ -35,29 +36,24 @@ export default function Modal() {
     },
   });
 
-  const hadleChange = ({ target }) => {
-    const key = target.name;
-    const value = target.value;
-    setUserData({ ...userData, [key]: value });
-    return;
-  };
-
   const handleCloseModal = () => {
     setModalTeste(false);
   };
 
   const onSubmit = async (data) => {
+    if (data.email !== userLog.email) {
+      validateFormData(data);
+    }
+
     setIsLoading(true);
-    const cpf = data.cpf.replaceAll(".", "").replace("-", "");
-    const user = { ...data, cpf };
     try {
-      const response = await api.patch("/update-me", user, {
+      await api.patch("/update-me", data, {
         headers: {
           Authorization: userLog.token,
         },
       });
 
-      setUserLog({ ...userLog, ...user });
+      setUserLog({ ...userLog, ...data });
       setModalTeste(false);
       setIsLoading(false);
       setMessageSucessUpdateUser(true);
@@ -156,7 +152,11 @@ export default function Modal() {
                 name="cpf"
                 control={control}
                 render={({ field }) => (
-                  <input type="text" {...field} placeholder="Digite seu CPF" />
+                  <ReactInputMask
+                    mark="999.999.999-99"
+                    {...field}
+                    placeholder="Digite seu CPF"
+                  />
                 )}
               />
               {errors.cpf && (

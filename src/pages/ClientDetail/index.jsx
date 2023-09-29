@@ -16,11 +16,16 @@ function ClientDetail() {
 
   const { id } = useParams();
 
-  const { userLog, handleOpen, open, handleOpenEdith, openEdith } =
-    useMainContext();
-
-  const [showClient, setShowClient] = useState();
-  const [showCharges, setShowCharges] = useState([]);
+  const {
+    userLog,
+    handleOpen,
+    open,
+    handleOpenEdith,
+    openEdith,
+    charges,
+    showClient,
+    setShowClient,
+  } = useMainContext();
 
   useEffect(() => {
     async function getOne() {
@@ -37,20 +42,6 @@ function ClientDetail() {
 
     getOne();
   }, [openEdith]);
-
-  useEffect(() => {
-    async function getCharges() {
-      try {
-        const response = await Axios.get(`/clients/${id}/charges`, {
-          headers: { Authorization: `Bearer ${userLog.token}` },
-        });
-
-        setShowCharges(response.data);
-      } catch (error) {}
-    }
-
-    getCharges();
-  }, [open]);
 
   return (
     <div className="container-home ">
@@ -118,13 +109,11 @@ function ClientDetail() {
                   </div>
                 </div>
               </div>
-              {open && (
-                <RegisterCharges name={showClient?.name} client_id={id} />
-              )}
+              {open && <RegisterCharges client={showClient} id={id} />}
               {openEdith && <ModalEditClients id={id} client={showClient} />}
             </div>
           </div>
-          <FullTableCobranca cobrancas={showCharges} handleOpen={handleOpen} />
+          <FullTableCobranca cobrancas={charges} handleOpen={handleOpen} />
         </main>
       </div>
     </div>

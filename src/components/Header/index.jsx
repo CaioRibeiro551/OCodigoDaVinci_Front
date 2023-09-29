@@ -6,7 +6,7 @@ import iconeEdit from "../../assets/icone-edit.svg";
 import iconeQuit from "../../assets/icone-quit.svg";
 import iconePolygon from "../../assets/icone-polygon.svg";
 import { useMainContext } from "../../hooks/useMainContext";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Modal from "../../components/ModalEditUser";
 import ConfirmationModal from "../ConfirmationModal";
 import MessageSucessUpdateUser from "../MensageSucessUpdateUser";
@@ -56,15 +56,19 @@ export default function Header({ title, subtitle }) {
             {pathname === "/home" ? (
               <h1 className="big-text">{title}</h1>
             ) : (
-              <p className="text-client">
-                {title}{" "}
-                {subtitle && (
-                  <span>
-                    {" "}
-                    <span className="separar-title">{">"}</span> {subtitle}
-                  </span>
+              <div className="text-client">
+                {subtitle ? (
+                  <Link to={"/clients"}>{title}</Link>
+                ) : (
+                  <span>{title}</span>
                 )}
-              </p>
+
+                {subtitle && (
+                  <h7>
+                    <h7 className="separar-title">{">"}</h7> {subtitle}
+                  </h7>
+                )}
+              </div>
             )}
           </div>
 
@@ -95,7 +99,7 @@ export default function Header({ title, subtitle }) {
           </div>
         </div>
       </header>
-      {modalTeste ? <Modal /> : ""}
+      {modalTeste && <Modal />}
 
       {messageSucessUpdateUser && <MessageSucessUpdateUser />}
     </>
