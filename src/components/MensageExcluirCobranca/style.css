@@ -25,8 +25,8 @@
   gap: 26px;
 }
 .container-mensage-sucess-up-user .mensage-item-sucess img {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   flex-shrink: 0;
 }
 .container-mensage-sucess-up-user .mensage-item-sucess p {
