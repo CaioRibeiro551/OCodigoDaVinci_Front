@@ -1,15 +1,15 @@
-import './style.css';
-import iconeEdit from '../../assets/icone-edit.svg';
-import iconeExcluir from '../../assets/excluir.svg';
-import iconeCobranca from '../../assets/cobranca-icon.svg';
-import api from '../../services/api';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { format } from 'date-fns';
-import Loading from '../../components/LoadingPage';
-import DetailsCharges from '../DetailsCharges';
-import MenssagemConfirm from '../../components/MensageExcluirCobranca'; // Certifique-se de usar o nome correto do componente
-import { useMainContext } from '../../hooks/useMainContext';
+import "./style.css";
+import iconeEdit from "../../assets/icone-edit.svg";
+import iconeExcluir from "../../assets/excluir.svg";
+import iconeCobranca from "../../assets/cobranca-icon.svg";
+import api from "../../services/api";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { format } from "date-fns";
+import Loading from "../../components/LoadingPage";
+import DetailsCharges from "../DetailsCharges";
+import MenssagemConfirm from "../../components/MensageExcluirCobranca"; // Certifique-se de usar o nome correto do componente
+import { useMainContext } from "../../hooks/useMainContext";
 
 export default function FullTableCobranca({
   cobrancas,
@@ -20,7 +20,8 @@ export default function FullTableCobranca({
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
   const [currentCobrancas, setcurrentCobrancas] = useState(null);
-  const { userLog, cobrancaExcluir, setCobrancaExcluir } = useMainContext();
+  const { userLog, cobrancaExcluir, setCobrancaExcluir, filter, setFilter } =
+    useMainContext();
 
   const handleExibirModal = (currentCharge) => {
     setcurrentCobrancas(currentCharge);
@@ -32,9 +33,9 @@ export default function FullTableCobranca({
     const valid = e.target.classList;
 
     if (
-      valid[0] === 'icon-item' ||
-      valid[0] === 'delete' ||
-      valid[0] === 'edit'
+      valid[0] === "icon-item" ||
+      valid[0] === "delete" ||
+      valid[0] === "edit"
     ) {
       return;
     }
@@ -42,18 +43,24 @@ export default function FullTableCobranca({
     setOpenDetails(true);
     return;
   };
-  console.log(cobrancas);
+
+  // const chargesFilter = cobrancas.filter((cobranca) => {
+  //   return Object.values(cobranca).includes(filter);
+  // });
+
+  console.log(chargesFilter);
+
   useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div
       className={`${
-        pathname === '/cobrancas'
-          ? 'container-full-table'
-          : 'container-resume-table'
+        pathname === "/cobrancas"
+          ? "container-full-table"
+          : "container-resume-table"
       }`}
     >
       <table className="full-table">
-        {pathname !== '/cobrancas' && (
+        {pathname !== "/cobrancas" && (
           <caption>
             <div>
               <div>
@@ -74,7 +81,7 @@ export default function FullTableCobranca({
         <thead className="relative-text">
           <tr>
             <th>
-              {' '}
+              {" "}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -91,9 +98,9 @@ export default function FullTableCobranca({
           </tr>
         </thead>
         <tbody className="small-text">
-          {cobrancas.map((item) => (
+          {chargesFilter.map((item) => (
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
-              {pathname === '/cobrancas' && <td>{item.client_name}</td>}
+              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
 
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
@@ -102,13 +109,13 @@ export default function FullTableCobranca({
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === 'Pendente'
-                      ? 'pendente'
-                      : item.status === 'Paga'
-                      ? 'paga'
-                      : item.status === 'Vencida'
-                      ? 'vencida'
-                      : 'status-outro'
+                    item.status === "Pendente"
+                      ? "pendente"
+                      : item.status === "Paga"
+                      ? "paga"
+                      : item.status === "Vencida"
+                      ? "vencida"
+                      : "status-outro"
                   }`}
                 >
                   {item.status}

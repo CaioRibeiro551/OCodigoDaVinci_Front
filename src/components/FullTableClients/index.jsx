@@ -8,13 +8,20 @@ import { useMainContext } from "../../hooks/useMainContext";
 
 function FullTable({ lista }) {
   const [cobrancaReg, setCobrancaReg] = useState([]);
-  const { open, handleOpen } = useMainContext();
+  const { open, handleOpen, filter } = useMainContext();
 
   const handleModal = (item) => {
     handleOpen();
     setCobrancaReg(item);
     return;
   };
+
+  const clientFilter = lista.filter((client) => {
+    const value = Object.values(client);
+    return String(value).includes(filter);
+  });
+
+  console.log(clientFilter);
 
   return (
     <div className="container-full-table">
@@ -33,7 +40,7 @@ function FullTable({ lista }) {
           </tr>
         </thead>
         <tbody className="small-text ">
-          {lista.map((item) => (
+          {clientFilter.map((item) => (
             <tr className="font-roboto font-tr line" key={item.id}>
               <td>
                 <NavLink to={`/client-detail/${item.id}`} id="Link">

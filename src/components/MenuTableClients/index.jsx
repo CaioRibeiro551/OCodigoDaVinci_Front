@@ -5,7 +5,7 @@ import IconClients from "../../assets/clients.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 
 export default function MenuTableClients() {
-  const { setModalClients } = useMainContext();
+  const { setModalClients, setFilter } = useMainContext();
 
   return (
     <div className="container-menu-table-clients">
@@ -20,7 +20,12 @@ export default function MenuTableClients() {
         <img src={IconFilter} alt="filtro" />
         <div className="container-input-shearch">
           <img src={IconSheach} alt="pesquisa" />
-          <input type="text" name="shearch" placeholder="Pesquisar" />
+          <input
+            type="text"
+            name="shearch"
+            placeholder="Pesquisar"
+            onBlur={(e) => setFilter(e.target.value)}
+          />
         </div>
       </div>
     </div>

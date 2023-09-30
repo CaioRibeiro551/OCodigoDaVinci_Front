@@ -3,9 +3,12 @@ import IconFilter from "../../assets/filter.svg";
 import IconSheach from "../../assets/sheach.svg";
 import IconClients from "../../assets/clients.svg";
 import { useMainContext } from "../../hooks/useMainContext";
+import { usuarios } from "../../utils/data";
+import { useState } from "react";
 
 export default function MenuTableClients() {
-  const { setModalClients } = useMainContext();
+  const { setFilter } = useMainContext();
+
   return (
     <div className="container-menu-table-clients">
       <div>
@@ -16,7 +19,14 @@ export default function MenuTableClients() {
         <img src={IconFilter} alt="filtro" />
         <div className="container-input-shearch">
           <img src={IconSheach} alt="pesquisa" />
-          <input type="text" name="shearch" placeholder="Pesquisar" />
+          <input
+            type="text"
+            name="shearch"
+            placeholder="Pesquisar"
+            onBlur={(e) => {
+              setFilter(e.target.value);
+            }}
+          />
         </div>
       </div>
     </div>

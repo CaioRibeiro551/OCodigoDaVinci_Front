@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { useLocalStorage } from 'react-use';
-import { MainContext } from '../context/MainContext';
-import Axios from '../services/api';
+import { useContext, useEffect, useState } from "react";
+import { useLocalStorage } from "react-use";
+import { MainContext } from "../context/MainContext";
+import Axios from "../services/api";
 
 export function useMainContextProvider() {
-  const [userLog, setUserLog, removeUserLog] = useLocalStorage('user', {});
+  const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
   const [removeLoad, setRemovedLoad] = useState(true);
   const [modalClients, setModalClients] = useState(false);
@@ -13,6 +13,7 @@ export function useMainContextProvider() {
   const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -30,7 +31,7 @@ export function useMainContextProvider() {
   const getClients = async () => {
     try {
       setRemovedLoad(true);
-      const { data } = await Axios.get('/clients', {
+      const { data } = await Axios.get("/clients", {
         headers: {
           Authorization: userLog.token,
         },
@@ -101,6 +102,8 @@ export function useMainContextProvider() {
     charges,
     showClient,
     setShowClient,
+    filter,
+    setFilter,
   };
 }
 
