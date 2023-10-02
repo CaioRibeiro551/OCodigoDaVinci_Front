@@ -16,9 +16,11 @@ function FullTable({ lista }) {
     return;
   };
 
+  const lowerFilter = filter.toLocaleLowerCase();
+
   const clientFilter = lista.filter((client) => {
     const value = Object.values(client);
-    return String(value).includes(filter);
+    return String(value).toLocaleLowerCase().includes(lowerFilter);
   });
 
   console.log(clientFilter);
