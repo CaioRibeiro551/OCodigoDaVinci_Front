@@ -13,6 +13,7 @@ export function useMainContextProvider() {
   const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -25,6 +26,7 @@ export function useMainContextProvider() {
     setOpenEdith((prevOpen) => !prevOpen);
   };
 
+  const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
   const getClients = async () => {
     try {
@@ -93,11 +95,15 @@ export function useMainContextProvider() {
     setModalEditeClients,
     openModalRegister,
     setOpenModalRegister,
+    cobrancaExcluir,
+    setCobrancaExcluir,
     clients,
     removeLoad,
     charges,
     showClient,
     setShowClient,
+    filter,
+    setFilter,
   };
 }
 

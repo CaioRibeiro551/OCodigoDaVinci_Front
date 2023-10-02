@@ -5,17 +5,29 @@ import iconeCobranca from "../../assets/cobranca-icon.svg";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useMainContext } from "../../hooks/useMainContext";
 import { format } from "date-fns";
-
 import Loading from "../../components/LoadingPage";
 import DetailsCharges from "../DetailsCharges";
+import MenssagemConfirm from "../../components/MensageExcluirCobranca"; // Certifique-se de usar o nome correto do componente
+import { useMainContext } from "../../hooks/useMainContext";
 
-
-export default function FullTableCobranca({ cobrancas, handleOpen }) {
+export default function FullTableCobranca({
+  cobrancas,
+  handleOpen,
+  setCobrancas,
+}) {
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
+  const [currentCobrancas, setcurrentCobrancas] = useState(null);
+  const { userLog, cobrancaExcluir, setCobrancaExcluir, filter, setFilter } =
+    useMainContext();
+
+  const handleExibirModal = (currentCharge) => {
+    setcurrentCobrancas(currentCharge);
+    setCobrancaExcluir(true);
+    return;
+  };
 
   const OpenDetailsCharge = (e, item) => {
     const valid = e.target.classList;
@@ -32,9 +44,17 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
     return;
   };
 
+  const lowerFilter = filter.toLocaleLowerCase().trim();
+
+  const chargesFilter = cobrancas.filter((client) => {
+    const value = Object.values(client);
+    return String(value).toLocaleLowerCase().includes(lowerFilter);
+  });
+
+  useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div
-      className={` ${
+      className={`${
         pathname === "/cobrancas"
           ? "container-full-table"
           : "container-resume-table"
@@ -61,12 +81,12 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
         )}
         <thead className="relative-text">
           <tr>
-            {pathname === "/cobrancas" && (
-              <th>
-                <img src={iconeCobranca} alt="" />
-                Cliente
-              </th>
-            )}
+            <th>
+              {" "}
+              <img src={iconeCobranca} alt="" />
+              Cliente
+            </th>
+
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
@@ -79,13 +99,13 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
           </tr>
         </thead>
         <tbody className="small-text">
-          {cobrancas.map((item) => (
+          {chargesFilter.map((item) => (
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
 
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
-              <td>{format(new Date(item.due_date), "dd/MM/yyyy")}</td>
+              <td>{item.due_date}</td>
 
               <td>
                 <span
@@ -109,7 +129,7 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
                   <img className="edit" src={iconeEdit} alt="Editar" />
                   <span className="edit">Editar </span>
                 </p>
-                <p className="delete">
+                <p className="delete" onClick={() => handleExibirModal(item)}>
                   <img className="delete" src={iconeExcluir} alt="Excluir" />
                   <span className="delete">Excluir </span>
                 </p>
@@ -120,6 +140,14 @@ export default function FullTableCobranca({ cobrancas, handleOpen }) {
       </table>
       {openDetails && (
         <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
+      )}
+
+      {cobrancaExcluir && (
+        <MenssagemConfirm
+          currentCobrancas={currentCobrancas}
+          setCobrancas={setCobrancas}
+          cobrancas={cobrancas}
+        />
       )}
     </div>
   );
