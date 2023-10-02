@@ -44,12 +44,6 @@ export default function FullTableCobranca({
     return;
   };
 
-  // const chargesFilter = cobrancas.filter((cobranca) => {
-  //   return Object.values(cobranca).includes(filter);
-  // });
-
-  console.log(chargesFilter);
-
   useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div
