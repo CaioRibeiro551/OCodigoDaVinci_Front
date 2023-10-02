@@ -44,6 +44,13 @@ export default function FullTableCobranca({
     return;
   };
 
+  const lowerFilter = filter.toLocaleLowerCase();
+
+  const chargesFilter = cobrancas.filter((client) => {
+    const value = Object.values(client);
+    return String(value).toLocaleLowerCase().includes(lowerFilter);
+  });
+
   useEffect(() => {}, [cobrancaExcluir]);
   return (
     <div

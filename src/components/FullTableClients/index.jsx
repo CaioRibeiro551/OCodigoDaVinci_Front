@@ -23,8 +23,6 @@ function FullTable({ lista }) {
     return String(value).toLocaleLowerCase().includes(lowerFilter);
   });
 
-  console.log(clientFilter);
-
   return (
     <div className="container-full-table">
       <table className="full-table">
