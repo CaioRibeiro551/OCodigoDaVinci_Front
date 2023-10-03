@@ -1,5 +1,5 @@
-import "./style.css";
-import LoadBtnIcon from "../../assets/load-pink.svg";
+import './style.css';
+import LoadBtnIcon from '../../components/LoadButton';
 
 export default function LoadingInput() {
   return (
