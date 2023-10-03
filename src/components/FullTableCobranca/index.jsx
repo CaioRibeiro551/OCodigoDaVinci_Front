@@ -47,6 +47,7 @@ export default function FullTableCobranca({
   const lowerFilter = filter.toLocaleLowerCase().trim();
 
   const chargesFilter = cobrancas.filter((client) => {
+    delete client.description;
     const value = Object.values(client);
     return String(value).toLocaleLowerCase().includes(lowerFilter);
   });
