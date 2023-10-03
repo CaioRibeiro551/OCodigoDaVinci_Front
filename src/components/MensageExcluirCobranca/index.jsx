@@ -41,7 +41,9 @@ export default function MensagemExcluirCobranca({
             <img className="img-attention" src={Attention} alt="close" />
 
             {currentCobrancas.status === 'Pendente' ? (
-              <p>Tem certeza que deseja excluir esta cobrança? </p>
+              <p className="p-img-attention">
+                Tem certeza que deseja excluir esta cobrança?{' '}
+              </p>
             ) : (
               <p>Essa cobrança não pode ser excluída</p>
             )}
