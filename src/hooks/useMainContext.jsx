@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { useLocalStorage } from "react-use";
-import { MainContext } from "../context/MainContext";
-import Axios from "../services/api";
+import { useContext, useEffect, useState } from 'react';
+import { useLocalStorage } from 'react-use';
+import { MainContext } from '../context/MainContext';
+import Axios from '../services/api';
 
 export function useMainContextProvider() {
-  const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
+  const [userLog, setUserLog, removeUserLog] = useLocalStorage('user', {});
   const [modalTeste, setModalTeste] = useState(false);
   const [removeLoad, setRemovedLoad] = useState(true);
   const [modalClients, setModalClients] = useState(false);
@@ -12,10 +12,11 @@ export function useMainContextProvider() {
   const [modalEditeClients, setModalEditeClients] = useState(false);
   const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
   const [openModalRegister, setOpenModalRegister] = useState(false);
+  const [openModalEditCharge, setOpenModalEditCharge] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
-  const [filter, setFilter] = useState("");
-
+  const [filter, setFilter] = useState('');
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
     setOpenModalRegister(false);
@@ -25,13 +26,17 @@ export function useMainContextProvider() {
   const handleOpenEdith = () => {
     setOpenEdith((prevOpen) => !prevOpen);
   };
+  const [openEditCharge, setOpenEditCharge] = useState(false);
+  const handleEditCharge = () => {
+    setOpenModalEditCharge((prevOpen) => !prevOpen);
+  };
 
   const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
   const getClients = async () => {
     try {
       setRemovedLoad(true);
-      const { data } = await Axios.get("/clients", {
+      const { data } = await Axios.get('/clients', {
         headers: {
           Authorization: userLog.token,
         },
@@ -104,6 +109,8 @@ export function useMainContextProvider() {
     setShowClient,
     filter,
     setFilter,
+    handleEditCharge,
+    setOpenEditCharge,
   };
 }
 

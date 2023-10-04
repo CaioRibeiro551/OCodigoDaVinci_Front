@@ -1,15 +1,16 @@
-import "./style.css";
-import iconeEdit from "../../assets/icone-edit.svg";
-import iconeExcluir from "../../assets/excluir.svg";
-import iconeCobranca from "../../assets/cobranca-icon.svg";
-import api from "../../services/api";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
-import DetailsCharges from "../DetailsCharges";
-import MenssagemConfirm from "../../components/MensageExcluirCobranca"; // Certifique-se de usar o nome correto do componente
-import { useMainContext } from "../../hooks/useMainContext";
+import './style.css';
+import iconeEdit from '../../assets/icone-edit.svg';
+import iconeExcluir from '../../assets/excluir.svg';
+import iconeCobranca from '../../assets/cobranca-icon.svg';
+import api from '../../services/api';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { format } from 'date-fns';
+import Loading from '../../components/LoadingPage';
+import DetailsCharges from '../DetailsCharges';
+import MenssagemConfirm from '../../components/MensageExcluirCobranca';
+import { useMainContext } from '../../hooks/useMainContext';
+import ModalEditCharges from '../ModalEditCharges';
 
 export default function FullTableCobranca({
   cobrancas,
@@ -20,28 +21,35 @@ export default function FullTableCobranca({
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
   const [currentCobrancas, setcurrentCobrancas] = useState(null);
+  const [editingCharge, setEditingCharge] = useState(null);
   const { userLog, cobrancaExcluir, setCobrancaExcluir, filter, setFilter } =
     useMainContext();
 
-  const handleExibirModal = (currentCharge) => {
+  const [modalType, setModalType] = useState(null);
+
+  const handleExibirModal = (currentCharge, type) => {
     setcurrentCobrancas(currentCharge);
     setCobrancaExcluir(true);
-    return;
+    setModalType(type);
   };
 
   const OpenDetailsCharge = (e, item) => {
     const valid = e.target.classList;
 
     if (
-      valid[0] === "icon-item" ||
-      valid[0] === "delete" ||
-      valid[0] === "edit"
+      valid[0] === 'icon-item' ||
+      valid[0] === 'delete' ||
+      valid[0] === 'edit'
     ) {
       return;
     }
     setDetailsItem(item);
     setOpenDetails(true);
-    return;
+  };
+
+  const handleEditClick = (charge) => {
+    setEditingCharge(charge);
+    setModalType('editar');
   };
 
   const lowerFilter = filter.toLocaleLowerCase().trim();
@@ -58,17 +66,22 @@ export default function FullTableCobranca({
     return String(valueCharge).toLocaleLowerCase().includes(lowerFilter);
   });
 
-  useEffect(() => {}, [cobrancaExcluir]);
+  useEffect(() => {
+    if (!cobrancaExcluir) {
+      setModalType(null);
+    }
+  }, [cobrancaExcluir]);
+
   return (
     <div
       className={`${
-        pathname === "/cobrancas"
-          ? "container-full-table"
-          : "container-resume-table"
+        pathname === '/cobrancas'
+          ? 'container-full-table'
+          : 'container-resume-table'
       }`}
     >
       <table className="full-table">
-        {pathname !== "/cobrancas" && (
+        {pathname !== '/cobrancas' && (
           <caption>
             <div>
               <div>
@@ -89,7 +102,7 @@ export default function FullTableCobranca({
         <thead className="relative-text">
           <tr>
             <th>
-              {" "}
+              {' '}
               <img src={iconeCobranca} alt="" />
               Cliente
             </th>
@@ -108,7 +121,7 @@ export default function FullTableCobranca({
         <tbody className="small-text">
           {chargesFilter.map((item) => (
             <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
-              {pathname === "/cobrancas" && <td>{item.client_name}</td>}
+              {pathname === '/cobrancas' && <td>{item.client_name}</td>}
 
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
@@ -117,13 +130,13 @@ export default function FullTableCobranca({
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === "Pendente"
-                      ? "pendente"
-                      : item.status === "Paga"
-                      ? "paga"
-                      : item.status === "Vencida"
-                      ? "vencida"
-                      : "status-outro"
+                    item.status === 'Pendente'
+                      ? 'pendente'
+                      : item.status === 'Paga'
+                      ? 'paga'
+                      : item.status === 'Vencida'
+                      ? 'vencida'
+                      : 'status-outro'
                   }`}
                 >
                   {item.status}
@@ -132,28 +145,44 @@ export default function FullTableCobranca({
               <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
-                <p className="edit">
-                  <img className="edit" src={iconeEdit} alt="Editar" />
-                  <span className="edit">Editar </span>
+                <p className="edit" onClick={() => handleEditClick(item)}>
+                  <img className="edit-icon" src={iconeEdit} alt="Editar" />
+                  <span className="edit-text">Editar </span>
                 </p>
-                <p className="delete" onClick={() => handleExibirModal(item)}>
-                  <img className="delete" src={iconeExcluir} alt="Excluir" />
-                  <span className="delete">Excluir </span>
+                <p
+                  className="delete"
+                  onClick={() => handleExibirModal(item, 'excluir')}
+                >
+                  <img
+                    className="delete-icon"
+                    src={iconeExcluir}
+                    alt="Excluir"
+                  />
+                  <span className="delete-text">Excluir </span>
                 </p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {openDetails && (
+      {openDetails && !modalType && (
         <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
       )}
 
-      {cobrancaExcluir && (
+      {cobrancaExcluir && modalType === 'excluir' && (
         <MenssagemConfirm
           currentCobrancas={currentCobrancas}
           setCobrancas={setCobrancas}
           cobrancas={cobrancas}
+        />
+      )}
+
+      {modalType === 'editar' && (
+        <ModalEditCharges
+          id={editingCharge.id}
+          client={editingCharge}
+          handleOpen={() => setModalType(null)}
+          handleEditCharge={() => handleEditCharge(editingCharge)}
         />
       )}
     </div>
