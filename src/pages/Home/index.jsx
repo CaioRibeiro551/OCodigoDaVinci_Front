@@ -11,6 +11,7 @@ import { ResumeLargeTable } from "../../components/ResumeLargeTable";
 import ResumeSmallTable from "../../components/ResumeSmallTable";
 import Loading from "../../components/LoadingPage";
 import Menssage from "../../components/MensagemErroExclusaoCobranca";
+import { useState } from "react";
 
 const headerTitle = {
   header: "Resumo das cobranças",
@@ -22,7 +23,9 @@ const headerTitle = {
 };
 
 export default function Home() {
-  const { modalTeste, clients, charges, removeLoad } = useMainContext();
+  const { modalTeste, clients, charges, removeLoad, setRemovedLoad } =
+    useMainContext();
+  const [loadPage, setLoadPage] = useState(false);
 
   const clientsEmDia = clients.filter((client) => client.status == "Em dia");
 
@@ -123,6 +126,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {!removeLoad && <Loading />}
     </div>
   );
 }

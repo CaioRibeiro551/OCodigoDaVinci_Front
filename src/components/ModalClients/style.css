@@ -1,7 +1,6 @@
 .backdrop {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(145, 154, 150, 0.3);
   position: fixed;
   top: 0;
   right: 0;
@@ -9,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(145, 154, 150, 0.3);
   backdrop-filter: blur(2px);
 }
 

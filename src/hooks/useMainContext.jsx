@@ -12,10 +12,12 @@ export function useMainContextProvider() {
   const [modalEditeClients, setModalEditeClients] = useState(false);
   const [messageSucessUpdateUser, setMessageSucessUpdateUser] = useState(false);
   const [openModalRegister, setOpenModalRegister] = useState(false);
+  const [openModalEditCharge, setOpenModalEditCharge] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
   const [filter, setFilter] = useState("");
-
   const [open, setOpen] = useState(false);
+  const [modalType, setModalType] = useState(false);
+
   const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
     setOpenModalRegister(false);
@@ -25,12 +27,16 @@ export function useMainContextProvider() {
   const handleOpenEdith = () => {
     setOpenEdith((prevOpen) => !prevOpen);
   };
+  const [openEditCharge, setOpenEditCharge] = useState(false);
+  const handleEditCharge = () => {
+    setOpenModalEditCharge((prevOpen) => !prevOpen);
+  };
 
   const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
   const getClients = async () => {
     try {
-      setRemovedLoad(true);
+      setRemovedLoad(false);
       const { data } = await Axios.get("/clients", {
         headers: {
           Authorization: userLog.token,
@@ -38,9 +44,9 @@ export function useMainContextProvider() {
       });
 
       setClients(data);
-      setRemovedLoad(false);
+      setRemovedLoad(true);
     } catch (error) {
-      setRemovedLoad(false);
+      setRemovedLoad(true);
       throw error;
     }
   };
@@ -49,7 +55,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getClients();
     }
-  }, [userLog.token, clients]);
+  }, [userLog.token, modalEditeClients, modalClients, openEdith]);
 
   const [charges, setCharges] = useState([]);
 
@@ -69,7 +75,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getCharges();
     }
-  }, [userLog.token, charges]);
+  }, [userLog.token, open, modalType]);
 
   const [showClient, setShowClient] = useState();
 
@@ -104,6 +110,10 @@ export function useMainContextProvider() {
     setShowClient,
     filter,
     setFilter,
+    handleEditCharge,
+    setOpenEditCharge,
+    modalType,
+    setModalType,
   };
 }
 

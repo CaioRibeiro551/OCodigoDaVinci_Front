@@ -8,8 +8,9 @@ import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import Loading from "../../components/LoadingPage";
 import DetailsCharges from "../DetailsCharges";
-import MenssagemConfirm from "../../components/MensageExcluirCobranca"; // Certifique-se de usar o nome correto do componente
+import MenssagemConfirm from "../../components/MensageExcluirCobranca";
 import { useMainContext } from "../../hooks/useMainContext";
+import ModalEditCharges from "../ModalEditCharges";
 
 export default function FullTableCobranca({
   cobrancas,
@@ -20,13 +21,21 @@ export default function FullTableCobranca({
   const [detailsItem, setDetailsItem] = useState({});
   const [openDetails, setOpenDetails] = useState(false);
   const [currentCobrancas, setcurrentCobrancas] = useState(null);
-  const { userLog, cobrancaExcluir, setCobrancaExcluir, filter, setFilter } =
-    useMainContext();
+  const [editingCharge, setEditingCharge] = useState(null);
+  const {
+    userLog,
+    cobrancaExcluir,
+    setCobrancaExcluir,
+    filter,
+    setFilter,
+    modalType,
+    setModalType,
+  } = useMainContext();
 
-  const handleExibirModal = (currentCharge) => {
+  const handleExibirModal = (currentCharge, type) => {
     setcurrentCobrancas(currentCharge);
     setCobrancaExcluir(true);
-    return;
+    setModalType(type);
   };
 
   const OpenDetailsCharge = (e, item) => {
@@ -35,13 +44,21 @@ export default function FullTableCobranca({
     if (
       valid[0] === "icon-item" ||
       valid[0] === "delete" ||
-      valid[0] === "edit"
+      valid[0] === "delete-icon" ||
+      valid[0] === "delete-text" ||
+      valid[0] === "edit" ||
+      valid[0] === "edit-icon" ||
+      valid[0] === "edit-text"
     ) {
       return;
     }
     setDetailsItem(item);
     setOpenDetails(true);
-    return;
+  };
+
+  const handleEditClick = (charge) => {
+    setEditingCharge(charge);
+    setModalType("editar");
   };
 
   const lowerFilter = filter.toLocaleLowerCase().trim();
@@ -58,7 +75,12 @@ export default function FullTableCobranca({
     return String(valueCharge).toLocaleLowerCase().includes(lowerFilter);
   });
 
-  useEffect(() => {}, [cobrancaExcluir]);
+  useEffect(() => {
+    if (!cobrancaExcluir) {
+      setModalType(null);
+    }
+  }, [cobrancaExcluir]);
+
   return (
     <div
       className={`${
@@ -132,28 +154,44 @@ export default function FullTableCobranca({
               <td title={item.description}>{item.description}</td>
 
               <td className="icon-item">
-                <p className="edit">
-                  <img className="edit" src={iconeEdit} alt="Editar" />
-                  <span className="edit">Editar </span>
+                <p className="edit" onClick={() => handleEditClick(item)}>
+                  <img className="edit-icon" src={iconeEdit} alt="Editar" />
+                  <span className="edit-text">Editar </span>
                 </p>
-                <p className="delete" onClick={() => handleExibirModal(item)}>
-                  <img className="delete" src={iconeExcluir} alt="Excluir" />
-                  <span className="delete">Excluir </span>
+                <p
+                  className="delete"
+                  onClick={() => handleExibirModal(item, "excluir")}
+                >
+                  <img
+                    className="delete-icon"
+                    src={iconeExcluir}
+                    alt="Excluir"
+                  />
+                  <span className="delete-text">Excluir </span>
                 </p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {openDetails && (
+      {openDetails && !modalType && (
         <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
       )}
 
-      {cobrancaExcluir && (
+      {cobrancaExcluir && modalType === "excluir" && (
         <MenssagemConfirm
           currentCobrancas={currentCobrancas}
           setCobrancas={setCobrancas}
           cobrancas={cobrancas}
+        />
+      )}
+
+      {modalType === "editar" && (
+        <ModalEditCharges
+          id={editingCharge.id}
+          client={editingCharge}
+          setModalType={setModalType}
+          handleEditCharge={() => handleEditCharge(editingCharge)}
         />
       )}
     </div>
