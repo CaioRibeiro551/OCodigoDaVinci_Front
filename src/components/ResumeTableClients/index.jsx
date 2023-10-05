@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import inadimplentesIMG from "../../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "../../assets/clientes-em-dia.svg";
-
-export function ResumeLargeTable({ clients, header }) {
+import { formatarCPF } from "../../utils/data";
+export function ResumeTableClients({ clients, header }) {
   return (
     <>
       <table className="resume-table ">
@@ -34,7 +34,7 @@ export function ResumeLargeTable({ clients, header }) {
             <tr key={client.id}>
               <td>{client.name}</td>
               <td>{client.id}</td>
-              <td>{client.cpf}</td>
+              <td>{formatarCPF(client.cpf)}</td>
             </tr>
           ))}
         </tbody>

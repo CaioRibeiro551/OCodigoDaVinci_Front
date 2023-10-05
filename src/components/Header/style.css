@@ -48,7 +48,26 @@ header {
   font-size: 18px;
 }
 .circle-info {
+  width: 4.8rem;
+  height: 4.8rem;
+
   margin-right: 10px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background-color: #dedee9;
+}
+.circle-info span {
+  font-family: Nunito;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .card-container {
@@ -137,8 +156,9 @@ h5 {
   margin-left: 25px;
   margin-top: 60px;
 }
+
 .text-client span,
-a {
+.text-client a {
   color: #0e8750;
 
   font-family: Inter;
@@ -149,4 +169,13 @@ a {
 }
 .separar-title {
   padding: 0 20px;
+}
+.text-client .sub-title,
+.text-client .separar-title {
+  color: #747488;
+  font-family: "Inter";
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.4rem;
 }

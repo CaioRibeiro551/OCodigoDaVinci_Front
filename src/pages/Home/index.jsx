@@ -1,43 +1,44 @@
-import Modal from '../../components/ModalEditUser';
-import Sidebar from '../../components/Sidebar/index';
-import TituloCobranca from '../../components/TituloCobranca';
-import Header from '../../components/Header/index';
-import { useMainContext } from '../../hooks/useMainContext';
-import './style.css';
-import pagasImg from '../../assets/pagas.svg';
-import vencidasImg from '../../assets/vencidas.svg';
-import previstasIMG from '../../assets/previstas.png';
-import { ResumeLargeTable } from '../../components/ResumeLargeTable';
-import ResumeSmallTable from '../../components/ResumeSmallTable';
-import Loading from '../../components/LoadingPage';
-import Menssage from '../../components/MensagemErroExclusaoCobranca';
+import Modal from "../../components/ModalEditUser";
+import Sidebar from "../../components/Sidebar/index";
+import TituloCobranca from "../../components/TituloCobranca";
+import Header from "../../components/Header/index";
+import { useMainContext } from "../../hooks/useMainContext";
+import "./style.css";
+import pagasImg from "../../assets/pagas.svg";
+import vencidasImg from "../../assets/vencidas.svg";
+import previstasIMG from "../../assets/previstas.png";
+
+import Loading from "../../components/LoadingPage";
+import Menssage from "../../components/MensagemErroExclusaoCobranca";
+import ResumeTableCharges from "../../components/ResumeTableCharges";
+import { ResumeTableClients } from "../../components/ResumeTableClients";
 
 const headerTitle = {
-  header: 'Resumo das cobranças',
-  emDia: 'Clientes em dia',
-  Inadimplente: 'Clientes Inadimplentes',
-  vencidas: 'Cobranças Vencidas',
-  pagas: 'Cobranças Pagas',
-  prevista: 'Cobranças Previstas',
+  header: "Resumo das cobranças",
+  emDia: "Clientes em dia",
+  Inadimplente: "Clientes Inadimplentes",
+  vencidas: "Cobranças Vencidas",
+  pagas: "Cobranças Pagas",
+  prevista: "Cobranças Previstas",
 };
 
 export default function Home() {
   const { modalTeste, clients, charges, removeLoad } = useMainContext();
 
-  const clientsEmDia = clients.filter((client) => client.status == 'Em dia');
+  const clientsEmDia = clients.filter((client) => client.status == "Em dia");
 
   const clientsVencidos = clients.filter(
-    (client) => client.status == 'Inadimplente',
+    (client) => client.status == "Inadimplente"
   );
 
-  const cobrancasPagas = charges.filter((charge) => charge.status == 'Paga');
+  const cobrancasPagas = charges.filter((charge) => charge.status == "Paga");
 
   const cobrancasVencidas = charges.filter(
-    (charge) => charge.status == 'Vencida',
+    (charge) => charge.status == "Vencida"
   );
 
   const cobrancasPrevistas = charges.filter(
-    (charge) => charge.status == 'Pendente',
+    (charge) => charge.status == "Pendente"
   );
 
   const totalVencidas = cobrancasVencidas.reduce((total, objeto) => {
@@ -54,22 +55,22 @@ export default function Home() {
 
   const cards = [
     {
-      text: 'Cobranças Pagas',
-      valor: `R$ ${totalPagas.toLocaleString('pt-BR')}`,
+      text: "Cobranças Pagas",
+      valor: `R$ ${totalPagas.toLocaleString("pt-BR")}`,
       img: pagasImg,
-      color: '#EEF6F6',
+      color: "#EEF6F6",
     },
     {
-      text: 'Cobranças Vencidas',
-      valor: `R$ ${totalVencidas.toLocaleString('pt-BR')}`,
+      text: "Cobranças Vencidas",
+      valor: `R$ ${totalVencidas.toLocaleString("pt-BR")}`,
       img: vencidasImg,
-      color: '#FFEFEF',
+      color: "#FFEFEF",
     },
     {
-      text: 'Cobranças Previstas',
-      valor: `R$ ${totalPrevistas.toLocaleString('pt-BR')}`,
+      text: "Cobranças Previstas",
+      valor: `R$ ${totalPrevistas.toLocaleString("pt-BR")}`,
       img: previstasIMG,
-      color: '#FCF6DC',
+      color: "#FCF6DC",
     },
   ];
 
@@ -89,23 +90,23 @@ export default function Home() {
           {modalTeste && <Modal />}
           <div className="contents-small-table">
             <div>
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasPagas}
                 header={headerTitle.pagas}
               />
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasVencidas}
                 header={headerTitle.vencidas}
               />
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasPrevistas}
                 header={headerTitle.prevista}
               />
-              <ResumeLargeTable
+              <ResumeTableClients
                 clients={clientsEmDia}
                 header={headerTitle.emDia}
               />
-              <ResumeLargeTable
+              <ResumeTableClients
                 clients={clientsVencidos}
                 header={headerTitle.Inadimplente}
               />

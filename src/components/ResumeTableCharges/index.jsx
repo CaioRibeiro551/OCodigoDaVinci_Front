@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./style.css";
 
-export default function ResumeSmallTable({ charges, header }) {
+export default function ResumeTableCharges({ charges, header }) {
   return (
     <>
       <table className="resume-table ">
@@ -40,7 +40,7 @@ export default function ResumeSmallTable({ charges, header }) {
           <tr>
             <td />
             <td className="bottom-table">
-              <Link to={"/clients"}>Ver todos</Link>
+              <Link to={"/cobrancas"}>Ver todos</Link>
             </td>
 
             <td />

@@ -7,7 +7,7 @@ import ModalClients from "../../components/ModalClients";
 import { useMainContext } from "../../hooks/useMainContext";
 import MensagemSucesso from "../../components/MensagemSucesso";
 import { useState } from "react";
-import Loading from "../../components/LoadingPage/index";
+
 import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
@@ -25,7 +25,7 @@ export default function ClientsPage() {
         <Header title={title} />
 
         <div className="container-clients">
-          <MenuTableClients />
+          <MenuTableClients name={title} />
           <FullTableClients lista={clients} />
         </div>
         {modalClients && <ModalClients />}

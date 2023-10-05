@@ -5,15 +5,15 @@ import { NavLink } from "react-router-dom";
 import { useState, memo } from "react";
 import RegisterCharges from "../RegisterCharges";
 import { useMainContext } from "../../hooks/useMainContext";
+import { formatarCPF, formatarTelefone } from "../../utils/data";
 
 function FullTable({ lista }) {
   const [cobrancaReg, setCobrancaReg] = useState([]);
-  const { open, handleOpen, filter } = useMainContext();
+  const { open, handleOpen, filter, setGetOne } = useMainContext();
 
   const handleModal = (item) => {
     handleOpen();
     setCobrancaReg(item);
-    return;
   };
 
   const lowerFilter = filter.toLocaleLowerCase().trim();
@@ -42,14 +42,18 @@ function FullTable({ lista }) {
         <tbody className="small-text ">
           {clientFilter.map((item) => (
             <tr className="font-roboto font-tr line" key={item.id}>
-              <td>
+              <td
+                onClick={() => {
+                  setGetOne(item);
+                }}
+              >
                 <NavLink to={`/client-detail/${item.id}`} id="Link">
-                  {item.name}{" "}
+                  {item.name}
                 </NavLink>
               </td>
-              <td>{item.cpf}</td>
+              <td>{formatarCPF(item.cpf)}</td>
               <td>{item.email}</td>
-              <td>{item.phone}</td>
+              <td>{formatarTelefone(item.phone)}</td>
               <td>
                 <span
                   className={`status-cell ${

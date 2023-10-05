@@ -14,6 +14,12 @@ export function useMainContextProvider() {
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
   const [filter, setFilter] = useState("");
+  const [getOne, setGetOne] = useState();
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const handleOpenDetails = () => {
+    setOpenDetails((prevOpen) => !prevOpen);
+  };
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -28,9 +34,11 @@ export function useMainContextProvider() {
 
   const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
+
   const getClients = async () => {
+    setRemovedLoad(true);
     try {
-      setRemovedLoad(true);
+      setRemovedLoad(false);
       const { data } = await Axios.get("/clients", {
         headers: {
           Authorization: userLog.token,
@@ -49,7 +57,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getClients();
     }
-  }, [userLog.token, clients]);
+  }, [userLog.token]);
 
   const [charges, setCharges] = useState([]);
 
@@ -69,7 +77,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getCharges();
     }
-  }, [userLog.token, charges]);
+  }, [userLog.token]);
 
   const [showClient, setShowClient] = useState();
 
@@ -100,10 +108,16 @@ export function useMainContextProvider() {
     clients,
     removeLoad,
     charges,
+    setCharges,
     showClient,
     setShowClient,
     filter,
     setFilter,
+    handleOpenDetails,
+    openDetails,
+    getOne,
+    setGetOne,
+    setClients,
   };
 }
 

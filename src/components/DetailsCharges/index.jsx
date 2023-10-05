@@ -1,8 +1,12 @@
 import "./style.css";
 import ChargeIcon from "../../assets/charge.svg";
 import CloseIcon from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import { format } from "date-fns";
 
-export default function DetailsCharges({ charge, setOpenDetails }) {
+export default function DetailsCharges({ charge }) {
+  const { handleOpenDetails } = useMainContext();
+
   return (
     <div className="container-details-charges">
       <div className="content-details-charges">
@@ -11,7 +15,7 @@ export default function DetailsCharges({ charge, setOpenDetails }) {
           src={CloseIcon}
           alt="Close"
           onClick={() => {
-            setOpenDetails(false);
+            handleOpenDetails();
           }}
         />
         <div className="details-charge-title">
@@ -33,11 +37,11 @@ export default function DetailsCharges({ charge, setOpenDetails }) {
           <div className="container-topics-venc-valor">
             <div className="content-topics">
               <h3>Vencimento</h3>
-              <span>{charge.due_date}</span>
+              <span>{format(new Date(charge.due_date), "dd/MM/yyyy")}</span>
             </div>
             <div className="content-topics">
               <h3>Valor</h3>
-              <span>{charge.value}</span>
+              <span>R$ {charge.value}</span>
             </div>
           </div>
 

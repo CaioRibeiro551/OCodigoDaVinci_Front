@@ -1,44 +1,19 @@
-import Header from '../../components/Header';
-import Sidebar from '../../components/Sidebar';
-import './style.css';
-import ModalClients from '../../components/ModalClients';
-import MenuTableCobranca from '../../components/MenuTableCobranca';
-import FullTableCobranca from '../../components/FullTableCobranca';
-import { useMainContext } from '../../hooks/useMainContext';
-import { useState, useEffect } from 'react';
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+import "./style.css";
+import ModalClients from "../../components/ModalClients";
 
-import api from '../../services/api';
-import { format } from 'date-fns';
-import Loading from '../../components/LoadingPage';
+import FullTableCobranca from "../../components/FullTableCobranca";
+import { useMainContext } from "../../hooks/useMainContext";
+
+import Loading from "../../components/LoadingPage";
+import MenuTableClients from "../../components/MenuTableClients";
 
 export default function CobrancaPage() {
-  const { modalClients, userLog, handleOpen } = useMainContext();
-  const title = 'Cobranças';
+  const { modalClients, handleOpen, charges, setCharges, removeLoad } =
+    useMainContext();
+  const title = "Cobranças";
 
-  const [cobrancas, setCobrancas] = useState([]);
-  const [removeLoad, setRemovedLoad] = useState(true);
-
-  useEffect(() => {
-    async function getCobrancas() {
-      try {
-        setRemovedLoad(true);
-        const response = await api.get(`/charges`, {
-          headers: { Authorization: `Bearer ${userLog.token}` },
-        });
-        const formattedCobrancas = response.data.map((item) => ({
-          ...item,
-          due_date: format(new Date(item.due_date), 'dd/MM/yyyy'),
-        }));
-        setCobrancas(formattedCobrancas);
-        setRemovedLoad(false);
-      } catch (error) {
-        console.log(error);
-        setRemovedLoad(false);
-      }
-    }
-
-    getCobrancas();
-  }, []);
   if (removeLoad) {
     return <Loading />;
   }
@@ -50,11 +25,11 @@ export default function CobrancaPage() {
         <Header title={title} />
 
         <main className="container-clients">
-          <MenuTableCobranca />
+          <MenuTableClients name={title} />
           <FullTableCobranca
-            cobrancas={cobrancas}
+            cobrancas={charges}
             handleOpen={handleOpen}
-            setCobrancas={setCobrancas}
+            setCobrancas={setCharges}
           />
         </main>
 

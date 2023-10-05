@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, memo } from "react";
 import "./style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -6,42 +6,29 @@ import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
-import MenuTableClientDetail from "../../components/MenuTableClientDetail";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import ModalEditClients from "../../components/ModalEditClients";
+import { formatarCPF, formatarTelefone, formatarCEP } from "../../utils/data";
+import MenuTableClients from "../../components/MenuTableClients";
+import { useStateProvider } from "../../hooks/useStateProvider";
 
 function ClientDetail() {
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
-
+  const { getOne } = useMainContext();
   const { id } = useParams();
 
-  const {
-    userLog,
-    handleOpen,
-    open,
-    handleOpenEdith,
-    openEdith,
-    charges,
-    showClient,
-    setShowClient,
-  } = useMainContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getOne() {
-      try {
-        const response = await Axios.get(`/clients/${id}/clients/${id}`, {
-          headers: { Authorization: `Bearer ${userLog.token}` },
-        });
-
-        setShowClient(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+    if (!getOne) {
+      navigate("/home");
     }
+  }, [navigate]);
 
-    getOne();
-  }, [openEdith]);
+  const { handleOpen, open, handleOpenEdith, openEdith, charges } =
+    useMainContext();
 
   return (
     <div className="container-home ">
@@ -50,7 +37,7 @@ function ClientDetail() {
         <Header title={title} subtitle={subtitle} />
 
         <main className="container-clients">
-          <MenuTableClientDetail name={showClient?.name} />
+          <MenuTableClients name={getOne?.name} />
           <div>
             <div className="content-start">
               <div className="contents-title-detail">
@@ -68,15 +55,15 @@ function ClientDetail() {
                   <div className="container-text-up">
                     <div className="content-text">
                       <h6>E-mail</h6>
-                      <p>{showClient?.email}</p>
+                      <p>{getOne?.email}</p>
                     </div>
                     <div className="content-text">
                       <h6>Telefone</h6>
-                      <p>{showClient?.phone}</p>
+                      <p>{formatarTelefone(getOne?.phone)}</p>
                     </div>
                     <div className="content-text">
-                      <h6>CPFl</h6>
-                      <p>{showClient?.cpf}</p>
+                      <h6>CPF</h6>
+                      <p>{formatarCPF(getOne?.cpf)}</p>
                     </div>
                   </div>
                 </div>
@@ -84,33 +71,33 @@ function ClientDetail() {
                   <div className="container-text-back">
                     <div className="content-text">
                       <h6>Endereço</h6>
-                      <p>{showClient?.address}</p>
+                      <p>{getOne?.address}</p>
                     </div>
                     <div className="content-text">
                       <h6>Bairro</h6>
-                      <p>{showClient?.neighborhood}</p>
+                      <p>{getOne?.neighborhood}</p>
                     </div>
                     <div className="content-text">
                       <h6>Complemento</h6>
-                      <p>{showClient?.complement}</p>
+                      <p>{getOne?.complement}</p>
                     </div>
                     <div className="content-text">
                       <h6>CEP</h6>
-                      <p>{showClient?.cep}</p>
+                      <p>{formatarCEP(getOne?.cep)}</p>
                     </div>
                     <div className="content-text">
                       <h6>Cidade</h6>
-                      <p>{showClient?.city}</p>
+                      <p>{getOne?.city}</p>
                     </div>
                     <div className="content-text">
                       <h6>UF</h6>
-                      <p>{showClient?.state}</p>
+                      <p>{getOne?.state}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              {open && <RegisterCharges client={showClient} id={id} />}
-              {openEdith && <ModalEditClients id={id} client={showClient} />}
+              {open && <RegisterCharges client={getOne} id={id} />}
+              {openEdith && <ModalEditClients id={id} client={getOne} />}
             </div>
           </div>
           <FullTableCobranca cobrancas={charges} handleOpen={handleOpen} />
@@ -120,4 +107,4 @@ function ClientDetail() {
   );
 }
 
-export default ClientDetail;
+export default memo(ClientDetail);

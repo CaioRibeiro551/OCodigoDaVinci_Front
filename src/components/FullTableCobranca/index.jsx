@@ -18,10 +18,17 @@ export default function FullTableCobranca({
 }) {
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
-  const [openDetails, setOpenDetails] = useState(false);
+
   const [currentCobrancas, setcurrentCobrancas] = useState(null);
-  const { userLog, cobrancaExcluir, setCobrancaExcluir, filter, setFilter } =
-    useMainContext();
+  const {
+    userLog,
+    cobrancaExcluir,
+    setCobrancaExcluir,
+    filter,
+    setFilter,
+    handleOpenDetails,
+    openDetails,
+  } = useMainContext();
 
   const handleExibirModal = (currentCharge) => {
     setcurrentCobrancas(currentCharge);
@@ -40,21 +47,29 @@ export default function FullTableCobranca({
       return;
     }
     setDetailsItem(item);
-    setOpenDetails(true);
+    handleOpenDetails();
     return;
   };
 
   const lowerFilter = filter.toLocaleLowerCase().trim();
 
-  const chargesFilter = cobrancas.filter((client) => {
-    const value = Object.values(client);
-    return String(value).toLocaleLowerCase().includes(lowerFilter);
+  const chargesFilter = cobrancas.filter((charge) => {
+    const { client_name, due_date, id, status, value } = charge;
+    const valueCharge = Object.values({
+      client_name,
+      due_date,
+      id,
+      status,
+      value,
+    });
+    return String(valueCharge).toLocaleLowerCase().includes(lowerFilter);
   });
 
   useEffect(() => {}, [cobrancaExcluir]);
+
   return (
     <div
-      className={`${
+      className={` ${
         pathname === "/cobrancas"
           ? "container-full-table"
           : "container-resume-table"
@@ -81,12 +96,12 @@ export default function FullTableCobranca({
         )}
         <thead className="relative-text">
           <tr>
-            <th>
-              {" "}
-              <img src={iconeCobranca} alt="" />
-              Cliente
-            </th>
-
+            {pathname === "/cobrancas" && (
+              <th>
+                <img src={iconeCobranca} alt="" />
+                Cliente
+              </th>
+            )}
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
@@ -105,7 +120,7 @@ export default function FullTableCobranca({
 
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
-              <td>{item.due_date}</td>
+              <td>{format(new Date(item.due_date), "dd/MM/yyyy")}</td>
 
               <td>
                 <span
@@ -138,10 +153,7 @@ export default function FullTableCobranca({
           ))}
         </tbody>
       </table>
-      {openDetails && (
-        <DetailsCharges charge={detailsItem} setOpenDetails={setOpenDetails} />
-      )}
-
+      {openDetails && <DetailsCharges charge={detailsItem} />}
       {cobrancaExcluir && (
         <MenssagemConfirm
           currentCobrancas={currentCobrancas}

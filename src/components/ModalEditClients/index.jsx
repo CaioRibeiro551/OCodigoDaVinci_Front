@@ -2,17 +2,17 @@ import "./style.css";
 import CloseModal from "../../assets/close.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import IconClients from "../../assets/clients.svg";
-import { useEffect, useState } from "react";
+import { useState, memo } from "react";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import ReactInputMask from "react-input-mask";
 import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import MensagemFlash from "../../components/MensageFlash";
 import { validationEditClient } from "../../validation/validationEditClient ";
 
-export default function ModalEditClients({ id, client }) {
+function ModalEditClients({ id, client }) {
   const {
     userLog,
     setMessageSucessAddClient,
@@ -22,7 +22,12 @@ export default function ModalEditClients({ id, client }) {
   } = useMainContext();
 
   const [text, setText] = useState(false);
-  const [form, setForm] = useState({});
+
+  const [form, setForm] = useState({
+    address: "",
+    city: "",
+    state: "",
+  });
 
   const [removeLoad, setRemovedLoad] = useState(true);
   const [removeLoadBtn, setRemovedLoadBtn] = useState(true);
@@ -43,26 +48,16 @@ export default function ModalEditClients({ id, client }) {
     },
   });
 
-  function removerSimbolosDeObjeto(obj) {
-    if (typeof obj === "string") {
-      return obj.replace(/[^\wÀ-ÿç\s]/g, "");
-    }
-
-    if (typeof obj === "object" && obj !== null) {
-      for (let key in obj) {
-        obj[key] = removerSimbolosDeObjeto(obj[key]);
-      }
-    }
-
-    return obj;
-  }
+  const [address, setAddress] = useState(client.address);
+  const [inputChanged, setInputChanged] = useState(false);
 
   const createrUser = async (data) => {
-    const newForm = removerSimbolosDeObjeto(form);
-
     const newData = {
       ...data,
-      ...newForm,
+      address: inputChanged ? address : form.address,
+      city: form.city,
+      state: form.state,
+      neighborhood: form.neighborhood,
     };
 
     try {
@@ -75,7 +70,6 @@ export default function ModalEditClients({ id, client }) {
 
       setRemovedLoadBtn(true);
       setMessageSucessAddClient(true);
-
       handleOpenEdith();
       return;
     } catch (error) {
@@ -87,24 +81,10 @@ export default function ModalEditClients({ id, client }) {
   };
 
   const handleBuscaCep = async ({ target }) => {
-    if (!target.value.trim()) {
-      return;
-    }
-
-    if (target.value.trim().length !== 8) {
-      setText("CEP deve conter 8 dígitos");
-      setMessageFlash(true);
-      return;
-    }
-    console.log(target.value.trim());
-    teste(target.value);
-  };
-
-  const teste = async (item) => {
-    if (item || client.cpf) {
+    if (target.value) {
       try {
         setRemovedLoad(false);
-        const { data } = await Api.get(`/cep/${!item ? client.cep : item}`, {
+        const { data } = await Api.get(`/cep/${target.value}`, {
           headers: {
             Authorization: userLog.token,
           },
@@ -112,7 +92,6 @@ export default function ModalEditClients({ id, client }) {
 
         setRemovedLoad(true);
         setForm(data);
-
         return;
       } catch (error) {
         setRemovedLoad(true);
@@ -124,9 +103,25 @@ export default function ModalEditClients({ id, client }) {
     return;
   };
 
-  useEffect(() => {
-    teste();
-  }, []);
+  const handleConcatenate = (e) => {
+    const { value } = e.target;
+    setAddress(value);
+    setInputChanged(true);
+  };
+
+  const defaultValues = {
+    address:
+      form.address && form.address !== client.address
+        ? form.address
+        : client.address,
+    neighborhood:
+      form.neighborhood && form.neighborhood !== client.neighborhood
+        ? form.neighborhood
+        : client.neighborhood,
+    city: form.city && form.city !== client.city ? form.city : client.city,
+    state:
+      form.state && form.state !== client.state ? form.state : client.state,
+  };
 
   return (
     <div className="backdrop">
@@ -175,9 +170,9 @@ export default function ModalEditClients({ id, client }) {
             className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cpf">CPF*</label>
-            <input
-              type="cpf"
-              id="cpf"
+            <ReactInputMask
+              mask="999.999.999-99"
+              maskChar={false}
               {...register("cpf")}
               placeholder="Digite seu CPF"
             />
@@ -190,9 +185,9 @@ export default function ModalEditClients({ id, client }) {
             className={`container-inputs ${errors.phone ? "erros-inputs" : ""}`}
           >
             <label htmlFor="phone">Telefone*</label>
-            <input
-              type="text"
-              id="phone"
+            <ReactInputMask
+              mask=" 99 9 9999-9999"
+              maskChar={false}
               {...register("phone")}
               placeholder="Digite seu telefone"
             />
@@ -209,9 +204,8 @@ export default function ModalEditClients({ id, client }) {
             id="address"
             {...register("address")}
             placeholder="Digite seu endereço"
-            defaultValue={
-              client.address !== form.address ? form.address : client.address
-            }
+            value={inputChanged ? address : defaultValues.address}
+            onChange={handleConcatenate}
           />
         </div>
         <div className="container-inputs">
@@ -229,9 +223,9 @@ export default function ModalEditClients({ id, client }) {
             className={`container-inputs ${errors.cep ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cep">CEP</label>
-            <input
-              type="text"
-              id="cep"
+            <ReactInputMask
+              mask="99999-999"
+              maskChar={false}
               {...register("cep")}
               onBlur={handleBuscaCep}
               placeholder="Digite seu CEP"
@@ -248,11 +242,7 @@ export default function ModalEditClients({ id, client }) {
               id="neighborhood"
               {...register("neighborhood")}
               placeholder="Digite seu bairro"
-              defaultValue={
-                client.neighborhood !== form.neighborhood
-                  ? form.neighborhood
-                  : client.neighborhood
-              }
+              value={defaultValues.neighborhood}
             />
             {!removeLoad && <LoadingBtn />}
           </div>
@@ -266,7 +256,7 @@ export default function ModalEditClients({ id, client }) {
               id="city"
               {...register("city")}
               placeholder="Digite sua cidade"
-              defaultValue={client.city !== form.city ? form.city : client.city}
+              value={defaultValues.city}
             />
 
             {!removeLoad && <LoadingBtn />}
@@ -279,9 +269,7 @@ export default function ModalEditClients({ id, client }) {
               id="state"
               {...register("state")}
               placeholder="Digite a UF"
-              defaultValue={
-                client.state !== form.state ? form.state : client.state
-              }
+              value={defaultValues.state.replace(/\s+/g, "")}
             />
             {!removeLoad && <LoadingBtn />}
           </div>
@@ -304,3 +292,5 @@ export default function ModalEditClients({ id, client }) {
     </div>
   );
 }
+
+export default memo(ModalEditClients);
