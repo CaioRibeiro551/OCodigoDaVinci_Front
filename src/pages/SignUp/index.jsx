@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,  useEffect } from "react";
 import "./style.css";
 import SteperAside from "../../components/SteperAside";
 import FormSignUp from "../../components/FormSignUp";
