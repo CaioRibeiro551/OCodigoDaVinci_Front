@@ -1,14 +1,13 @@
-import './style.css';
-import CloseModal from '../../assets/close.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import clients from '../../assets/clients.svg';
-import Api from '../../services/api';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import LoadingBtn from '../LoadingInput';
-import LoadingBtnWhite from '../../components/LoadingBtnWhite';
-import { ValidationCharges } from '../../validation/ValidiationCharges';
-import ReactInputMask from 'react-input-mask';
+import "./style.css";
+import CloseModal from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import clients from "../../assets/clients.svg";
+import Api from "../../services/api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { ValidationCharges } from "../../validation/ValidiationCharges";
+import ReactInputMask from "react-input-mask";
 
 export default function RegisterCharges({ id, client }) {
   const { userLog, handleOpen } = useMainContext();
@@ -16,7 +15,6 @@ export default function RegisterCharges({ id, client }) {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(ValidationCharges),
@@ -24,7 +22,7 @@ export default function RegisterCharges({ id, client }) {
 
   const onSubmit = async (data) => {
     const newCharge = { ...data, id };
-    console.log(id);
+
     try {
       await Api.post(`/clients/${id}/charges`, newCharge, {
         headers: {
@@ -64,7 +62,7 @@ export default function RegisterCharges({ id, client }) {
             cols="20"
             rows="5"
             placeholder="Escreva a descrição aqui"
-            {...register('description')}
+            {...register("description")}
           />
           {errors.description && (
             <span className="error">{errors.description.message}</span>
@@ -75,10 +73,11 @@ export default function RegisterCharges({ id, client }) {
           <div className="container-inputs">
             <label htmlFor="date">Vencimento *</label>
             <ReactInputMask
-              className=" input-description"
+              className="input-description"
               mask="99/99/9999"
+              maskChar={false}
               placeholder="Data de Vencimento"
-              {...register('due_date')}
+              {...register("due_date")}
             />
             {errors.due_date && (
               <span className="error">{errors.due_date?.message}</span>
@@ -89,7 +88,8 @@ export default function RegisterCharges({ id, client }) {
             <input
               type="text"
               placeholder="Digite o Valor"
-              {...register('value')}
+              {...register("value")}
+              defaultChecked
             />
             {errors.value && (
               <span className="error">{errors.value.message}</span>
@@ -102,8 +102,8 @@ export default function RegisterCharges({ id, client }) {
               type="radio"
               value="Paga"
               id="status-paga"
-              // checked
-              {...register('status')}
+              {...register("status")}
+              defaultChecked={"Paga"}
             />
             <label htmlFor="status-paga">Cobrança Paga</label>
           </div>
@@ -112,7 +112,7 @@ export default function RegisterCharges({ id, client }) {
               type="radio"
               value="Pendente"
               id="status-pendente"
-              {...register('status')}
+              {...register("status")}
             />
             <label htmlFor="status-pendente">Cobrança Pendente</label>
           </div>

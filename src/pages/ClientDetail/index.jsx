@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, memo } from "react";
 import "./style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -6,27 +6,29 @@ import Axios from "../../services/api";
 import { useMainContext } from "../../hooks/useMainContext";
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
-import MenuTableClientDetail from "../../components/MenuTableClientDetail";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ModalEditClients from "../../components/ModalEditClients";
+import { formatarCPF, formatarTelefone, formatarCEP } from "../../utils/data";
+import MenuTable from "../../components/MenuTable";
 
 function ClientDetail() {
   const title = "Clientes";
   const subtitle = "Detalhes do cliente";
-
+  const { getOne } = useMainContext();
   const { id } = useParams();
 
   const {
-    userLog,
     handleOpen,
     open,
     handleOpenEdith,
     openEdith,
     charges,
-    showClient,
     setShowClient,
+    showClient,
+    userLog,
   } = useMainContext();
 
+  const navigate = useNavigate();
   useEffect(() => {
     async function getOne() {
       try {
@@ -43,6 +45,12 @@ function ClientDetail() {
     getOne();
   }, [openEdith]);
 
+  useEffect(() => {
+    if (!getOne) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
   return (
     <div className="container-home ">
       <Sidebar />
@@ -50,7 +58,11 @@ function ClientDetail() {
         <Header title={title} subtitle={subtitle} />
 
         <main className="container-clients">
-          <MenuTableClientDetail name={showClient?.name} />
+          <MenuTable
+            name={
+              getOne.name !== showClient?.name ? showClient?.name : getOne.name
+            }
+          />
           <div>
             <div className="content-start">
               <div className="contents-title-detail">
@@ -72,11 +84,11 @@ function ClientDetail() {
                     </div>
                     <div className="content-text">
                       <h6>Telefone</h6>
-                      <p>{showClient?.phone}</p>
+                      <p>{formatarTelefone(showClient?.phone)}</p>
                     </div>
                     <div className="content-text">
-                      <h6>CPFl</h6>
-                      <p>{showClient?.cpf}</p>
+                      <h6>CPF</h6>
+                      <p>{formatarCPF(showClient?.cpf)}</p>
                     </div>
                   </div>
                 </div>
@@ -96,7 +108,7 @@ function ClientDetail() {
                     </div>
                     <div className="content-text">
                       <h6>CEP</h6>
-                      <p>{showClient?.cep}</p>
+                      <p>{formatarCEP(showClient?.cep)}</p>
                     </div>
                     <div className="content-text">
                       <h6>Cidade</h6>
@@ -120,4 +132,4 @@ function ClientDetail() {
   );
 }
 
-export default ClientDetail;
+export default memo(ClientDetail);

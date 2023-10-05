@@ -2,28 +2,13 @@ import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import "./style.css";
 import ModalClients from "../../components/ModalClients";
-import MenuTableCobranca from "../../components/MenuTableCobranca";
 import FullTableCobranca from "../../components/FullTableCobranca";
 import { useMainContext } from "../../hooks/useMainContext";
-import { useState, useEffect } from "react";
-
-import api from "../../services/api";
-import { format } from "date-fns";
-import Loading from "../../components/LoadingPage";
+import MenuTable from "../../components/MenuTable";
 
 export default function CobrancaPage() {
-  const {
-    modalClients,
-    userLog,
-    handleOpen,
-    modalType,
-    charges,
-    removeLoad,
-    setRemovedLoad,
-  } = useMainContext();
+  const { modalClients, handleOpen, charges, setCharges } = useMainContext();
   const title = "Cobranças";
-
-  const [cobrancas, setCobrancas] = useState([]);
 
   return (
     <div className="container-home ">
@@ -32,16 +17,15 @@ export default function CobrancaPage() {
         <Header title={title} />
 
         <main className="container-clients">
-          <MenuTableCobranca />
+          <MenuTable name={title} />
           <FullTableCobranca
             cobrancas={charges}
             handleOpen={handleOpen}
-            setCobrancas={setCobrancas}
+            setCobrancas={setCharges}
           />
         </main>
 
         {modalClients && <ModalClients />}
-        {!removeLoad && <Loading />}
       </div>
     </div>
   );

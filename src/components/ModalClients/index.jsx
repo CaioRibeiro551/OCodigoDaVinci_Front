@@ -10,6 +10,7 @@ import { validationAddClient } from "../../validation/validationAddClient";
 import LoadingBtn from "../LoadingInput";
 import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import MensagemFlash from "../../components/MensageFlash";
+import ReactInputMask from "react-input-mask";
 
 export default function ModalClients({ clients, setClients }) {
   const {
@@ -39,7 +40,6 @@ export default function ModalClients({ clients, setClients }) {
     resolver: yupResolver(validationAddClient),
   });
   const handleCloseModal = () => {
-    console.log("entrei aqui");
     setModalClients(false);
 
     return;
@@ -48,14 +48,23 @@ export default function ModalClients({ clients, setClients }) {
     const key = target.name;
     const value = target.value;
     setForm({ ...form, [key]: value });
-    console.log(form);
+
     return;
   };
 
   const createrUser = async (data) => {
+    const newData = {
+      ...data,
+      cep: form.cep.replace(/[^a-zA-Z0-9]/g, ""),
+      neighborhood: form.neighborhood,
+      state: form.state,
+      city: form.city,
+      address: form.address,
+    };
+
     try {
       setRemovedLoadBtn(false);
-      await Api.post("/clients", data, {
+      await Api.post("/clients", newData, {
         headers: {
           Authorization: userLog.token,
         },
@@ -73,40 +82,27 @@ export default function ModalClients({ clients, setClients }) {
   };
 
   const handleBuscaCep = async ({ target }) => {
-    if (!target.value.trim()) {
-      // setText("Digite um CEP");
-      // setMessageFlash(true);
-      return;
-    }
+    if (target.value) {
+      try {
+        setRemovedLoad(false);
+        const { data } = await Api.get(`/cep/${target.value}`, {
+          headers: {
+            Authorization: userLog.token,
+          },
+        });
 
-    if (target.value.trim().length != 8) {
-      setText("CEP deve conter 8 digitos");
-      setMessageFlash(true);
-      return;
-    }
+        setRemovedLoad(true);
+        setForm(data);
 
-    try {
-      setRemovedLoad(false);
-      const { data } = await Api.get(`/cep/${target.value}`, {
-        headers: {
-          Authorization: userLog.token,
-        },
-      });
-      setRemovedLoad(true);
-      console.log(data);
-      setForm({
-        neighborhood: data.neighborhood,
-        city: data.city,
-        state: data.state,
-      });
-      return;
-    } catch (error) {
-      setRemovedLoad(true);
-      console.log(error);
-      setText(error.response.data.message);
-      setMessageFlash(true);
-      return;
+        return;
+      } catch (error) {
+        setRemovedLoad(true);
+        setText(error.response.data.message);
+        setMessageFlash(true);
+        return;
+      }
     }
+    return;
   };
 
   return (
@@ -156,8 +152,9 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.cpf ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cpf">CPF*</label>
-            <input
-              type="cpf"
+            <ReactInputMask
+              mask="999.999.999-99"
+              maskChar={false}
               id="cpf"
               {...register("cpf")}
               placeholder="Digite seu CPF"
@@ -171,8 +168,9 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.phone ? "erros-inputs" : ""}`}
           >
             <label htmlFor="phone">Telefone*</label>
-            <input
-              type="text"
+            <ReactInputMask
+              mask="99 9 9999 9999"
+              maskChar={false}
               id="phone"
               {...register("phone")}
               placeholder="Digite seu telefone"
@@ -189,6 +187,8 @@ export default function ModalClients({ clients, setClients }) {
             type="text"
             id="address"
             {...register("address")}
+            value={form.address}
+            onChange={handleChange}
             placeholder="Digite seu endereço"
           />
         </div>
@@ -207,8 +207,9 @@ export default function ModalClients({ clients, setClients }) {
             className={`container-inputs ${errors.cep ? "erros-inputs" : ""}`}
           >
             <label htmlFor="cep">CEP</label>
-            <input
-              type="text"
+            <ReactInputMask
+              mask="99999-999"
+              maskChar={false}
               id="cep"
               {...register("cep")}
               onBlur={handleBuscaCep}
@@ -218,7 +219,6 @@ export default function ModalClients({ clients, setClients }) {
               <span className="erros-inputs">{errors.cep.message}</span>
             )}
           </div>
-
           <div className="container-inputs">
             <label htmlFor="neighborhood">Bairro</label>
             <input

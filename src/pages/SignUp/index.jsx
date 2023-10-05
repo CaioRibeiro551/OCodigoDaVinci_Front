@@ -3,9 +3,20 @@ import "./style.css";
 import SteperAside from "../../components/SteperAside";
 import FormSignUp from "../../components/FormSignUp";
 import SteperFooter from "../../components/SteperFooter";
+import { useNavigate } from "react-router-dom";
+import { useMainContext } from "../../hooks/useMainContext";
 
 export default function SignUp() {
   const [stepIndex, setStepIndex] = useState(0);
+
+  const { userLog } = useMainContext();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userLog.token) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   const handleReturnStep = () => {
     if (stepIndex === 0) {

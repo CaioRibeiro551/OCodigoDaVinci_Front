@@ -22,6 +22,14 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
+  const { userLog } = useMainContext();
+
+  useEffect(() => {
+    if (userLog.token) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
   const { setUserLog, messageFlash, setMessageFlash } = useMainContext();
 
   async function onSubmit(data) {
@@ -40,6 +48,7 @@ export default function SignIn() {
       navigate("/home");
     } catch (error) {
       setMessageFlash(true);
+
       setText(error.response.data.message);
     } finally {
       setIsLoading(false);

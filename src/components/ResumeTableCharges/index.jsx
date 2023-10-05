@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import { useMainContext } from "../../hooks/useMainContext";
 
-export default function ResumeSmallTable({ charges, header, page, filter }) {
+export default function ResumeSmallCharges({ charges, header, page, filter }) {
   const { setFilter } = useMainContext();
 
   return (

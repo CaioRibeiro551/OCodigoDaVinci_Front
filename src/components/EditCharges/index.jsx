@@ -26,15 +26,11 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
     const newCharge = { ...data, id: cobrancaReg.id };
 
     try {
-      await Api.patch(
-        ` "/clients/:client_id/charges/:id" /clients/${cobrancaReg.id}/`,
-        newCharge,
-        {
-          headers: {
-            Authorization: userLog.token,
-          },
-        }
-      );
+      await Api.patch(`/clients/${cobrancaReg.id}/`, newCharge, {
+        headers: {
+          Authorization: userLog.token,
+        },
+      });
       handleOpen();
       setOpenModalRegister(false);
     } catch (error) {

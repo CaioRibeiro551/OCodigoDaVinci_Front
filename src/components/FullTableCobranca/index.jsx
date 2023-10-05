@@ -19,17 +19,19 @@ export default function FullTableCobranca({
 }) {
   const { pathname } = useLocation();
   const [detailsItem, setDetailsItem] = useState({});
-  const [openDetails, setOpenDetails] = useState(false);
+
   const [currentCobrancas, setcurrentCobrancas] = useState(null);
   const [editingCharge, setEditingCharge] = useState(null);
   const {
-    userLog,
     cobrancaExcluir,
     setCobrancaExcluir,
     filter,
-    setFilter,
+
+    handleOpenDetails,
+    openDetails,
     modalType,
     setModalType,
+    setOpenDetails,
   } = useMainContext();
 
   const handleExibirModal = (currentCharge, type) => {
@@ -53,7 +55,8 @@ export default function FullTableCobranca({
       return;
     }
     setDetailsItem(item);
-    setOpenDetails(true);
+    handleOpenDetails();
+    return;
   };
 
   const handleEditClick = (charge) => {
@@ -83,7 +86,7 @@ export default function FullTableCobranca({
 
   return (
     <div
-      className={`${
+      className={` ${
         pathname === "/cobrancas"
           ? "container-full-table"
           : "container-resume-table"
@@ -110,12 +113,12 @@ export default function FullTableCobranca({
         )}
         <thead className="relative-text">
           <tr>
-            <th>
-              {" "}
-              <img src={iconeCobranca} alt="" />
-              Cliente
-            </th>
-
+            {pathname === "/cobrancas" && (
+              <th>
+                <img src={iconeCobranca} alt="" />
+                Cliente
+              </th>
+            )}
             <th>
               <img src={iconeCobranca} alt="" />
               ID Cob.
@@ -129,12 +132,16 @@ export default function FullTableCobranca({
         </thead>
         <tbody className="small-text">
           {chargesFilter.map((item) => (
-            <tr key={item.id} onClick={(e) => OpenDetailsCharge(e, item)}>
+            <tr
+              className="select-tr"
+              key={item.id}
+              onClick={(e) => OpenDetailsCharge(e, item)}
+            >
               {pathname === "/cobrancas" && <td>{item.client_name}</td>}
 
               <td>{item.id}</td>
               <td>R$ {item.value}</td>
-              <td>{item.due_date}</td>
+              <td>{format(new Date(item.due_date), "dd/MM/yyyy")}</td>
 
               <td>
                 <span

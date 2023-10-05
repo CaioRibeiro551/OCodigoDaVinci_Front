@@ -5,10 +5,9 @@ import clients from "../../assets/clients.svg";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoadingBtn from "../LoadingInput";
-import LoadingBtnWhite from "../../components/LoadingBtnWhite";
 import { ValidationCharges } from "../../validation/ValidiationCharges";
 import ReactInputMask from "react-input-mask";
+import { format } from "date-fns";
 
 export default function ModalEditCharges({ id, client, setModalType }) {
   const { userLog, handleEditCharge } = useMainContext();
@@ -82,9 +81,10 @@ export default function ModalEditCharges({ id, client, setModalType }) {
             <ReactInputMask
               className=" input-description"
               mask="99/99/9999"
+              maskChar={false}
               placeholder="Data de Vencimento"
               {...register("due_date")}
-              defaultValue={client.due_date}
+              defaultValue={format(new Date(client.due_date), "dd/MM/yyyy")}
             />
             {errors.due_date && (
               <span className="error">{errors.due_date?.message}</span>
@@ -110,8 +110,13 @@ export default function ModalEditCharges({ id, client, setModalType }) {
               value="Paga"
               id="status-paga"
               {...register("status")}
-              defaultChecked={client.status === "Paga"}
+              defaultChecked={
+                client.status === "Paga" || client.status === "Vencida"
+                  ? "Paga"
+                  : "Pendente"
+              }
             />
+
             <label htmlFor="status-paga">Cobrança Paga</label>
           </div>
           <div className="flex">

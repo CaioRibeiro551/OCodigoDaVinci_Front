@@ -7,10 +7,10 @@ import "./style.css";
 import pagasImg from "../../assets/pagas.svg";
 import vencidasImg from "../../assets/vencidas.svg";
 import previstasIMG from "../../assets/previstas.png";
-import { ResumeLargeTable } from "../../components/ResumeLargeTable";
-import ResumeSmallTable from "../../components/ResumeSmallTable";
 import Loading from "../../components/LoadingPage";
-import Menssage from "../../components/MensagemErroExclusaoCobranca";
+
+import ResumeTableCharges from "../../components/ResumeTableCharges";
+import { ResumeTableClients } from "../../components/ResumeTableClients";
 import { useState } from "react";
 
 const headerTitle = {
@@ -92,31 +92,31 @@ export default function Home() {
           {modalTeste && <Modal />}
           <div className="contents-small-table">
             <div>
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasPagas}
                 header={headerTitle.pagas}
                 page={"/cobrancas"}
                 filter={"paga"}
               />
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasVencidas}
                 header={headerTitle.vencidas}
                 page={"/cobrancas"}
                 filter={"vencida"}
               />
-              <ResumeSmallTable
+              <ResumeTableCharges
                 charges={cobrancasPrevistas}
                 header={headerTitle.prevista}
                 page={"/cobrancas"}
                 filter={"pendente"}
               />
-              <ResumeLargeTable
+              <ResumeTableClients
                 clients={clientsEmDia}
                 header={headerTitle.emDia}
                 page={"/clients"}
                 filter={"Em dia"}
               />
-              <ResumeLargeTable
+              <ResumeTableClients
                 clients={clientsVencidos}
                 header={headerTitle.Inadimplente}
                 page={"/clients"}

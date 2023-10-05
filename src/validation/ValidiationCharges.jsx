@@ -13,7 +13,7 @@ const ValidationCharges = yup.object().shape({
   value: yup
     .string()
     .required("Este  campo deve ser preenchido")
-    .matches(/^[0-9]+(,[0-9]{1,2})?$/, "Digite um valor válido"),
+    .matches(/^[0-9]+([.,][0-9]{1,2})?$/, "Digite um valor válido"),
   due_date: yup
     .string()
     .required("A data de vencimento é obrigatória")

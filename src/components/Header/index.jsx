@@ -48,6 +48,17 @@ export default function Header({ title, subtitle }) {
     setIsConfirmationModalOpen(false);
   };
 
+  function pegarIniciais(nomes) {
+    const partesNomes = nomes.split(" ");
+    let iniciais = "";
+
+    for (let i = 0; i < Math.min(2, partesNomes.length); i++) {
+      iniciais += partesNomes[i].charAt(0);
+    }
+
+    return iniciais;
+  }
+
   return (
     <>
       <header>
@@ -64,19 +75,19 @@ export default function Header({ title, subtitle }) {
                 )}
 
                 {subtitle && (
-                  <h7>
-                    <h7 className="separar-title">{">"}</h7> {subtitle}
-                  </h7>
+                  <span className="sub-title">
+                    <span className="separar-title">{">"}</span> {subtitle}
+                  </span>
                 )}
               </div>
             )}
           </div>
 
           <div className="user-info">
-            <img className="circle-info" src={cicleInfo} alt="" />
-            <p className="user-name" title={userLog.name}>
-              {userLog.name}
-            </p>
+            <div className="circle-info">
+              <span>{pegarIniciais(userLog.name)}</span>
+            </div>
+            <p className="user-name">{userLog.name}</p>
             <img src={seta} alt="Seta" onClick={handleOpenMiniModal} />
             {openMineModal && (
               <div className="button-edit">

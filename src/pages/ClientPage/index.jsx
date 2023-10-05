@@ -1,13 +1,13 @@
 import FullTableClients from "../../components/FullTableClients";
 import Header from "../../components/Header";
-import MenuTableClients from "../../components/MenuTableClients";
+import MenuTable from "../../components/MenuTable";
 import Sidebar from "../../components/Sidebar";
 import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import { useMainContext } from "../../hooks/useMainContext";
 import MensagemSucesso from "../../components/MensagemSucesso";
 import { useState } from "react";
-import Loading from "../../components/LoadingPage/index";
+import Loading from "../../components/LoadingPage";
 import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
@@ -28,7 +28,7 @@ export default function ClientsPage() {
         <Header title={title} />
 
         <div className="container-clients">
-          <MenuTableClients />
+          <MenuTable name={title} />
           <FullTableClients lista={clients} />
         </div>
         {modalClients && <ModalClients />}

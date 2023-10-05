@@ -3,8 +3,9 @@ import "./style.css";
 import inadimplentesIMG from "../../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "../../assets/clientes-em-dia.svg";
 import { useMainContext } from "../../hooks/useMainContext";
+import { formatarCPF } from "../../utils/data";
 
-export function ResumeLargeTable({ clients, header, filter }) {
+export function ResumeTableClients({ clients, header, filter }) {
   const { setFilter } = useMainContext();
   return (
     <>
@@ -36,7 +37,7 @@ export function ResumeLargeTable({ clients, header, filter }) {
             <tr key={client.id}>
               <td>{client.name}</td>
               <td>{client.id}</td>
-              <td>{client.cpf}</td>
+              <td>{formatarCPF(client.cpf)}</td>
             </tr>
           ))}
         </tbody>

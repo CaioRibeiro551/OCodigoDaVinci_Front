@@ -15,6 +15,13 @@ export function useMainContextProvider() {
   const [openModalEditCharge, setOpenModalEditCharge] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
   const [filter, setFilter] = useState("");
+  const [getOne, setGetOne] = useState();
+  const [openDetails, setOpenDetails] = useState(false);
+
+  const handleOpenDetails = () => {
+    setOpenDetails((prevOpen) => !prevOpen);
+  };
+
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState(false);
 
@@ -34,7 +41,9 @@ export function useMainContextProvider() {
 
   const [cobrancaExcluir, setCobrancaExcluir] = useState(false);
   const [clients, setClients] = useState([]);
+
   const getClients = async () => {
+    setRemovedLoad(true);
     try {
       setRemovedLoad(false);
       const { data } = await Axios.get("/clients", {
@@ -106,10 +115,16 @@ export function useMainContextProvider() {
     clients,
     removeLoad,
     charges,
+    setCharges,
     showClient,
     setShowClient,
     filter,
     setFilter,
+    handleOpenDetails,
+    openDetails,
+    getOne,
+    setGetOne,
+    setClients,
     handleEditCharge,
     setOpenEditCharge,
     modalType,

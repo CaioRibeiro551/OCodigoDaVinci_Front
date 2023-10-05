@@ -89,25 +89,3 @@
   flex-direction: column;
   gap: 8px;
 }
-
-.pendente,
-.paga,
-.vencida {
-  padding: 2px 12px;
-  border-radius: 8px;
-}
-
-.pendente {
-  background-color: #fcf6dc;
-  color: #c5a605;
-}
-
-.paga {
-  background-color: #eef6f6;
-  color: #1fa7af;
-}
-
-.vencida {
-  background-color: #ffefef;
-  color: #971d1d;
-}
