@@ -5,13 +5,12 @@ import clients from "../../assets/clients.svg";
 import Api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import LoadingBtn from "../LoadingInput";
-import LoadingBtnWhite from "../../components/LoadingBtnWhite";
-import { ValidationEditCharges } from "../../validation/ValidiationEditCharges";
-import InputMask from "react-input-mask";
+import { ValidationCharges } from "../../validation/ValidiationCharges";
+import ReactInputMask from "react-input-mask";
+import { format } from "date-fns";
 
-export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
-  const { userLog, handleOpen } = useMainContext();
+export default function ModalEditCharges({ id, client, setModalType }) {
+  const { userLog, handleEditCharge } = useMainContext();
 
   const {
     register,
@@ -19,20 +18,19 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
     setError,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(ValidationEditCharges),
+    resolver: yupResolver(ValidationCharges),
   });
 
   const onSubmit = async (data) => {
-    const newCharge = { ...data, id: cobrancaReg.id };
-
+    const newCharge = { ...data, id };
     try {
-      await Api.patch(`/clients/${cobrancaReg.id}/`, newCharge, {
+      await Api.patch(`/charges/${id}`, newCharge, {
         headers: {
           Authorization: userLog.token,
         },
       });
-      handleOpen();
-      setOpenModalRegister(false);
+      setModalType(false);
+      handleEditCharge();
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +43,7 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
           className="closer"
           src={CloseModal}
           alt="Close"
-          onClick={handleOpen}
+          onClick={() => setModalType(false)}
         />
         <div className="container-title">
           <img src={clients} alt="icon client" />
@@ -57,7 +55,7 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
           <input
             type="text"
             name="name"
-            defaultValue={cobrancaReg.name}
+            defaultValue={client.client_name}
             disabled
           />
         </div>
@@ -70,6 +68,7 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
             rows="5"
             placeholder="Escreva a descrição aqui"
             {...register("description")}
+            defaultValue={client.description}
           />
           {errors.description && (
             <span className="error">{errors.description.message}</span>
@@ -78,12 +77,14 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
 
         <div className="container-cpf-telefone">
           <div className="container-inputs">
-            <label htmlFor="date">Vencimento *</label>
-            <InputMask
+            <label htmlFor="due_date">Vencimento *</label>
+            <ReactInputMask
               className=" input-description"
               mask="99/99/9999"
+              maskChar={false}
               placeholder="Data de Vencimento"
               {...register("due_date")}
+              defaultValue={format(new Date(client.due_date), "dd/MM/yyyy")}
             />
             {errors.due_date && (
               <span className="error">{errors.due_date?.message}</span>
@@ -95,21 +96,27 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
               type="text"
               placeholder="Digite o Valor"
               {...register("value")}
+              defaultValue={client.value}
             />
             {errors.value && (
               <span className="error">{errors.value.message}</span>
             )}
           </div>
         </div>
-        <div className="radio-buttons ">
+        <div className="radio-buttons">
           <div className="flex">
             <input
               type="radio"
               value="Paga"
               id="status-paga"
-              checked
               {...register("status")}
+              defaultChecked={
+                client.status === "Paga" || client.status === "Vencida"
+                  ? "Paga"
+                  : "Pendente"
+              }
             />
+
             <label htmlFor="status-paga">Cobrança Paga</label>
           </div>
           <div className="flex">
@@ -118,12 +125,17 @@ export default function EditCharges({ cobrancaReg, setOpenModalRegister }) {
               value="Pendente"
               id="status-pendente"
               {...register("status")}
+              defaultChecked={client.status === "Pendente"}
             />
             <label htmlFor="status-pendente">Cobrança Pendente</label>
           </div>
         </div>
         <div className="buttons-submit">
-          <button className="btn-cancel" type="button" onClick={handleOpen}>
+          <button
+            className="btn-cancel"
+            type="button"
+            onClick={() => setModalType(false)}
+          >
             Cancelar
           </button>
 

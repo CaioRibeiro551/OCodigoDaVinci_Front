@@ -1,61 +1,80 @@
-.container-mensage-sucess-up-user {
-  width: 100vw;
+.container-attention {
+  width: 92.5vw;
   height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(145, 154, 150, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  position: fixed;
+  bottom: 0;
+  left: 7.5vw;
+  color: #3f3f55;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-family: Nunito;
 }
 
-.container-mensage-sucess-up-user .mensage-item-sucess {
+.mensage-item-close {
   width: 600px;
   height: 400px;
-  flex-shrink: 0;
   border-radius: 30px;
-  background: #fff;
+  background-color: #fff;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 26px;
+  gap: 24px;
+  padding: 40px 56px;
 }
-.container-mensage-sucess-up-user .mensage-item-sucess img {
-  width: 130px;
-  height: 130px;
-  flex-shrink: 0;
+
+.img-close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
 }
-.container-mensage-sucess-up-user .mensage-item-sucess p {
-  color: #343447;
+
+.mensage-item-attention {
   text-align: center;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 130%;
+}
+
+.img-attention {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.p-img-attention {
   color: #cc7800;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  font-weight: 600;
 }
 .confirmation-buttons {
-  border-radius: 4px;
-  width: 250px;
-  height: 24px;
   display: flex;
-  gap: 25px;
+  justify-content: center;
+  margin-top: 25px;
 }
-.confirmation-buttons button:nth-child(2) {
-  background-color: #acd9c5;
-  color: #034a2a;
+
+.confirmation-buttons button {
+  margin-right: 15px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px;
+  height: 23px;
 }
-.confirmation-buttons button:nth-child(1) {
+
+.confirmation-buttons button:first-child {
   background-color: #f2d6d0;
   color: #ae1100;
 }
-.close {
-  position: absolute;
-  top: 230px;
-  right: 580px;
+
+.confirmation-buttons button:last-child {
+  background-color: #acd9c5;
+  color: #034a2a;
 }

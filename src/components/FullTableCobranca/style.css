@@ -119,8 +119,7 @@
   color: #c5a605;
 
   border-radius: 0.8rem;
-  width: 65%;
-
+  width: auto;
 }
 
 .paga {
@@ -128,15 +127,17 @@
   color: #1fa7af;
 
   border-radius: 0.8rem;
-  width: 45%;
-
+  width: auto;
 }
 
 .vencida {
   background-color: #ffefef;
-
   border-radius: 0.8rem;
-  width: 55%;
-
+  width: auto;
   color: #971d1d;
+}
+
+.select-tr:hover {
+  background-color: #f7f3f3;
+  border-radius: 0.5rem;
 }

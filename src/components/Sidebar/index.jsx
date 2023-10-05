@@ -8,12 +8,14 @@ import ClientsIconActive from "../../assets/clients-active.svg";
 import "./style.css";
 import { useEffect, useState } from "react";
 import Chargeicon from "../../assets/charge.svg";
+import { useMainContext } from "../../hooks/useMainContext";
 
 export default function Sidebar() {
   const [rote, setRote] = useState("");
   const [iconHome, setIconHome] = useState(Homeicon);
   const [iconClients, setIconClients] = useState(Clientsicon);
   const [iconCobranca, setIconCobranca] = useState(Cobrancaicon);
+  const { setFilter } = useMainContext();
 
   const location = useLocation();
   const navigator = useNavigate("/clients");
@@ -40,6 +42,18 @@ export default function Sidebar() {
     }
   };
 
+  const handleClients = () => {
+    navigator("/clients");
+    setFilter("");
+    return;
+  };
+
+  const handleCharge = () => {
+    navigator("/cobrancas");
+    setFilter("");
+    return;
+  };
+
   useEffect(() => {
     verifyActive();
   }, [rote]);
@@ -58,7 +72,7 @@ export default function Sidebar() {
 
           <li
             className={`sidebar-item ${rote === "/clients" && "active"}`}
-            onClick={() => navigator("/clients")}
+            onClick={handleClients}
           >
             <img src={iconClients} alt="" />
             <p>Clientes</p>
@@ -66,7 +80,7 @@ export default function Sidebar() {
 
           <li
             className={`sidebar-item ${rote === "/cobrancas" && "active"}`}
-            onClick={() => navigator("/cobrancas")}
+            onClick={handleCharge}
           >
             <img src={iconCobranca} alt="" />
             <p>Cobranças</p>

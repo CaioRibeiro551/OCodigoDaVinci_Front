@@ -5,7 +5,7 @@ import IconClients from "../../assets/clients.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 import { useLocation } from "react-router-dom";
 
-export default function MenuTableClients({ name }) {
+export default function MenuTable({ name }) {
   const { setModalClients, setFilter } = useMainContext();
 
   const { pathname } = useLocation();

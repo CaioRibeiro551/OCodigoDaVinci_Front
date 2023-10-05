@@ -54,10 +54,10 @@ function ModalEditClients({ id, client }) {
   const createrUser = async (data) => {
     const newData = {
       ...data,
-      address: inputChanged ? address : form.address,
-      city: form.city,
-      state: form.state,
-      neighborhood: form.neighborhood,
+      address: inputChanged ? address : defaultValues.address,
+      city: defaultValues.city,
+      state: defaultValues.state,
+      neighborhood: defaultValues.neighborhood,
     };
 
     try {

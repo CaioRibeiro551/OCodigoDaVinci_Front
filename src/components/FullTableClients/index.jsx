@@ -57,9 +57,7 @@ function FullTable({ lista }) {
               <td>
                 <span
                   className={`status-cell ${
-                    item.status === "Inadimplente"
-                      ? "status-Inadimplente"
-                      : "status-Em-dia"
+                    item.status === "Inadimplente" ? "vencida" : "paga"
                   }`}
                 >
                   {item.status}

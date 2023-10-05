@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import inadimplentesIMG from "../../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "../../assets/clientes-em-dia.svg";
+import { useMainContext } from "../../hooks/useMainContext";
 import { formatarCPF } from "../../utils/data";
-export function ResumeTableClients({ clients, header }) {
+
+export function ResumeTableClients({ clients, header, filter }) {
+  const { setFilter } = useMainContext();
   return (
     <>
       <table className="resume-table ">
@@ -43,7 +46,9 @@ export function ResumeTableClients({ clients, header }) {
           <tr>
             <td />
             <td className="bottom-table">
-              <Link to={"/clients"}>Ver todos</Link>
+              <Link to={"/clients"} onClick={() => setFilter(filter)}>
+                Ver todos
+              </Link>
             </td>
 
             <td />

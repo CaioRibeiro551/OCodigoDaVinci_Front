@@ -14,9 +14,7 @@ export default function DetailsCharges({ charge }) {
           className="img-details-close"
           src={CloseIcon}
           alt="Close"
-          onClick={() => {
-            handleOpenDetails();
-          }}
+          onClick={handleOpenDetails}
         />
         <div className="details-charge-title">
           <img className="img-details-charges" src={ChargeIcon} alt="Charge" />

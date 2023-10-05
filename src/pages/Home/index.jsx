@@ -7,11 +7,11 @@ import "./style.css";
 import pagasImg from "../../assets/pagas.svg";
 import vencidasImg from "../../assets/vencidas.svg";
 import previstasIMG from "../../assets/previstas.png";
-
 import Loading from "../../components/LoadingPage";
-import Menssage from "../../components/MensagemErroExclusaoCobranca";
+
 import ResumeTableCharges from "../../components/ResumeTableCharges";
 import { ResumeTableClients } from "../../components/ResumeTableClients";
+import { useState } from "react";
 
 const headerTitle = {
   header: "Resumo das cobranças",
@@ -23,7 +23,9 @@ const headerTitle = {
 };
 
 export default function Home() {
-  const { modalTeste, clients, charges, removeLoad } = useMainContext();
+  const { modalTeste, clients, charges, removeLoad, setRemovedLoad } =
+    useMainContext();
+  const [loadPage, setLoadPage] = useState(false);
 
   const clientsEmDia = clients.filter((client) => client.status == "Em dia");
 
@@ -93,27 +95,38 @@ export default function Home() {
               <ResumeTableCharges
                 charges={cobrancasPagas}
                 header={headerTitle.pagas}
+                page={"/cobrancas"}
+                filter={"paga"}
               />
               <ResumeTableCharges
                 charges={cobrancasVencidas}
                 header={headerTitle.vencidas}
+                page={"/cobrancas"}
+                filter={"vencida"}
               />
               <ResumeTableCharges
                 charges={cobrancasPrevistas}
                 header={headerTitle.prevista}
+                page={"/cobrancas"}
+                filter={"pendente"}
               />
               <ResumeTableClients
                 clients={clientsEmDia}
                 header={headerTitle.emDia}
+                page={"/clients"}
+                filter={"Em dia"}
               />
               <ResumeTableClients
                 clients={clientsVencidos}
                 header={headerTitle.Inadimplente}
+                page={"/clients"}
+                filter={"Inadimplente"}
               />
             </div>
           </div>
         </div>
       </div>
+      {!removeLoad && <Loading />}
     </div>
   );
 }

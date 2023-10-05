@@ -9,7 +9,7 @@ import LoadButton from "../../components/LoadButton/";
 import "./style.css";
 import ReactInputMask from "react-input-mask";
 
-export default function Modal() {
+export default function ModalEditUser() {
   const {
     setModalTeste,
     userLog,

@@ -33,31 +33,29 @@ export default function MensagemExcluirCobranca({
 
   return (
     <>
-      <div className="container-mensage-sucess-up-user" onClick={close}>
-        <span className="close">
-          <img onClick={handleClose} src={Close} alt="" />
-        </span>
-        <div className="mensage-item-sucess">
-          <img
-            onClick={handleClose}
-            className="sucess"
-            src={Attention}
-            alt="close"
-          />
+      <div className="container-attention">
+        <div className="mensage-item-close">
+          <img className="img-close" onClick={handleClose} src={Close} alt="" />
 
-          {currentCobrancas.status === 'Pendente' ? (
-            <p>Tem certeza que deseja excluir esta cobrança? </p>
-          ) : (
-            <p>Essa cobrança não pode ser excluída</p>
-          )}
-          <span className="confirmation-buttons">
-            {currentCobrancas.status === 'Pendente' && (
-              <button onClick={handleClose}>Não</button>
+          <div className="mensage-item-attention">
+            <img className="img-attention" src={Attention} alt="close" />
+
+            {currentCobrancas.status === 'Pendente' ? (
+              <p className="p-img-attention">
+                Tem certeza que deseja excluir esta cobrança?{' '}
+              </p>
+            ) : (
+              <p>Essa cobrança não pode ser excluída</p>
             )}
-            {currentCobrancas.status === 'Pendente' && (
-              <button onClick={handleDeleteCobranca}>Sim</button>
-            )}
-          </span>
+            <span className="confirmation-buttons">
+              {currentCobrancas.status === 'Pendente' && (
+                <button onClick={handleClose}>Não</button>
+              )}
+              {currentCobrancas.status === 'Pendente' && (
+                <button onClick={handleDeleteCobranca}>Sim</button>
+              )}
+            </span>
+          </div>
         </div>
       </div>
     </>

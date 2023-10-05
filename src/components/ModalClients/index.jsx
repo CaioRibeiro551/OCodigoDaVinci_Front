@@ -53,9 +53,18 @@ export default function ModalClients({ clients, setClients }) {
   };
 
   const createrUser = async (data) => {
+    const newData = {
+      ...data,
+      cep: form.cep.replace(/[^a-zA-Z0-9]/g, ""),
+      neighborhood: form.neighborhood,
+      state: form.state,
+      city: form.city,
+      address: form.address,
+    };
+
     try {
       setRemovedLoadBtn(false);
-      await Api.post("/clients", data, {
+      await Api.post("/clients", newData, {
         headers: {
           Authorization: userLog.token,
         },

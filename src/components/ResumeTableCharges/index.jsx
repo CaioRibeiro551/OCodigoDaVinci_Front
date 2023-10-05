@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
+import { useMainContext } from "../../hooks/useMainContext";
 
-export default function ResumeTableCharges({ charges, header }) {
+export default function ResumeSmallCharges({ charges, header, page, filter }) {
+  const { setFilter } = useMainContext();
+
   return (
     <>
       <table className="resume-table ">
@@ -40,7 +43,9 @@ export default function ResumeTableCharges({ charges, header }) {
           <tr>
             <td />
             <td className="bottom-table">
-              <Link to={"/cobrancas"}>Ver todos</Link>
+              <Link to={page} onClick={() => setFilter(filter)}>
+                Ver todos
+              </Link>
             </td>
 
             <td />

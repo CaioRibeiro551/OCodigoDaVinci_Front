@@ -1,20 +1,23 @@
 import FullTableClients from "../../components/FullTableClients";
 import Header from "../../components/Header";
-import MenuTableClients from "../../components/MenuTableClients";
+import MenuTable from "../../components/MenuTable";
 import Sidebar from "../../components/Sidebar";
 import "./style.css";
 import ModalClients from "../../components/ModalClients";
 import { useMainContext } from "../../hooks/useMainContext";
 import MensagemSucesso from "../../components/MensagemSucesso";
 import { useState } from "react";
-
+import Loading from "../../components/LoadingPage";
 import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
-  const { modalClients, messageSucessAddClient, modalEditeClients, clients } =
-    useMainContext();
-
-  const [removeLoad, setRemovedLoad] = useState(false);
+  const {
+    modalClients,
+    messageSucessAddClient,
+    modalEditeClients,
+    clients,
+    removeLoad,
+  } = useMainContext();
 
   const title = "Clientes";
 
@@ -25,13 +28,14 @@ export default function ClientsPage() {
         <Header title={title} />
 
         <div className="container-clients">
-          <MenuTableClients name={title} />
+          <MenuTable name={title} />
           <FullTableClients lista={clients} />
         </div>
         {modalClients && <ModalClients />}
         {modalEditeClients && <ModalEditeClients />}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
+      {!removeLoad && <Loading />}
     </div>
   );
 }

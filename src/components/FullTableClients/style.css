@@ -118,15 +118,3 @@
   font-weight: 600;
   scale: 1.1;
 }
-.status-Inadimplente {
-  background-color: #ffefef;
-  border-radius: 15px;
-  width: 60%;
-  color: #971d1d;
-}
-.status-Em-dia {
-  background-color: #eef6f6;
-  color: #1fa7af;
-  border-radius: 15px;
-  width: 60%;
-}

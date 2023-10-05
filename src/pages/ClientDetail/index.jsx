@@ -7,11 +7,9 @@ import { useMainContext } from "../../hooks/useMainContext";
 import FullTableCobranca from "../../components/FullTableCobranca";
 import RegisterCharges from "../../components/RegisterCharges";
 import { useParams, useNavigate } from "react-router-dom";
-
 import ModalEditClients from "../../components/ModalEditClients";
 import { formatarCPF, formatarTelefone, formatarCEP } from "../../utils/data";
-import MenuTableClients from "../../components/MenuTableClients";
-import { useStateProvider } from "../../hooks/useStateProvider";
+import MenuTable from "../../components/MenuTable";
 
 function ClientDetail() {
   const title = "Clientes";
@@ -19,16 +17,39 @@ function ClientDetail() {
   const { getOne } = useMainContext();
   const { id } = useParams();
 
+  const {
+    handleOpen,
+    open,
+    handleOpenEdith,
+    openEdith,
+    charges,
+    setShowClient,
+    showClient,
+    userLog,
+  } = useMainContext();
+
   const navigate = useNavigate();
+  useEffect(() => {
+    async function getOne() {
+      try {
+        const response = await Axios.get(`/clients/${id}/clients/${id}`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+
+        setShowClient(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getOne();
+  }, [openEdith]);
 
   useEffect(() => {
     if (!getOne) {
       navigate("/home");
     }
   }, [navigate]);
-
-  const { handleOpen, open, handleOpenEdith, openEdith, charges } =
-    useMainContext();
 
   return (
     <div className="container-home ">
@@ -37,7 +58,11 @@ function ClientDetail() {
         <Header title={title} subtitle={subtitle} />
 
         <main className="container-clients">
-          <MenuTableClients name={getOne?.name} />
+          <MenuTable
+            name={
+              getOne.name !== showClient?.name ? showClient?.name : getOne.name
+            }
+          />
           <div>
             <div className="content-start">
               <div className="contents-title-detail">
@@ -55,15 +80,15 @@ function ClientDetail() {
                   <div className="container-text-up">
                     <div className="content-text">
                       <h6>E-mail</h6>
-                      <p>{getOne?.email}</p>
+                      <p>{showClient?.email}</p>
                     </div>
                     <div className="content-text">
                       <h6>Telefone</h6>
-                      <p>{formatarTelefone(getOne?.phone)}</p>
+                      <p>{formatarTelefone(showClient?.phone)}</p>
                     </div>
                     <div className="content-text">
                       <h6>CPF</h6>
-                      <p>{formatarCPF(getOne?.cpf)}</p>
+                      <p>{formatarCPF(showClient?.cpf)}</p>
                     </div>
                   </div>
                 </div>
@@ -71,33 +96,33 @@ function ClientDetail() {
                   <div className="container-text-back">
                     <div className="content-text">
                       <h6>Endereço</h6>
-                      <p>{getOne?.address}</p>
+                      <p>{showClient?.address}</p>
                     </div>
                     <div className="content-text">
                       <h6>Bairro</h6>
-                      <p>{getOne?.neighborhood}</p>
+                      <p>{showClient?.neighborhood}</p>
                     </div>
                     <div className="content-text">
                       <h6>Complemento</h6>
-                      <p>{getOne?.complement}</p>
+                      <p>{showClient?.complement}</p>
                     </div>
                     <div className="content-text">
                       <h6>CEP</h6>
-                      <p>{formatarCEP(getOne?.cep)}</p>
+                      <p>{formatarCEP(showClient?.cep)}</p>
                     </div>
                     <div className="content-text">
                       <h6>Cidade</h6>
-                      <p>{getOne?.city}</p>
+                      <p>{showClient?.city}</p>
                     </div>
                     <div className="content-text">
                       <h6>UF</h6>
-                      <p>{getOne?.state}</p>
+                      <p>{showClient?.state}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              {open && <RegisterCharges client={getOne} id={id} />}
-              {openEdith && <ModalEditClients id={id} client={getOne} />}
+              {open && <RegisterCharges client={showClient} id={id} />}
+              {openEdith && <ModalEditClients id={id} client={showClient} />}
             </div>
           </div>
           <FullTableCobranca cobrancas={charges} handleOpen={handleOpen} />
