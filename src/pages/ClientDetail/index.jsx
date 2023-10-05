@@ -60,7 +60,7 @@ function ClientDetail() {
         <main className="container-clients">
           <MenuTable
             name={
-              getOne.name !== showClient?.name ? showClient?.name : getOne.name
+              showClient?.name
             }
           />
           <div>
