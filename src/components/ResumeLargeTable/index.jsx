@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import inadimplentesIMG from "../../assets/clientes-inadimplentes.svg";
 import clientesEmDiaIMG from "../../assets/clientes-em-dia.svg";
+import { useMainContext } from "../../hooks/useMainContext";
 
-export function ResumeLargeTable({ clients, header }) {
+export function ResumeLargeTable({ clients, header, filter }) {
+  const { setFilter } = useMainContext();
   return (
     <>
       <table className="resume-table ">
@@ -43,7 +45,9 @@ export function ResumeLargeTable({ clients, header }) {
           <tr>
             <td />
             <td className="bottom-table">
-              <Link to={"/clients"}>Ver todos</Link>
+              <Link to={"/clients"} onClick={() => setFilter(filter)}>
+                Ver todos
+              </Link>
             </td>
 
             <td />

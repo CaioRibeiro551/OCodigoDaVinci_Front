@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { useLocalStorage } from 'react-use';
-import { MainContext } from '../context/MainContext';
-import Axios from '../services/api';
+import { useContext, useEffect, useState } from "react";
+import { useLocalStorage } from "react-use";
+import { MainContext } from "../context/MainContext";
+import Axios from "../services/api";
 
 export function useMainContextProvider() {
-  const [userLog, setUserLog, removeUserLog] = useLocalStorage('user', {});
+  const [userLog, setUserLog, removeUserLog] = useLocalStorage("user", {});
   const [modalTeste, setModalTeste] = useState(false);
   const [removeLoad, setRemovedLoad] = useState(true);
   const [modalClients, setModalClients] = useState(false);
@@ -14,8 +14,9 @@ export function useMainContextProvider() {
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const [openModalEditCharge, setOpenModalEditCharge] = useState(false);
   const [messageFlash, setMessageFlash] = useState(false);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [open, setOpen] = useState(false);
+  const [modalType, setModalType] = useState(false);
 
   const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -35,17 +36,17 @@ export function useMainContextProvider() {
   const [clients, setClients] = useState([]);
   const getClients = async () => {
     try {
-      setRemovedLoad(true);
-      const { data } = await Axios.get('/clients', {
+      setRemovedLoad(false);
+      const { data } = await Axios.get("/clients", {
         headers: {
           Authorization: userLog.token,
         },
       });
 
       setClients(data);
-      setRemovedLoad(false);
+      setRemovedLoad(true);
     } catch (error) {
-      setRemovedLoad(false);
+      setRemovedLoad(true);
       throw error;
     }
   };
@@ -54,7 +55,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getClients();
     }
-  }, [userLog.token, clients]);
+  }, [userLog.token, modalEditeClients, modalClients, openEdith]);
 
   const [charges, setCharges] = useState([]);
 
@@ -74,7 +75,7 @@ export function useMainContextProvider() {
     if (userLog.token) {
       getCharges();
     }
-  }, [userLog.token, charges]);
+  }, [userLog.token, open, modalType]);
 
   const [showClient, setShowClient] = useState();
 
@@ -111,6 +112,8 @@ export function useMainContextProvider() {
     setFilter,
     handleEditCharge,
     setOpenEditCharge,
+    modalType,
+    setModalType,
   };
 }
 

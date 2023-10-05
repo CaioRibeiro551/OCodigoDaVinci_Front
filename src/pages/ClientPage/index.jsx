@@ -11,10 +11,13 @@ import Loading from "../../components/LoadingPage/index";
 import ModalEditeClients from "../../components/ModalEditClients";
 
 export default function ClientsPage() {
-  const { modalClients, messageSucessAddClient, modalEditeClients, clients } =
-    useMainContext();
-
-  const [removeLoad, setRemovedLoad] = useState(false);
+  const {
+    modalClients,
+    messageSucessAddClient,
+    modalEditeClients,
+    clients,
+    removeLoad,
+  } = useMainContext();
 
   const title = "Clientes";
 
@@ -32,6 +35,7 @@ export default function ClientsPage() {
         {modalEditeClients && <ModalEditeClients />}
         {messageSucessAddClient && <MensagemSucesso />}
       </div>
+      {!removeLoad && <Loading />}
     </div>
   );
 }

@@ -1,22 +1,17 @@
-import './style.css';
-import CloseModal from '../../assets/close.svg';
-import { useMainContext } from '../../hooks/useMainContext';
-import clients from '../../assets/clients.svg';
-import Api from '../../services/api';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import LoadingBtn from '../LoadingInput';
-import LoadingBtnWhite from '../../components/LoadingBtnWhite';
-import { ValidationCharges } from '../../validation/ValidiationCharges';
-import ReactInputMask from 'react-input-mask';
+import "./style.css";
+import CloseModal from "../../assets/close.svg";
+import { useMainContext } from "../../hooks/useMainContext";
+import clients from "../../assets/clients.svg";
+import Api from "../../services/api";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import LoadingBtn from "../LoadingInput";
+import LoadingBtnWhite from "../../components/LoadingBtnWhite";
+import { ValidationCharges } from "../../validation/ValidiationCharges";
+import ReactInputMask from "react-input-mask";
 
-export default function ModalEditCharges({
-  id,
-  client,
-  handleOpen,
-  handleEditCharge,
-}) {
-  const { userLog } = useMainContext();
+export default function ModalEditCharges({ id, client, setModalType }) {
+  const { userLog, handleEditCharge } = useMainContext();
 
   const {
     register,
@@ -29,14 +24,13 @@ export default function ModalEditCharges({
 
   const onSubmit = async (data) => {
     const newCharge = { ...data, id };
-    console.log(id);
     try {
-      await Api.put(`/charges/${id}`, newCharge, {
+      await Api.patch(`/charges/${id}`, newCharge, {
         headers: {
           Authorization: userLog.token,
         },
       });
-
+      setModalType(false);
       handleEditCharge();
     } catch (error) {
       console.error(error);
@@ -50,7 +44,7 @@ export default function ModalEditCharges({
           className="closer"
           src={CloseModal}
           alt="Close"
-          onClick={handleOpen}
+          onClick={() => setModalType(false)}
         />
         <div className="container-title">
           <img src={clients} alt="icon client" />
@@ -59,7 +53,12 @@ export default function ModalEditCharges({
 
         <div className="container-inputs">
           <label htmlFor="name">Nome *</label>
-          <input type="text" name="name" defaultValue={client.name} disabled />
+          <input
+            type="text"
+            name="name"
+            defaultValue={client.client_name}
+            disabled
+          />
         </div>
 
         <div className="container-inputs-2">
@@ -69,7 +68,7 @@ export default function ModalEditCharges({
             cols="20"
             rows="5"
             placeholder="Escreva a descrição aqui"
-            {...register('description')}
+            {...register("description")}
             defaultValue={client.description}
           />
           {errors.description && (
@@ -84,7 +83,7 @@ export default function ModalEditCharges({
               className=" input-description"
               mask="99/99/9999"
               placeholder="Data de Vencimento"
-              {...register('due_date')}
+              {...register("due_date")}
               defaultValue={client.due_date}
             />
             {errors.due_date && (
@@ -96,7 +95,7 @@ export default function ModalEditCharges({
             <input
               type="text"
               placeholder="Digite o Valor"
-              {...register('value')}
+              {...register("value")}
               defaultValue={client.value}
             />
             {errors.value && (
@@ -110,8 +109,8 @@ export default function ModalEditCharges({
               type="radio"
               value="Paga"
               id="status-paga"
-              {...register('status')}
-              defaultChecked={client.status === 'Paga'}
+              {...register("status")}
+              defaultChecked={client.status === "Paga"}
             />
             <label htmlFor="status-paga">Cobrança Paga</label>
           </div>
@@ -120,14 +119,18 @@ export default function ModalEditCharges({
               type="radio"
               value="Pendente"
               id="status-pendente"
-              {...register('status')}
-              defaultChecked={client.status === 'Pendente'}
+              {...register("status")}
+              defaultChecked={client.status === "Pendente"}
             />
             <label htmlFor="status-pendente">Cobrança Pendente</label>
           </div>
         </div>
         <div className="buttons-submit">
-          <button className="btn-cancel" type="button" onClick={handleOpen}>
+          <button
+            className="btn-cancel"
+            type="button"
+            onClick={() => setModalType(false)}
+          >
             Cancelar
           </button>
 
