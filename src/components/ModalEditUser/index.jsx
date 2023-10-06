@@ -152,6 +152,7 @@ export default function ModalEditUser() {
                 render={({ field }) => (
                   <ReactInputMask
                     mask="999.999.999-99"
+                    maskChar={false}
                     {...field}
                     placeholder="Digite seu CPF"
                   />
@@ -174,6 +175,7 @@ export default function ModalEditUser() {
                 render={({ field }) => (
                   <ReactInputMask
                     mask="99 9 9999 9999"
+                    maskChar={false}
                     {...field}
                     placeholder="Digite seu telefone"
                   />
