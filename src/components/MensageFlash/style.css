@@ -1,5 +1,6 @@
 .container-mensage-flash {
   width: 450px;
+  height: 4.8rem;
   background-color: #cf768c;
   color: #fff;
   border-radius: 10px;
@@ -12,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 34px 10px 25px;
+  padding-left: 10px;
 }
 
 .container-mensage-flash .mensage-item {

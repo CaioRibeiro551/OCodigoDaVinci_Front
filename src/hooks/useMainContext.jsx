@@ -27,7 +27,6 @@ export function useMainContextProvider() {
 
   const handleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
-    setOpenModalRegister(false);
   };
 
   const [openEdith, setOpenEdith] = useState(false);
@@ -56,6 +55,7 @@ export function useMainContextProvider() {
       setRemovedLoad(true);
     } catch (error) {
       setRemovedLoad(true);
+
       throw error;
     }
   };

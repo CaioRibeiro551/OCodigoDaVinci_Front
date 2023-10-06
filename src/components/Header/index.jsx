@@ -18,6 +18,7 @@ export default function Header({ title, subtitle }) {
     userLog,
     modalTeste,
     messageSucessUpdateUser,
+    setUserLog,
   } = useMainContext();
   const [openMineModal, setOpenMiniModal] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function Header({ title, subtitle }) {
     setIsConfirmationModalOpen(true);
   };
 
-   const confirmLogout = () => {
+  const confirmLogout = () => {
     removeUserLog();
     setUserLog({});
     navigator("/");
