@@ -37,10 +37,10 @@ export default function Header({ title, subtitle }) {
     setIsConfirmationModalOpen(true);
   };
 
-  const confirmLogout = () => {
+   const confirmLogout = () => {
     removeUserLog();
+    setUserLog({});
     navigator("/");
-
     setIsConfirmationModalOpen(false);
   };
 
