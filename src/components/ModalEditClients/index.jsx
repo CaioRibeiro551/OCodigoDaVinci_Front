@@ -43,7 +43,7 @@ function ModalEditClients({ id, client }) {
       email: client.email,
       cpf: client.cpf,
       phone: client.phone,
-      complemet: client.complemet,
+     complement: client.complement,
       cep: client.cep.replace(/\s+/g, ""),
     },
   });
