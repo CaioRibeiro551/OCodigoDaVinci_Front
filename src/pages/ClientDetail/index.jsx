@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useState } from "react";
 import "./style.css";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
@@ -16,19 +16,36 @@ function ClientDetail() {
   const subtitle = "Detalhes do cliente";
   const { getOne } = useMainContext();
   const { id } = useParams();
-
+ const [showCharges, setShowCharges] = useState([]);
   const {
     handleOpen,
     open,
     handleOpenEdith,
     openEdith,
-    charges,
     setShowClient,
     showClient,
     userLog,
   } = useMainContext();
 
   const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+    async function getCharges() {
+      try {
+        const response = await Axios.get(`/clients/${id}/charges`, {
+          headers: { Authorization: `Bearer ${userLog.token}` },
+        });
+
+        setShowCharges(response.data);
+      } catch (error) {}
+    }
+
+    getCharges();
+  }, [open]);
+
+
   useEffect(() => {
     async function getOne() {
       try {
@@ -125,7 +142,7 @@ function ClientDetail() {
               {openEdith && <ModalEditClients id={id} client={showClient} />}
             </div>
           </div>
-          <FullTableCobranca cobrancas={charges} handleOpen={handleOpen} />
+          <FullTableCobranca cobrancas={showCharges} handleOpen={handleOpen} />
         </main>
       </div>
     </div>
