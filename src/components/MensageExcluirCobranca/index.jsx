@@ -1,9 +1,8 @@
-import './style.css';
-import { useMainContext } from '../../hooks/useMainContext';
-import Attention from '../../assets/attention-icon.svg';
-import Close from '../../assets/close.svg';
-import { useEffect } from 'react';
-import api from '../../services/api';
+import "./style.css";
+import { useMainContext } from "../../hooks/useMainContext";
+import Attention from "../../assets/attention-icon.svg";
+import Close from "../../assets/close.svg";
+import api from "../../services/api";
 
 export default function MensagemExcluirCobranca({
   currentCobrancas,
@@ -19,15 +18,15 @@ export default function MensagemExcluirCobranca({
       });
 
       setCobrancas(cobrancas.filter((item) => item.id !== currentCobrancas.id));
-      setCobrancaExcluir(false);
       handleClose();
     } catch (error) {
-      console.error('Erro ao excluir a cobrança', error);
+      console.error("Erro ao excluir a cobrança", error);
     }
   };
 
   const handleClose = () => {
-    setCobrancaExcluir(false);
+    setCobrancaExcluir((prevOpen) => !prevOpen);
+
     return;
   };
 
@@ -40,18 +39,18 @@ export default function MensagemExcluirCobranca({
           <div className="mensage-item-attention">
             <img className="img-attention" src={Attention} alt="close" />
 
-            {currentCobrancas.status === 'Pendente' ? (
+            {currentCobrancas.status === "Pendente" ? (
               <p className="p-img-attention">
-                Tem certeza que deseja excluir esta cobrança?{' '}
+                Tem certeza que deseja excluir esta cobrança?{" "}
               </p>
             ) : (
               <p>Essa cobrança não pode ser excluída</p>
             )}
             <span className="confirmation-buttons">
-              {currentCobrancas.status === 'Pendente' && (
+              {currentCobrancas.status === "Pendente" && (
                 <button onClick={handleClose}>Não</button>
               )}
-              {currentCobrancas.status === 'Pendente' && (
+              {currentCobrancas.status === "Pendente" && (
                 <button onClick={handleDeleteCobranca}>Sim</button>
               )}
             </span>

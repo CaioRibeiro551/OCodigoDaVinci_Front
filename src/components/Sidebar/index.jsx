@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Homeicon from "../../assets/home.svg";
 import Clientsicon from "../../assets/clients.svg";
 import Cobrancaicon from "../../assets/FolhaCobranca.svg";
@@ -7,7 +7,6 @@ import HomeIconActive from "../../assets/home-active.svg";
 import ClientsIconActive from "../../assets/clients-active.svg";
 import "./style.css";
 import { useEffect, useState } from "react";
-import Chargeicon from "../../assets/charge.svg";
 import { useMainContext } from "../../hooks/useMainContext";
 
 export default function Sidebar() {
@@ -19,6 +18,7 @@ export default function Sidebar() {
 
   const location = useLocation();
   const navigator = useNavigate("/clients");
+  const { id } = useParams();
 
   const verifyActive = () => {
     setRote(location.pathname);
@@ -28,7 +28,7 @@ export default function Sidebar() {
       setIconCobranca(Cobrancaicon);
       return;
     }
-    if (rote === "/clients") {
+    if (rote === "/clients" || rote === `/client-detail/${id}`) {
       setIconHome(Homeicon);
       setIconCobranca(Cobrancaicon);
       setIconClients(ClientsIconActive);
@@ -71,7 +71,10 @@ export default function Sidebar() {
           </li>
 
           <li
-            className={`sidebar-item ${rote === "/clients" && "active"}`}
+            className={`sidebar-item ${
+              (rote === "/clients" || rote === `/client-detail/${id}`) &&
+              "active"
+            }`}
             onClick={handleClients}
           >
             <img src={iconClients} alt="" />
