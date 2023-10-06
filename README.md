@@ -465,35 +465,4 @@ Feito isso, no terminal:
   <a href="#%EF%B8%8F-apple-store-project">Voltar ao Topo</a>
 </p>
 
-## 🧙‍♀️ Autores
-
-<a href="https://www.linkedin.com/in/dayane-arnaud/">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/122646943?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Dayane Arnaud</b></sub></a>✨</a>
- <br />
-
- <a href="https://www.linkedin.com/in/lene-ribeiro-desenvolvedora-full-stack/">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/107501031?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Lene Ribeiro</b></sub></a>✨</a>
- <br />
-
- <a href="https://www.linkedin.com/in/caiohr/">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/65637121?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Caio Ribeiro</b></sub></a>✨</a>
- <br />
-
- <a href="https://www.linkedin.com/in/marcos-samuel-batista-m/">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/121835618?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Marcos Samuel</b></sub></a>✨</a>
- <br />
-
- <a href="https://www.linkedin.com/in/vinícius-peter/">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/122483460?v=4" width="100px;" alt=""/>
- <br />
- <sub><b>Vinicius Peter</b></sub></a>✨</a>
- <br />
 
